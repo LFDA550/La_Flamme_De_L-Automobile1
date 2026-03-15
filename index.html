@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Flamme De L'Automobile</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+:root {
+  --n: #0a0a0a; --n2: #141414; --g1: #1e1e1e; --g2: #2c2c2c;
+  --g3: #555; --g4: #999; --g5: #ccc;
+  --w: #f8f8f6; --w2: #fff; --or: #b8962e; --or2: #d4af5a;
+}
+body { background:var(--n); color:var(--w); font-family:'Inter',sans-serif; font-weight:300; overflow-x:hidden; cursor:none; }
+
+#cur { position:fixed; width:6px; height:6px; background:#fff; border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); }
+#cur2 { position:fixed; width:32px; height:32px; border:1px solid rgba(255,255,255,.28); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:left .1s ease-out,top .1s ease-out; }
+
+nav { position:fixed; top:0; left:0; right:0; z-index:500; padding:28px 6vw; display:flex; align-items:center; justify-content:space-between; transition:all .4s; }
+nav.s { background:rgba(10,10,10,.93); backdrop-filter:blur(24px); padding:18px 6vw; border-bottom:1px solid rgba(255,255,255,.05); }
+.logo { font-family:'Playfair Display',serif; font-size:1.05rem; font-weight:400; color:var(--w2); letter-spacing:.12em; text-decoration:none; text-transform:uppercase; }
+.logo i { font-style:italic; color:var(--g4); }
+.nav-r { display:flex; align-items:center; gap:2.5rem; }
+.nav-r span { font-size:.62rem; font-weight:400; letter-spacing:.2em; text-transform:uppercase; color:var(--g4); }
+.nav-btn { font-size:.6rem; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:var(--n); background:var(--w2); padding:.55rem 1.4rem; border:none; cursor:none; }
+
+#hero { min-height:100vh; display:flex; flex-direction:column; justify-content:flex-end; padding:0 6vw 8vh; position:relative; overflow:hidden; background:var(--n); }
+.hgb { position:absolute; inset:0; pointer-events:none; background-image:linear-gradient(rgba(255,255,255,.016) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.016) 1px,transparent 1px); background-size:80px 80px; mask-image:radial-gradient(ellipse at 40% 60%,black 30%,transparent 75%); }
+.hglow { position:absolute; top:-10%; right:-5%; width:55vw; height:55vw; border-radius:50%; background:radial-gradient(circle,rgba(184,150,46,.055) 0%,transparent 65%); pointer-events:none; }
+.htag { display:flex; align-items:center; gap:1.2rem; margin-bottom:2.2rem; opacity:0; animation:up .9s .1s ease forwards; }
+.htag-line { width:32px; height:1px; background:var(--or); }
+.htag-txt { font-size:.58rem; letter-spacing:.3em; text-transform:uppercase; color:var(--or2); }
+.htitle { font-family:'Playfair Display',serif; font-size:clamp(3.8rem,8.5vw,9rem); font-weight:400; line-height:.94; color:var(--w2); letter-spacing:-.02em; margin-bottom:2.5rem; opacity:0; animation:up .9s .2s ease forwards; }
+.htitle i { font-style:italic; color:rgba(255,255,255,.3); }
+.hbot { display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:2rem; opacity:0; animation:up .9s .35s ease forwards; }
+.hdesc { font-size:.8rem; line-height:1.95; color:var(--g4); max-width:400px; letter-spacing:.03em; }
+.hcta { font-size:.63rem; font-weight:500; letter-spacing:.22em; text-transform:uppercase; color:var(--n); background:var(--w2); padding:.9rem 2.2rem; white-space:nowrap; cursor:none; border:none; transition:background .25s; }
+.hscroll { position:absolute; left:6vw; bottom:4vh; display:flex; align-items:center; gap:.8rem; opacity:0; animation:up .9s .5s ease forwards; }
+.hscroll-bar { width:1px; height:50px; background:linear-gradient(to bottom,transparent,var(--g3)); animation:pulse 2s ease-in-out infinite; }
+.hscroll-txt { font-size:.52rem; letter-spacing:.3em; text-transform:uppercase; color:var(--g3); writing-mode:vertical-rl; }
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+
+#stats { background:var(--n2); border-top:1px solid rgba(255,255,255,.05); border-bottom:1px solid rgba(255,255,255,.05); padding:3.5rem 6vw; display:flex; justify-content:space-between; align-items:center; gap:2rem; flex-wrap:wrap; }
+.stat { text-align:center; flex:1; min-width:100px; }
+.stat-n { font-family:'Playfair Display',serif; font-size:2.5rem; font-weight:400; color:var(--w2); line-height:1; }
+.stat-l { font-size:.56rem; letter-spacing:.25em; text-transform:uppercase; color:var(--g3); margin-top:.5rem; }
+.stat-sep { width:1px; height:48px; background:rgba(255,255,255,.07); }
+
+section { padding:110px 6vw; }
+.sl { display:flex; align-items:center; gap:1.2rem; margin-bottom:.8rem; }
+.sl-line { width:24px; height:1px; background:var(--or); }
+.sl-txt { font-size:.56rem; letter-spacing:.3em; text-transform:uppercase; color:var(--or2); }
+.stitle { font-family:'Playfair Display',serif; font-size:clamp(2rem,4.5vw,4rem); font-weight:400; color:var(--w2); line-height:1.1; letter-spacing:-.01em; }
+.stitle i { font-style:italic; color:rgba(255,255,255,.28); }
+
+#process { background:var(--n); }
+.steps { margin-top:5rem; }
+.step { display:grid; grid-template-columns:75px 1fr; gap:2rem; padding:2.8rem 0; border-top:1px solid rgba(255,255,255,.06); transition:all .3s; }
+.step:last-child { border-bottom:1px solid rgba(255,255,255,.06); }
+.step:hover { padding-left:.8rem; }
+.step-n { font-family:'Playfair Display',serif; font-size:.95rem; color:rgba(255,255,255,.14); letter-spacing:.1em; padding-top:.25rem; transition:color .3s; }
+.step:hover .step-n { color:var(--or2); }
+.step-title { font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:400; color:var(--g5); margin-bottom:.6rem; transition:color .3s; }
+.step:hover .step-title { color:var(--w2); }
+.step-desc { font-size:.74rem; line-height:1.9; color:var(--g3); letter-spacing:.025em; transition:color .3s; }
+.step:hover .step-desc { color:var(--g4); }
+
+#offre { padding:110px 6vw; background:var(--n2); display:flex; align-items:center; justify-content:center; }
+.offre-inner { max-width:780px; width:100%; border:1px solid rgba(255,255,255,.07); position:relative; overflow:hidden; }
+.offre-inner::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(to right,transparent,var(--or),transparent); }
+.obody { padding:4.5rem; }
+.otag { font-size:.56rem; letter-spacing:.3em; text-transform:uppercase; color:var(--or2); margin-bottom:2rem; }
+.oprice { font-family:'Playfair Display',serif; font-size:clamp(4rem,10vw,7rem); font-weight:400; color:var(--w2); line-height:1; margin-bottom:.3rem; }
+.oprice sup { font-size:1.8rem; vertical-align:super; }
+.oname { font-family:'Playfair Display',serif; font-size:1.35rem; font-style:italic; color:var(--g4); margin-bottom:.8rem; }
+.odesc { font-size:.74rem; line-height:1.85; color:var(--g3); max-width:500px; letter-spacing:.025em; margin-bottom:3rem; }
+.odiv { height:1px; background:rgba(255,255,255,.06); margin-bottom:2.5rem; }
+.ofeats { display:grid; grid-template-columns:1fr 1fr; gap:.85rem 3rem; list-style:none; margin-bottom:3rem; }
+.ofeats li { font-size:.7rem; color:var(--g4); display:flex; align-items:center; gap:.9rem; letter-spacing:.04em; }
+.ofeats li::before { content:''; width:16px; height:1px; background:var(--or); flex-shrink:0; }
+.octa { font-size:.63rem; font-weight:500; letter-spacing:.22em; text-transform:uppercase; color:var(--n); background:var(--w2); padding:1rem 2.5rem; border:none; cursor:none; display:inline-block; transition:background .25s; }
+.odeco { position:absolute; bottom:-3rem; right:-1rem; font-family:'Playfair Display',serif; font-size:12rem; font-weight:400; font-style:italic; color:rgba(255,255,255,.018); line-height:1; pointer-events:none; user-select:none; }
+
+#contact { background:var(--n); }
+.cgrid { display:grid; grid-template-columns:1fr 1.3fr; gap:8rem; align-items:start; margin-top:5rem; }
+.citems { display:flex; flex-direction:column; }
+.citem { display:flex; gap:2rem; align-items:flex-start; padding:1.6rem 0; border-bottom:1px solid rgba(255,255,255,.05); }
+.citem:first-child { border-top:1px solid rgba(255,255,255,.05); }
+.ci-l { font-size:.54rem; letter-spacing:.25em; text-transform:uppercase; color:rgba(255,255,255,.2); width:75px; flex-shrink:0; padding-top:.1rem; }
+.ci-v { font-size:.76rem; color:var(--g5); letter-spacing:.04em; line-height:1.65; }
+.ff { border-bottom:1px solid rgba(255,255,255,.08); padding:1.4rem 0; transition:border-color .3s; }
+.ff:focus-within { border-color:rgba(255,255,255,.32); }
+.ff label { display:block; font-size:.54rem; letter-spacing:.25em; text-transform:uppercase; color:rgba(255,255,255,.2); margin-bottom:.5rem; }
+.ff input,.ff textarea { width:100%; background:transparent; border:none; outline:none; font-family:'Inter',sans-serif; font-size:.78rem; font-weight:300; color:var(--w2); letter-spacing:.04em; }
+.ff input::placeholder,.ff textarea::placeholder { color:rgba(255,255,255,.12); }
+.ff textarea { resize:none; min-height:75px; }
+.frow { display:grid; grid-template-columns:1fr 1fr; }
+.frow .ff:first-child { border-right:1px solid rgba(255,255,255,.08); padding-right:2rem; }
+.frow .ff:last-child { padding-left:2rem; }
+.fswrap { padding-top:2.5rem; }
+.fsub { font-family:'Inter',sans-serif; font-size:.63rem; font-weight:500; letter-spacing:.22em; text-transform:uppercase; color:var(--n); background:var(--w2); border:none; padding:.9rem 2.2rem; cursor:none; transition:background .25s; }
+.fok { display:none; margin-top:1.5rem; font-size:.68rem; color:rgba(255,255,255,.55); letter-spacing:.1em; padding-top:1.2rem; border-top:1px solid rgba(255,255,255,.06); }
+
+#mentions { display:none; padding:110px 6vw; background:var(--n2); min-height:100vh; }
+.mgrid { display:grid; grid-template-columns:1fr 1fr; gap:3.5rem 5rem; margin-top:4rem; }
+.mb { border-top:1px solid rgba(255,255,255,.07); padding-top:2rem; }
+.mb-num { font-size:.54rem; letter-spacing:.3em; text-transform:uppercase; color:rgba(255,255,255,.18); margin-bottom:.7rem; }
+.mb-title { font-family:'Playfair Display',serif; font-size:1rem; color:var(--w2); margin-bottom:1rem; }
+.mb-text { font-size:.71rem; line-height:1.95; color:var(--g3); }
+.mb-text strong { color:var(--g5); font-weight:400; }
+
+footer { background:#050505; border-top:1px solid rgba(255,255,255,.04); padding:2.2rem 6vw; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.2rem; }
+.fl { font-family:'Playfair Display',serif; font-size:.85rem; color:rgba(255,255,255,.2); letter-spacing:.15em; text-transform:uppercase; }
+.fi { font-size:.56rem; color:rgba(255,255,255,.14); letter-spacing:.1em; text-align:center; }
+.fml { font-size:.56rem; color:rgba(255,255,255,.14); letter-spacing:.1em; cursor:pointer; text-decoration:underline; text-underline-offset:3px; transition:color .3s; }
+.fml:hover { color:rgba(255,255,255,.4); }
+
+.rv { opacity:0; transform:translateY(22px); transition:opacity .75s ease,transform .75s ease; }
+.rv.in { opacity:1; transform:translateY(0); }
+@keyframes up{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:860px){
+  .nav-r span{display:none;}
+  .cgrid,.frow{grid-template-columns:1fr;}
+  .frow .ff:first-child{border-right:none;padding-right:0;}
+  .frow .ff:last-child{padding-left:0;}
+  .ofeats{grid-template-columns:1fr;}
+  .obody{padding:2.5rem;}
+  .mgrid{grid-template-columns:1fr;}
+  .stat-sep{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur2"></div>
+
+<nav id="nav">
+  <a href="#hero" class="logo">La Flamme <i>De L'Automobile</i></a>
+  <div class="nav-r">
+    <span>Processus</span>
+    <span>Offre</span>
+    <span>Contact</span>
+    <span class="nav-btn">Nous contacter</span>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hgb"></div>
+  <div class="hglow"></div>
+  <div class="htag"><div class="htag-line"></div><span class="htag-txt">Intermédiation Automobile Indépendante — France</span></div>
+  <h1 class="htitle">L'automobile,<br><i>autrement.</i></h1>
+  <div class="hbot">
+    <p class="hdesc">Nous analysons le marché, sélectionnons les meilleures opportunités et vous mettons en relation avec les bons vendeurs. Rigoureux. Sur mesure. Indépendant.</p>
+    <button class="hcta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Démarrer ma recherche</button>
+  </div>
+  <div class="hscroll"><div class="hscroll-bar"></div><span class="hscroll-txt">Défiler</span></div>
+</section>
+
+<div id="stats" class="rv">
+  <div class="stat"><div class="stat-n">48h</div><div class="stat-l">Délai de sélection</div></div>
+  <div class="stat-sep"></div>
+  <div class="stat"><div class="stat-n">100%</div><div class="stat-l">Indépendant</div></div>
+  <div class="stat-sep"></div>
+  <div class="stat"><div class="stat-n">0€</div><div class="stat-l">Commission cachée</div></div>
+  <div class="stat-sep"></div>
+  <div class="stat"><div class="stat-n">24h</div><div class="stat-l">Délai de réponse</div></div>
+</div>
+
+<section id="process">
+  <div class="rv"><div class="sl"><div class="sl-line"></div><span class="sl-txt">Notre méthode</span></div><h2 class="stitle">Une approche<br><i>rigoureuse.</i></h2></div>
+  <div class="steps rv">
+    <div class="step"><div class="step-n">01</div><div><div class="step-title">Analyse du besoin</div><div class="step-desc">Vous définissez budget, modèle et critères. Nous partons de vos exigences, pas des nôtres.</div></div></div>
+    <div class="step"><div class="step-n">02</div><div><div class="step-title">Veille & recherche marché</div><div class="step-desc">Analyse des annonces disponibles, vérification des prix, élimination des offres à risque. Le travail fastidieux, nous le faisons.</div></div></div>
+    <div class="step"><div class="step-n">03</div><div><div class="step-title">Sélection qualifiée</div><div class="step-desc">Vous recevez une sélection commentée avec analyse individuelle et recommandations de négociation.</div></div></div>
+    <div class="step"><div class="step-n">04</div><div><div class="step-title">Mise en relation directe</div><div class="step-desc">Vous traitez directement avec le vendeur. Transparence totale, aucun intermédiaire dissimulé.</div></div></div>
+  </div>
+</section>
+
+<section id="offre">
+  <div class="offre-inner rv">
+    <div class="obody">
+      <div class="otag">Offre unique — Service complet</div>
+      <div class="oprice"><sup>€</sup>129<span style="font-size:2.2rem;font-family:'Playfair Display',serif">,99</span></div>
+      <div class="oname">Accompagnement Achat</div>
+      <div class="odesc">Un service complet et rigoureux, de la première recherche jusqu'à l'acquisition de votre véhicule. Une seule offre, aucun compromis.</div>
+      <div class="odiv"></div>
+      <ul class="ofeats">
+        <li>Recherche approfondie</li>
+        <li>Analyse détaillée des annonces</li>
+        <li>Conseils de négociation</li>
+        <li>Suivi jusqu'à l'achat</li>
+        <li>Vérification historique</li>
+      </ul>
+      <button class="octa" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Commencer maintenant</button>
+    </div>
+    <div class="odeco">F</div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="rv"><div class="sl"><div class="sl-line"></div><span class="sl-txt">Nous contacter</span></div><h2 class="stitle">Commençons<br><i>ensemble.</i></h2></div>
+  <div class="cgrid">
+    <div class="citems rv">
+      <div class="citem"><div class="ci-l">Email</div><div class="ci-v">laflammedelautomobile@gmail.com</div></div>
+      <div class="citem"><div class="ci-l">Téléphone</div><div class="ci-v">06 28 90 71 71</div></div>
+      <div class="citem"><div class="ci-l">Instagram</div><div class="ci-v">La Flamme De L'Automobile</div></div>
+      <div class="citem"><div class="ci-l">Réponse</div><div class="ci-v">Sous 24h — France entière</div></div>
+    </div>
+    <div class="rv">
+      <div class="frow">
+        <div class="ff"><label>Prénom</label><input type="text" placeholder="Votre prénom" id="fp"></div>
+        <div class="ff"><label>Nom</label><input type="text" placeholder="Votre nom" id="fn"></div>
+      </div>
+      <div class="ff"><label>Email</label><input type="email" placeholder="votre@email.fr" id="fe"></div>
+      <div class="ff"><label>Budget & critères</label><textarea placeholder="Ex : Budget 8 000€, Golf 7 diesel, moins de 120 000 km..." id="fm"></textarea></div>
+      <div class="fswrap"><button class="fsub" onclick="sendForm()">Envoyer la demande</button></div>
+      <div class="fok" id="fok">✦ Demande reçue — Ibrahim vous contacte dans les 24h.</div>
+    </div>
+  </div>
+</section>
+
+<section id="mentions">
+  <div class="sl"><div class="sl-line"></div><span class="sl-txt">Informations légales</span></div>
+  <h2 class="stitle" style="margin-bottom:0">Mentions<br><i>Légales.</i></h2>
+  <div class="mgrid">
+    <div class="mb"><div class="mb-num">01 — Éditeur du site</div><div class="mb-title">Identification</div><div class="mb-text"><strong>Raison sociale :</strong> La Flamme De L'Automobile<br><strong>Forme juridique :</strong> Entreprise individuelle (micro-entreprise)<br><strong>Gérant :</strong> Ibrahim Victor<br><strong>SIRET :</strong> 101 249 837 00010<br><strong>APE/NAF :</strong> Courtage et intermédiation automobile<br><strong>Email :</strong> laflammedelautomobile@gmail.com<br><strong>Téléphone :</strong> 06 28 90 71 71<br><strong>TVA :</strong> Non assujetti — Art. 293B du CGI</div></div>
+    <div class="mb"><div class="mb-num">02 — Hébergement</div><div class="mb-title">Hébergeur du site</div><div class="mb-text"><strong>Hébergeur :</strong> IONOS SE<br><strong>Adresse :</strong> 7, place de la Gare — BP 70109<br>57201 Sarreguemines Cedex, France<br><strong>Site :</strong> www.ionos.fr<br><strong>Téléphone :</strong> 0970 808 911</div></div>
+    <div class="mb"><div class="mb-num">03 — Activité & Responsabilité</div><div class="mb-title">Nature de l'activité</div><div class="mb-text">La Flamme De L'Automobile est une activité d'intermédiation indépendante. Elle n'achète, ne vend et ne détient aucun véhicule. Elle ne saurait être tenue responsable des vices cachés, de l'état réel des véhicules présentés, ni du comportement des parties lors de la transaction.</div></div>
+    <div class="mb"><div class="mb-num">04 — Propriété intellectuelle</div><div class="mb-title">Droits d'auteur</div><div class="mb-text">L'ensemble des contenus présents sur ce site (textes, structure, mise en page, logo, identité visuelle) est la propriété exclusive de La Flamme De L'Automobile. Toute reproduction, même partielle, est strictement interdite sans autorisation préalable et écrite.</div></div>
+    <div class="mb"><div class="mb-num">05 — Données personnelles & RGPD</div><div class="mb-title">Protection des données</div><div class="mb-text">Conformément au RGPD (UE 2016/679) et à la loi Informatique et Libertés (n° 78-17 du 6 janv. 1978), les données collectées via le formulaire sont utilisées uniquement pour traiter votre demande. Elles ne sont jamais revendues ni transmises à des tiers.<br><br><strong>Responsable du traitement :</strong> Ibrahim Victor<br><strong>Droits :</strong> Accès, rectification, suppression, portabilité, opposition.<br><strong>Contact :</strong> laflammedelautomobile@gmail.com<br><strong>Réclamation :</strong> CNIL — www.cnil.fr</div></div>
+    <div class="mb"><div class="mb-num">06 — Cookies</div><div class="mb-title">Politique de cookies</div><div class="mb-text">Ce site n'utilise pas de cookies publicitaires, de traçage ou d'analyse comportementale. Des cookies techniques strictement nécessaires au bon fonctionnement peuvent être déposés sans consentement, conformément à l'art. 82 de la loi Informatique et Libertés.</div></div>
+    <div class="mb"><div class="mb-num">07 — Médiation & Litiges</div><div class="mb-title">Règlement des différends</div><div class="mb-text">Conformément à l'ordonnance n° 2015-1033 du 20 août 2015, en cas de litige, le client peut recourir gratuitement à la médiation. Tout litige non résolu à l'amiable relève de la compétence des juridictions françaises.</div></div>
+    <div class="mb"><div class="mb-num">08 — Droit applicable</div><div class="mb-title">Juridiction compétente</div><div class="mb-text">Le présent site et l'ensemble de ses contenus sont soumis au droit français. En cas de litige, les tribunaux français sont seuls compétents. Tout différend fera l'objet d'une tentative de résolution amiable avant tout recours judiciaire.</div></div>
+  </div>
+  <div style="margin-top:4rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.05);">
+    <span onclick="hideMentions()" style="font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;color:var(--g3);cursor:pointer;text-decoration:underline;text-underline-offset:4px;">← Retour au site</span>
+  </div>
+</section>
+
+<footer>
+  <div class="fl">La Flamme De L'Automobile</div>
+  <div class="fi">SIRET 101 249 837 00010 — Ibrahim Victor — © 2025</div>
+  <span class="fml" onclick="showMentions()">Mentions légales</span>
+</footer>
+
+<script>
+const c=document.getElementById('cur'),c2=document.getElementById('cur2');
+document.addEventListener('mousemove',e=>{
+  c.style.left=e.clientX+'px';c.style.top=e.clientY+'px';
+  c2.style.left=e.clientX+'px';c2.style.top=e.clientY+'px';
+});
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('s',scrollY>60));
+const obs=new IntersectionObserver(els=>els.forEach(el=>{if(el.isIntersecting)el.target.classList.add('in');}),{threshold:.07});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+function showMentions(){
+  document.querySelectorAll('section:not(#mentions),#stats').forEach(s=>s.style.display='none');
+  document.getElementById('mentions').style.display='block';
+  window.scrollTo(0,0);
+}
+function hideMentions(){
+  document.getElementById('mentions').style.display='none';
+  document.querySelectorAll('section:not(#mentions),#stats').forEach(s=>s.style.removeProperty('display'));
+  document.getElementById('hero').style.display='flex';
+  window.scrollTo(0,0);
+}
+async function sendForm(){
+  const fp=document.getElementById('fp').value.trim();
+  const fe=document.getElementById('fe').value.trim();
+  if(!fp||!fe){alert('Veuillez renseigner votre prénom et votre email.');return;}
+  const btn=document.querySelector('.fsub');
+  btn.disabled=true;btn.textContent='Envoi...';
+  try{
+    const r=await fetch('https://formspree.io/f/xaqpbblz',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({
+        prenom:fp,nom:document.getElementById('fn').value.trim(),email:fe,
+        offre:'Accompagnement Achat — 129,99€',
+        message:document.getElementById('fm').value.trim()||'Aucun message'
+      })
+    });
+    if(r.ok){
+      document.getElementById('fok').style.display='block';
+      btn.textContent='✦ Envoyé';
+      btn.style.cssText='background:transparent;color:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.15);';
+    } else {btn.disabled=false;btn.textContent='Envoyer la demande';alert('Erreur. Contactez-nous directement par email.');}
+  }catch(e){btn.disabled=false;btn.textContent='Envoyer la demande';alert("Impossible d'envoyer. Vérifiez votre connexion.");}
+}
+</script>
+</body>
+</html>
