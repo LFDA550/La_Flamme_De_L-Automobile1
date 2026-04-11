@@ -3,636 +3,1022 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>La Flamme De L'Automobile</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+<title>La Flamme De L'Automobile — Recherche Automobile Personnalisée</title>
+<meta name="description" content="Service de recherche et d'accompagnement automobile. 3 offres. Trouvez le bon véhicule.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{overflow-x:hidden;}
-:root{--n:#010101;--n2:#070707;--n3:#0c0c0c;}
-body{background:var(--n);color:#f0f0ee;font-family:'Inter',sans-serif;font-weight:300;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
-#sp{position:fixed;top:0;left:0;width:0%;height:2px;background:linear-gradient(90deg,#5080ff,#9040ff);z-index:900;}
-#ld{position:fixed;inset:0;z-index:9000;background:var(--n);display:flex;align-items:center;justify-content:center;overflow:hidden;}
-.ld-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(100,140,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(100,140,255,.05) 1px,transparent 1px);background-size:40px 40px;}
-.ld-panel{position:absolute;top:0;bottom:0;width:51%;background:var(--n);transition:transform 1.2s cubic-bezier(.77,0,.175,1);}
+html{overflow-x:hidden;scroll-behavior:smooth;}
+:root{
+  --ink:#07070a;
+  --ink2:#0c0c10;
+  --ink3:#111116;
+  --cr:#f4efe7;
+  --cr2:#ece6dc;
+  --cr3:#d6cfc4;
+  --mu:rgba(244,239,231,.42);
+  --su:rgba(244,239,231,.16);
+  --b1:rgba(244,239,231,.08);
+  --b2:rgba(244,239,231,.05);
+  --b3:rgba(244,239,231,.13);
+}
+body{background:var(--ink);color:var(--cr);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
+
+/* NOISE */
+body::after{content:'';position:fixed;inset:0;z-index:9998;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+  mix-blend-mode:overlay;opacity:.5;}
+
+/* CURSOR */
+#cur{position:fixed;z-index:9997;top:0;left:0;pointer-events:none;will-change:transform;}
+.cr{width:30px;height:30px;border:1px solid rgba(244,239,231,.4);border-radius:50%;transform:translate(-50%,-50%);transition:width .4s,height .4s,border-color .4s,background .4s;}
+.cr-d{position:absolute;top:50%;left:50%;width:3px;height:3px;background:var(--cr);border-radius:50%;transform:translate(-50%,-50%);}
+.hov .cr{width:48px;height:48px;border-color:rgba(244,239,231,.7);background:rgba(244,239,231,.05);}
+
+/* SCROLL */
+#sp{position:fixed;top:0;left:0;height:1px;width:0%;background:var(--cr);z-index:900;opacity:.4;}
+
+/* LOADER */
+#ld{position:fixed;inset:0;z-index:9000;background:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;}
+.ld-pl,.ld-pr{position:absolute;top:0;bottom:0;width:51%;background:var(--ink);transition:transform 1.3s cubic-bezier(.77,0,.175,1);}
 .ld-pl{left:0;}.ld-pr{right:0;}
-.ld-c{position:relative;z-index:1;text-align:center;display:flex;flex-direction:column;align-items:center;gap:2rem;transition:opacity .3s;}
-.ld-name{font-family:'Syne',sans-serif;font-size:clamp(.9rem,2.5vw,1.4rem);font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:#fff;text-shadow:0 0 40px rgba(100,150,255,.8);}
-.ld-name em{font-style:normal;opacity:.25;}
-.ld-bar-bg{width:min(240px,65vw);height:1px;background:rgba(255,255,255,.06);}
-.ld-bar{height:1px;width:0;background:linear-gradient(90deg,rgba(80,120,255,.9),rgba(160,100,255,.9));box-shadow:0 0 12px rgba(100,150,255,.7);transition:width .08s linear;}
-.ld-pct{font-family:'Syne',sans-serif;font-size:.44rem;letter-spacing:.5em;color:rgba(150,180,255,.5);}
-nav{position:fixed;top:0;left:0;right:0;z-index:600;padding:clamp(14px,3vw,26px) 5vw;display:flex;align-items:center;justify-content:space-between;transition:background .4s,padding .4s;}
-nav.sc{background:rgba(1,1,1,.92);backdrop-filter:blur(28px);padding:14px 5vw;border-bottom:1px solid rgba(100,150,255,.07);}
-.n-logo{font-family:'Syne',sans-serif;font-size:clamp(.65rem,1vw,.85rem);font-weight:800;color:#fff;text-decoration:none;letter-spacing:.18em;text-transform:uppercase;}
-.n-logo em{font-style:normal;opacity:.25;font-weight:300;}
-.n-links{display:flex;align-items:center;gap:clamp(1rem,2.2vw,2.2rem);}
-.n-lk{font-size:clamp(.4rem,.6vw,.48rem);letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6);text-decoration:none;transition:color .3s;display:none;}
-@media(min-width:600px){.n-lk{display:block;}}
-.n-lk:hover{color:#fff;}
-.n-cta{font-family:'Syne',sans-serif;font-size:clamp(.42rem,.62vw,.5rem);font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#fff;background:linear-gradient(135deg,rgba(60,100,200,.75),rgba(100,60,200,.75));border:1px solid rgba(120,160,255,.25);padding:.5rem 1.3rem;cursor:pointer;border-radius:1px;transition:box-shadow .3s;}
-.n-cta:hover{box-shadow:0 0 25px rgba(100,150,255,.4);}
-#hero{height:100vh;min-height:500px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:0 5vw clamp(5vh,8vh,9vh);}
-#cv3{position:absolute;inset:0;z-index:0;}
-.h-hgrid{position:absolute;inset:0;z-index:1;pointer-events:none;background-image:linear-gradient(rgba(100,140,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(100,140,255,.03) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse at 50% 60%,black 30%,transparent 70%);}
-.h-scan{position:absolute;inset:0;z-index:1;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.015) 2px,rgba(0,0,0,.015) 4px);}
-.h-vig{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at center,transparent 35%,rgba(0,0,0,.6) 100%);}
-.hcard{position:absolute;z-index:2;background:rgba(255,255,255,.05);border:1px solid rgba(100,150,255,.15);border-radius:12px;backdrop-filter:blur(20px);padding:clamp(.8rem,1.5vw,1.2rem) clamp(1rem,2vw,1.6rem);pointer-events:none;}
-.hcard::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(120,160,255,.3),transparent);}
-.hc1{top:16%;right:7%;animation:hca 9s ease-in-out infinite;}
-.hc2{top:40%;right:20%;animation:hcb 11s ease-in-out infinite;}
-.hc3{bottom:22%;right:5%;animation:hcc 8s ease-in-out infinite;}
-.hc4{top:24%;right:38%;animation:hca 13s ease-in-out infinite reverse;}
-@media(max-width:600px){.hc2,.hc3,.hc4{display:none;}.hc1{right:3%;}}
-@keyframes hca{0%,100%{transform:translateY(0) rotateX(5deg) rotateY(-8deg);}50%{transform:translateY(-18px) rotateX(-4deg) rotateY(6deg);}}
-@keyframes hcb{0%,100%{transform:translateY(-6px) rotateX(-6deg) rotateY(9deg);}50%{transform:translateY(12px) rotateX(6deg) rotateY(-6deg);}}
-@keyframes hcc{0%,100%{transform:translateY(4px) rotateX(8deg) rotateY(-5deg);}50%{transform:translateY(-14px) rotateX(-5deg) rotateY(8deg);}}
-.hc-tag{font-size:clamp(.3rem,.5vw,.4rem);letter-spacing:.2em;text-transform:uppercase;color:rgba(150,180,255,.75);margin-bottom:.3rem;}
-.hc-val{font-family:'Syne',sans-serif;font-size:clamp(1rem,2.2vw,1.8rem);font-weight:800;color:#fff;}
-.hc-sub{font-size:clamp(.28rem,.45vw,.36rem);letter-spacing:.14em;text-transform:uppercase;color:rgba(150,180,255,.5);margin-top:.2rem;}
-.hz{position:relative;z-index:3;}
-.h-eye{display:flex;align-items:center;gap:.9rem;margin-bottom:clamp(1.2rem,2.5vw,2rem);opacity:0;}
-.h-edot{width:6px;height:6px;border-radius:50%;background:rgba(140,170,255,.9);box-shadow:0 0 12px rgba(100,150,255,.9);animation:dotp 1.5s ease-in-out infinite;flex-shrink:0;}
-@keyframes dotp{0%,100%{opacity:.4;transform:scale(1);}50%{opacity:1;transform:scale(1.6);}}
-.h-etxt{font-size:clamp(.38rem,.65vw,.5rem);letter-spacing:.28em;text-transform:uppercase;color:rgba(150,180,255,.75);}
-.h-title{margin-bottom:clamp(1.5rem,3vw,2.5rem);}
-.h-line{overflow:hidden;}
-.hw{display:inline-block;font-family:'Syne',sans-serif;font-size:clamp(2.2rem,5.5vw,5.4rem);font-weight:800;letter-spacing:-.025em;color:#fff;opacity:0;transform:translateY(30px);}
-.hw.dim{color:rgba(255,255,255,.22);}
-.hgap{display:inline-block;width:.26em;}
-.h-bot{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap;opacity:0;}
-.h-desc{font-size:clamp(.62rem,.9vw,.74rem);line-height:1.95;color:rgba(255,255,255,.65);max-width:min(340px,90vw);}
-.h-right{display:flex;flex-direction:column;align-items:flex-end;gap:1rem;}
-.h-tw{font-family:'Syne',sans-serif;font-size:clamp(.6rem,.9vw,.78rem);font-weight:700;color:rgba(170,190,255,.8);min-height:1.2em;text-align:right;}
-.h-btns{display:flex;gap:.6rem;flex-wrap:wrap;justify-content:flex-end;}
-.btn-p{font-family:'Syne',sans-serif;font-size:clamp(.46rem,.7vw,.56rem);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:linear-gradient(135deg,rgba(60,100,200,.85),rgba(100,60,200,.85));padding:clamp(.7rem,1.5vw,.9rem) clamp(1.2rem,2.5vw,2.2rem);border:1px solid rgba(120,160,255,.25);cursor:pointer;border-radius:1px;transition:box-shadow .3s;}
-.btn-p:hover{box-shadow:0 0 35px rgba(100,150,255,.4);}
-.btn-g{font-family:'Syne',sans-serif;font-size:clamp(.46rem,.7vw,.56rem);font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6);background:transparent;padding:clamp(.7rem,1.5vw,.9rem) clamp(1.2rem,2.5vw,2.2rem);border:1px solid rgba(255,255,255,.15);cursor:pointer;border-radius:1px;transition:all .3s;}
-.btn-g:hover{border-color:rgba(150,180,255,.4);color:rgba(150,180,255,.9);}
-.h-scr{position:absolute;bottom:3vh;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.6rem;opacity:0;}
-.h-scr-b{width:1px;height:42px;background:linear-gradient(to bottom,transparent,rgba(120,160,255,.5));animation:scra 2s ease-in-out infinite;}
-@keyframes scra{0%,100%{opacity:.35;}50%{opacity:1;}}
-.h-scr-t{font-size:.4rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(150,180,255,.5);}
-.mq{background:#fff;padding:.62rem 0;overflow:hidden;}
-.mq-t{display:flex;white-space:nowrap;animation:mqr 26s linear infinite;}
-.mqi{font-family:'Syne',sans-serif;font-size:clamp(.42rem,.65vw,.54rem);font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:rgba(0,0,0,.45);padding:0 clamp(1.5rem,3vw,2.8rem);}
-.mqs{color:rgba(0,0,0,.18);}
+.ld-c{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:1.8rem;transition:opacity .35s;}
+.ld-nm{font-family:'DM Serif Display',serif;font-size:clamp(1.1rem,3vw,1.7rem);letter-spacing:.28em;text-transform:uppercase;color:var(--cr);opacity:0;animation:fi .8s .2s ease forwards;}
+.ld-nm i{font-style:italic;opacity:.45;}
+@keyframes fi{to{opacity:1;}}
+.ld-tr{width:min(160px,40vw);height:1px;background:rgba(244,239,231,.08);}
+.ld-fl{height:1px;width:0%;background:var(--cr);opacity:.5;transition:width .06s linear;}
+.ld-pt{font-size:.44rem;letter-spacing:.5em;text-transform:uppercase;color:var(--mu);opacity:0;animation:fi .6s .7s ease forwards;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:700;padding:1.6rem 5vw;display:flex;align-items:center;justify-content:space-between;transition:all .5s;}
+nav.sc{background:rgba(7,7,10,.94);backdrop-filter:blur(24px);padding:1rem 5vw;border-bottom:1px solid var(--b3);}
+.n-logo{font-family:'DM Serif Display',serif;font-size:.92rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cr);text-decoration:none;}
+.n-logo i{font-style:italic;opacity:.4;}
+.n-r{display:flex;align-items:center;gap:2.5rem;}
+.n-lk{font-size:.56rem;font-weight:300;letter-spacing:.22em;text-transform:uppercase;color:var(--mu);text-decoration:none;transition:color .3s;display:none;}
+@media(min-width:720px){.n-lk{display:block;}}
+.n-lk:hover{color:var(--cr);}
+.n-btn{font-family:'DM Sans',sans-serif;font-size:.56rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:var(--cr);border:none;padding:.55rem 1.5rem;cursor:none;transition:background .3s;}
+.n-btn:hover{background:var(--cr2);}
+
+/* HERO */
+#hero{height:100vh;min-height:560px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:0 5vw clamp(5vh,8vh,9vh);}
+#cv{position:absolute;inset:0;z-index:0;}
+.hg{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background-image:linear-gradient(rgba(244,239,231,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(244,239,231,.025) 1px,transparent 1px);
+  background-size:72px 72px;}
+.hv{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(ellipse at 25% 70%,transparent 15%,rgba(7,7,10,.78) 72%);}
+.hll{position:absolute;top:0;bottom:0;left:5vw;z-index:2;pointer-events:none;width:1px;
+  background:linear-gradient(to bottom,transparent 8%,rgba(244,239,231,.07) 30%,rgba(244,239,231,.07) 70%,transparent 92%);}
+.hctl{position:absolute;top:clamp(4.5rem,7.5vw,7rem);left:5vw;z-index:2;width:32px;height:32px;
+  border-top:1px solid rgba(244,239,231,.22);border-left:1px solid rgba(244,239,231,.22);pointer-events:none;}
+.hcbr{position:absolute;bottom:clamp(5vh,8vh,9vh);right:5vw;z-index:2;width:22px;height:22px;
+  border-bottom:1px solid rgba(244,239,231,.12);border-right:1px solid rgba(244,239,231,.12);pointer-events:none;}
+.hz{position:relative;z-index:3;width:100%;}
+.h-tag{font-size:.5rem;font-weight:400;letter-spacing:.48em;text-transform:uppercase;color:var(--mu);margin-bottom:1.6rem;display:flex;align-items:center;gap:.9rem;opacity:0;}
+.h-tag::before{content:'';width:20px;height:1px;background:rgba(244,239,231,.35);}
+h1{font-family:'DM Serif Display',serif;font-size:clamp(3rem,9vw,9.5rem);font-weight:400;line-height:.88;letter-spacing:-.01em;color:var(--cr);margin-bottom:2rem;}
+h1 .it{font-style:italic;}
+h1 .dm{color:var(--su);}
+.hw{display:inline-block;opacity:0;transform:translateY(32px);}
+.h-bot{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:2rem;opacity:0;}
+.h-desc{font-size:clamp(.78rem,1.1vw,.88rem);font-weight:300;color:var(--mu);max-width:min(380px,100%);line-height:1.95;}
+.h-desc strong{color:rgba(244,239,231,.62);font-weight:400;}
+.h-r{display:flex;flex-direction:column;align-items:flex-end;gap:1rem;}
+.h-note{font-family:'DM Serif Display',serif;font-style:italic;font-size:.82rem;color:rgba(244,239,231,.32);text-align:right;}
+.h-btns{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:flex-end;}
+.btn-p{font-size:.58rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:var(--cr);padding:.85rem 2.2rem;border:none;cursor:none;transition:background .3s;position:relative;overflow:hidden;}
+.btn-p::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);transform:translateX(-100%);transition:transform .5s;}
+.btn-p:hover::after{transform:translateX(100%);}
+.btn-p:hover{background:var(--cr2);}
+.btn-s{font-size:.58rem;font-weight:300;letter-spacing:.18em;text-transform:uppercase;color:var(--mu);background:transparent;padding:.82rem 2.2rem;border:1px solid var(--b3);cursor:none;transition:all .3s;}
+.btn-s:hover{border-color:rgba(244,239,231,.3);color:var(--cr);}
+.h-sc{position:absolute;bottom:clamp(3vh,5vh,6vh);right:5vw;z-index:3;display:flex;flex-direction:column;align-items:center;gap:.5rem;opacity:0;}
+.h-sc-l{width:1px;height:42px;background:linear-gradient(to bottom,rgba(244,239,231,.4),transparent);animation:scp 2.2s ease-in-out infinite;}
+@keyframes scp{0%,100%{opacity:.25;}50%{opacity:.8;}}
+.h-sc-t{font-size:.36rem;letter-spacing:.44em;text-transform:uppercase;color:var(--mu);}
+
+/* MARQUEE */
+.mq{border-top:1px solid var(--b3);border-bottom:1px solid var(--b3);padding:.68rem 0;overflow:hidden;background:var(--ink2);}
+.mq-t{display:flex;white-space:nowrap;animation:mqr 32s linear infinite;}
+.mq-i{font-family:'DM Serif Display',serif;font-style:italic;font-size:clamp(.88rem,1.3vw,1rem);letter-spacing:.09em;color:rgba(244,239,231,.3);padding:0 2.5rem;}
+.mq-s{color:rgba(244,239,231,.15);font-size:.5rem;vertical-align:middle;}
 @keyframes mqr{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
-#stats{background:var(--n2);}
-.st-grid{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid rgba(100,150,255,.06);}
-.st-cell{padding:clamp(2rem,5vw,4.5rem) clamp(1rem,3vw,3rem);text-align:center;border-right:1px solid rgba(100,150,255,.06);cursor:default;transition:background .4s,transform .4s;}
-.st-cell:last-child{border-right:none;}
-.st-cell:hover{background:rgba(100,150,255,.04);transform:translateY(-4px);}
-.st-num{font-family:'Syne',sans-serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:800;color:#fff;line-height:1;}
-.st-lbl{font-size:clamp(.36rem,.55vw,.46rem);letter-spacing:.24em;text-transform:uppercase;color:rgba(150,180,255,.65);margin-top:.55rem;}
-.sec-eye{font-size:clamp(.4rem,.6vw,.48rem);font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:rgba(150,180,255,.75);margin-bottom:.8rem;}
-.sec-h{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4.5vw,4.2rem);font-weight:800;line-height:.94;letter-spacing:-.022em;color:#fff;margin-bottom:clamp(2.5rem,5vw,5rem);}
-.sec-h span{color:rgba(255,255,255,.25);}
-#proc{padding:clamp(60px,10vw,130px) 5vw;background:var(--n);}
-.proc-grid{display:grid;grid-template-columns:repeat(2,1fr);border:1px solid rgba(100,150,255,.1);}
-@media(min-width:700px){.proc-grid{grid-template-columns:repeat(4,1fr);}}
-.pc{padding:clamp(1.5rem,3vw,2.8rem);border-right:1px solid rgba(100,150,255,.1);border-bottom:1px solid rgba(100,150,255,.1);position:relative;overflow:hidden;cursor:default;transition:background .4s,transform .4s,box-shadow .4s;}
-@media(min-width:700px){.pc{border-bottom:none;}.pc:last-child{border-right:none;}}
-.pc-glow{position:absolute;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(100,160,255,.08),transparent 70%);transform:translate(-50%,-50%);opacity:0;transition:opacity .3s;pointer-events:none;}
-.pc:hover .pc-glow{opacity:1;}
-.pc:hover{background:rgba(100,150,255,.05);transform:translateY(-8px) rotateX(4deg);box-shadow:0 30px 60px rgba(0,0,0,.4),0 0 0 1px rgba(100,150,255,.12);}
-.pc-num{font-family:'Syne',sans-serif;font-size:clamp(3rem,6vw,4.5rem);font-weight:800;color:rgba(100,150,255,.06);line-height:1;margin-bottom:1.5rem;transition:color .4s;}
-.pc:hover .pc-num{color:rgba(100,150,255,.2);}
-.pc-ico{font-size:clamp(1.2rem,2.2vw,1.6rem);margin-bottom:.9rem;display:block;}
-.pc-t{font-family:'Syne',sans-serif;font-size:clamp(.75rem,1.2vw,.9rem);font-weight:700;color:rgba(255,255,255,.8);margin-bottom:.45rem;}
-.pc-d{font-size:clamp(.58rem,.88vw,.68rem);line-height:1.75;color:rgba(255,255,255,.55);}
-#case{padding:clamp(60px,10vw,130px) 5vw;background:var(--n3);position:relative;overflow:hidden;}
-#case::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(60,100,200,.07),transparent 60%);pointer-events:none;}
-.case-lay{display:grid;grid-template-columns:1fr;gap:3rem;margin-top:clamp(2rem,4vw,4rem);}
-@media(min-width:700px){.case-lay{grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}}
-.case-badge{display:inline-flex;align-items:center;gap:.7rem;border:1px solid rgba(100,200,120,.22);border-radius:30px;padding:.35rem 1rem;margin-bottom:1.2rem;}
-.case-bdot{width:5px;height:5px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80;animation:dotp 1.5s ease-in-out infinite;}
-.case-bt{font-size:clamp(.36rem,.58vw,.44rem);letter-spacing:.18em;text-transform:uppercase;color:rgba(74,222,128,.7);}
-.disc{font-size:clamp(.38rem,.58vw,.46rem);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.15);border-radius:5px;padding:.38rem .75rem;display:inline-block;margin-bottom:1.2rem;}
-.case-t{font-family:'Syne',sans-serif;font-size:clamp(1.4rem,3.5vw,3rem);font-weight:800;color:#fff;line-height:1.05;margin-bottom:.8rem;}
-.case-sub{font-size:clamp(.6rem,.9vw,.7rem);line-height:1.85;color:rgba(255,255,255,.65);margin-bottom:2rem;}
-.tl{display:flex;flex-direction:column;position:relative;}
-.tl::before{content:'';position:absolute;left:13px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,rgba(100,150,255,.25),rgba(100,150,255,.04));}
-.tl-item{display:flex;gap:1.2rem;padding:1.1rem 0;}
-.tl-dot{width:26px;height:26px;border-radius:50%;border:1px solid rgba(100,160,255,.3);background:rgba(100,150,255,.08);flex-shrink:0;display:flex;align-items:center;justify-content:center;z-index:1;font-size:.6rem;}
-.tl-lbl{font-size:clamp(.38rem,.56vw,.44rem);letter-spacing:.2em;text-transform:uppercase;color:rgba(150,180,255,.7);margin-bottom:.2rem;}
-.tl-txt{font-size:clamp(.6rem,.88vw,.72rem);color:rgba(255,255,255,.7);line-height:1.55;}
-.pc-card{background:rgba(255,255,255,.03);border:1px solid rgba(100,150,255,.12);border-radius:16px;padding:clamp(1.4rem,2.5vw,2.4rem);box-shadow:-14px 14px 45px rgba(0,0,0,.4);position:relative;overflow:hidden;transition:box-shadow .5s;}
-.pc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(120,160,255,.25),transparent);}
-.pc-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(100,150,255,.04),transparent 60%);pointer-events:none;}
-.pc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.3rem;position:relative;z-index:1;flex-wrap:wrap;gap:.5rem;}
-.pc-name{font-family:'Syne',sans-serif;font-size:clamp(.88rem,1.5vw,1.1rem);font-weight:800;color:#fff;}
-.pc-bdg{font-size:clamp(.34rem,.52vw,.42rem);letter-spacing:.14em;text-transform:uppercase;color:rgba(150,180,255,.65);border:1px solid rgba(100,150,255,.18);padding:.2rem .6rem;border-radius:10px;}
-.pc-div{height:1px;background:rgba(100,150,255,.1);margin:1rem 0;position:relative;z-index:1;}
-.pc-row{display:flex;align-items:center;justify-content:space-between;padding:.7rem 0;border-bottom:1px solid rgba(100,150,255,.06);position:relative;z-index:1;}
-.pc-row:last-of-type{border-bottom:none;}
-.pc-rl{font-size:clamp(.52rem,.78vw,.62rem);color:rgba(255,255,255,.65);}
-.pc-rv{font-family:'Syne',sans-serif;font-size:clamp(.72rem,1.1vw,.86rem);font-weight:700;}
-.bad{color:#f87171;}.ok{color:#fb923c;}.good{color:#4ade80;}.neu{color:rgba(255,255,255,.7);}
-.pc-sav{background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.15);border-radius:10px;padding:1.1rem;margin-top:1.1rem;text-align:center;position:relative;z-index:1;}
-.pc-sav-l{font-size:clamp(.34rem,.54vw,.42rem);letter-spacing:.2em;text-transform:uppercase;color:rgba(74,222,128,.7);margin-bottom:.32rem;}
-.pc-sav-v{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3.5vw,2.5rem);font-weight:800;color:#4ade80;line-height:1;}
-.pc-sav-s{font-size:clamp(.36rem,.56vw,.5rem);color:rgba(74,222,128,.6);margin-top:.2rem;}
-.pc-bars{margin-top:1.1rem;position:relative;z-index:1;}
-.b-row{display:flex;align-items:center;gap:.75rem;margin-bottom:.6rem;}
-.b-lbl{font-size:clamp(.38rem,.58vw,.48rem);color:rgba(255,255,255,.6);width:55px;flex-shrink:0;text-align:right;}
-.b-track{flex:1;height:3px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;}
-.bfill{height:3px;border-radius:2px;width:0;transition:width 1.4s cubic-bezier(.16,1,.3,1);}
-.b-val{font-family:'Syne',sans-serif;font-size:clamp(.38rem,.58vw,.5rem);font-weight:700;color:rgba(255,255,255,.55);width:44px;}
-#engage{padding:clamp(60px,10vw,130px) 5vw;background:var(--n2);position:relative;overflow:hidden;}
-#engage::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(60,100,200,.07),transparent 60%);pointer-events:none;}
-.eng-grid{display:grid;grid-template-columns:1fr;gap:1rem;margin-top:clamp(2rem,4vw,4rem);}
-@media(min-width:600px){.eng-grid{grid-template-columns:1fr 1fr;gap:1.2rem;}}
-@media(min-width:900px){.eng-grid{grid-template-columns:repeat(3,1fr);}}
-.eg-c{background:rgba(255,255,255,.025);border:1px solid rgba(100,150,255,.1);border-radius:14px;padding:clamp(1.5rem,2.5vw,2rem);transition:all .4s;cursor:default;position:relative;overflow:hidden;}
-.eg-c::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(120,160,255,.2),transparent);}
-.eg-c:hover{background:rgba(100,150,255,.07);border-color:rgba(100,150,255,.22);transform:translateY(-5px);}
-.eg-ico{font-size:1.5rem;margin-bottom:1rem;display:block;}
-.eg-t{font-family:'Syne',sans-serif;font-size:clamp(.82rem,1.2vw,.95rem);font-weight:700;color:#fff;margin-bottom:.5rem;}
-.eg-d{font-size:clamp(.6rem,.88vw,.7rem);line-height:1.75;color:rgba(255,255,255,.6);}
-#tarif{padding:clamp(60px,10vw,130px) 5vw;background:var(--n3);position:relative;overflow:hidden;}
-#tarif::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(80,110,220,.07),transparent 65%);pointer-events:none;}
-.tarif-in{max-width:min(700px,100%);margin:0 auto;text-align:center;}
-.tarif-card{background:rgba(255,255,255,.03);border:1px solid rgba(100,150,255,.15);border-radius:20px;padding:clamp(2rem,4vw,3.5rem);position:relative;overflow:hidden;margin-top:clamp(2rem,4vw,4rem);}
-.tarif-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(120,160,255,.35),transparent);}
-.tarif-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(100,150,255,.04),transparent 60%);pointer-events:none;}
-.tarif-badge{display:inline-flex;align-items:center;gap:.6rem;background:rgba(100,150,255,.08);border:1px solid rgba(100,150,255,.18);border-radius:20px;padding:.3rem .9rem;margin-bottom:1.5rem;position:relative;z-index:1;}
-.tarif-bdot{width:5px;height:5px;border-radius:50%;background:rgba(150,180,255,.7);}
-.tarif-bt{font-size:.44rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(150,180,255,.75);}
-.tarif-price{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,8vw,7rem);font-weight:800;color:#fff;line-height:1;position:relative;z-index:1;margin-bottom:.4rem;}
-.tarif-range{font-size:clamp(.5rem,.8vw,.65rem);letter-spacing:.2em;text-transform:uppercase;color:rgba(150,180,255,.6);margin-bottom:1.8rem;position:relative;z-index:1;}
-.tarif-desc{font-size:clamp(.68rem,.95vw,.8rem);line-height:1.85;color:rgba(255,255,255,.65);margin-bottom:2rem;position:relative;z-index:1;}
-.tarif-list{display:flex;flex-direction:column;gap:.75rem;margin-bottom:2.5rem;text-align:left;position:relative;z-index:1;}
-.tarif-li{display:flex;align-items:flex-start;gap:.9rem;font-size:clamp(.62rem,.9vw,.74rem);color:rgba(255,255,255,.72);}
-.tarif-ck{color:#4ade80;font-size:.9rem;flex-shrink:0;}
-.tarif-btn{font-family:'Syne',sans-serif;font-size:clamp(.5rem,.75vw,.6rem);font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#fff;background:linear-gradient(135deg,rgba(60,100,200,.9),rgba(110,60,200,.9));padding:clamp(.9rem,2vw,1.1rem) clamp(2rem,5vw,4rem);border:1px solid rgba(120,160,255,.25);cursor:pointer;border-radius:1px;transition:box-shadow .3s;position:relative;z-index:1;}
-.tarif-btn:hover{box-shadow:0 0 50px rgba(100,150,255,.5);}
-.tarif-note{font-size:clamp(.54rem,.8vw,.64rem);color:rgba(150,180,255,.6);border:1px solid rgba(100,150,255,.12);border-radius:8px;padding:.6rem 1rem;margin-top:1.5rem;position:relative;z-index:1;}
-#faq{padding:clamp(60px,10vw,130px) 5vw;background:var(--n2);}
-.faq-wrap{max-width:800px;}
-.faq-item{border-bottom:1px solid rgba(100,150,255,.12);}
-.faq-item:first-child{border-top:1px solid rgba(100,150,255,.12);}
-.faq-q{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:1.5rem 0;cursor:pointer;transition:padding .3s;}
-.faq-q:hover{padding-left:.4rem;}
-.faq-qt{font-family:'Syne',sans-serif;font-size:clamp(.8rem,1.3vw,1rem);font-weight:700;color:#fff;flex:1;}
-.faq-item.open .faq-qt{color:rgba(170,190,255,.95);}
-.faq-ic{width:28px;height:28px;border:1px solid rgba(100,150,255,.25);border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .4s;position:relative;background:rgba(100,150,255,.06);}
-.faq-ic::before{content:'';width:10px;height:1px;background:rgba(150,180,255,.85);position:absolute;}
-.faq-ic::after{content:'';width:1px;height:10px;background:rgba(150,180,255,.85);position:absolute;transition:transform .4s;}
-.faq-item.open .faq-ic{background:rgba(100,150,255,.18);border-color:rgba(100,150,255,.5);transform:rotate(45deg);}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.16,1,.3,1);}
-.faq-item.open .faq-a{max-height:400px;}
-.faq-ai{padding:0 0 1.5rem;font-size:clamp(.68rem,.95vw,.78rem);line-height:1.85;color:rgba(255,255,255,.72);}
-.faq-ai strong{color:rgba(170,190,255,.95);font-weight:600;}
-#contact{padding:clamp(60px,10vw,130px) 5vw;background:var(--n);}
-.ct-lay{display:grid;grid-template-columns:1fr;gap:3rem;margin-top:clamp(3rem,5vw,5rem);}
-@media(min-width:700px){.ct-lay{grid-template-columns:1fr 1.5fr;gap:6rem;}}
-.c-row{display:flex;gap:1rem;align-items:flex-start;padding:1.2rem 0;border-bottom:1px solid rgba(100,150,255,.08);transition:padding .3s;}
-.c-row:first-child{border-top:1px solid rgba(100,150,255,.08);}
-.c-row:hover{padding-left:.5rem;}
-.c-ico{width:32px;height:32px;border:1px solid rgba(100,150,255,.18);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0;}
-.c-lbl{font-size:clamp(.38rem,.56vw,.44rem);letter-spacing:.2em;text-transform:uppercase;color:rgba(150,180,255,.65);margin-bottom:.2rem;}
-.c-val{font-size:clamp(.6rem,.88vw,.72rem);color:rgba(255,255,255,.82);}
-.f-card{background:rgba(255,255,255,.025);border:1px solid rgba(100,150,255,.1);border-radius:16px;padding:clamp(1.5rem,3vw,3rem);box-shadow:0 20px 50px rgba(0,0,0,.42);position:relative;}
-.f-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(100,150,255,.18),transparent);border-radius:16px 16px 0 0;}
-.ff{border-bottom:1px solid rgba(100,150,255,.08);padding:1.1rem 0;position:relative;}
-.ff::after{content:'';position:absolute;bottom:-1px;left:0;width:0;height:1px;background:rgba(120,160,255,.6);transition:width .45s;}
+
+/* SECTION BASE */
+.sec{padding:clamp(80px,11vw,140px) 5vw;}
+.sm{display:flex;align-items:center;gap:1rem;margin-bottom:.55rem;}
+.sm-n{font-family:'DM Serif Display',serif;font-style:italic;font-size:.72rem;color:rgba(244,239,231,.3);letter-spacing:.15em;}
+.sm-r{width:28px;height:1px;background:rgba(244,239,231,.15);}
+.sm-t{font-size:.48rem;font-weight:400;letter-spacing:.38em;text-transform:uppercase;color:var(--mu);}
+h2{font-family:'DM Serif Display',serif;font-size:clamp(2.4rem,6vw,6rem);font-weight:400;line-height:.88;letter-spacing:-.01em;color:var(--cr);margin-bottom:clamp(3rem,5vw,5.5rem);}
+h2 .it{font-style:italic;}
+h2 .dm{color:var(--su);}
+
+/* INTRO */
+#intro{background:var(--ink2);}
+.int-lay{display:grid;grid-template-columns:1fr;gap:4rem;}
+@media(min-width:780px){.int-lay{grid-template-columns:1fr 1fr;gap:6rem;align-items:start;}}
+.int-p{font-size:clamp(.86rem,1.3vw,.98rem);font-weight:300;color:var(--mu);line-height:1.95;margin-bottom:1.2rem;}
+.int-p strong{color:rgba(244,239,231,.6);font-weight:400;}
+.int-box{background:var(--ink);border:1px solid var(--b3);padding:2.4rem;position:relative;}
+.int-box::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cr),transparent);opacity:.2;}
+.ib-h{font-family:'DM Serif Display',serif;font-size:1rem;color:var(--cr);margin-bottom:1.3rem;display:flex;align-items:center;gap:.6rem;}
+.ib-h::before{content:'';width:10px;height:1px;background:rgba(244,239,231,.35);}
+.ib-li{display:flex;flex-direction:column;gap:.65rem;}
+.ib-it{display:flex;align-items:flex-start;gap:.75rem;font-size:.8rem;font-weight:300;color:var(--mu);line-height:1.55;}
+.ib-ck{color:rgba(244,239,231,.5);flex-shrink:0;font-size:.65rem;margin-top:.1rem;}
+
+/* OFFRES */
+#offres{background:var(--ink);}
+.of-grid{display:grid;grid-template-columns:1fr;gap:1.4rem;}
+@media(min-width:700px){.of-grid{grid-template-columns:1fr 1fr;}}
+@media(min-width:1050px){.of-grid{grid-template-columns:1fr 1fr 1fr;}}
+.of-scene{perspective:1200px;}
+.of-card{background:rgba(244,239,231,.02);border:1px solid var(--b1);padding:2.4rem;position:relative;overflow:hidden;transition:transform .55s cubic-bezier(.16,1,.3,1),box-shadow .55s,border-color .4s;cursor:default;}
+.of-card.feat{border-color:var(--b3);}
+.of-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(244,239,231,.18),transparent);}
+.of-card.feat::before{background:linear-gradient(90deg,transparent,rgba(244,239,231,.45),transparent);}
+.of-card::after{content:'';position:absolute;top:0;right:0;width:1px;height:100%;background:linear-gradient(to bottom,rgba(244,239,231,.1),transparent 60%);}
+.of-c{position:absolute;bottom:0;left:0;width:14px;height:14px;border-bottom:1px solid rgba(244,239,231,.12);border-left:1px solid rgba(244,239,231,.12);}
+.of-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(244,239,231,.05);border:1px solid var(--b3);padding:.2rem .7rem;margin-bottom:1.5rem;}
+.of-bd{width:3px;height:3px;background:var(--cr);border-radius:50%;opacity:.6;}
+.of-bt{font-size:.44rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--mu);}
+.of-nm{font-family:'DM Serif Display',serif;font-size:1.15rem;color:var(--cr);margin-bottom:.4rem;}
+.of-tg{font-size:.74rem;font-weight:300;color:var(--mu);margin-bottom:1.6rem;line-height:1.55;}
+.of-pr{font-family:'DM Serif Display',serif;font-size:3rem;color:var(--cr);line-height:1;margin-bottom:.25rem;}
+.of-pn{font-size:.54rem;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:var(--mu);margin-bottom:1.6rem;}
+.of-div{height:1px;background:var(--b1);margin:1.4rem 0;}
+.of-sec{font-size:.46rem;font-weight:400;letter-spacing:.3em;text-transform:uppercase;color:rgba(244,239,231,.35);margin-bottom:.7rem;margin-top:1rem;}
+.of-ul{display:flex;flex-direction:column;gap:.6rem;}
+.of-li{display:flex;align-items:flex-start;gap:.75rem;font-size:.78rem;font-weight:300;line-height:1.5;}
+.of-li.y{color:var(--mu);}
+.of-li.n{color:rgba(244,239,231,.22);}
+.ck-y{color:rgba(244,239,231,.55);font-size:.68rem;flex-shrink:0;margin-top:.05rem;}
+.ck-n{color:rgba(244,239,231,.18);font-size:.68rem;flex-shrink:0;margin-top:.05rem;}
+.of-tip{font-family:'DM Serif Display',serif;font-style:italic;font-size:.8rem;color:rgba(244,239,231,.3);margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid var(--b1);line-height:1.6;}
+.of-btn{width:100%;font-family:'DM Sans',sans-serif;font-size:.56rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:var(--cr);padding:.9rem;border:none;cursor:none;transition:background .3s;margin-top:1.6rem;position:relative;overflow:hidden;}
+.of-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);transform:translateX(-100%);transition:transform .5s;}
+.of-btn:hover::after{transform:translateX(100%);}
+.of-btn:hover{background:var(--cr2);}
+.of-btn.gh{background:transparent;color:var(--mu);border:1px solid var(--b3);}
+.of-btn.gh:hover{border-color:rgba(244,239,231,.25);color:var(--cr);background:transparent;}
+
+/* VÉHICULES */
+#vehicules{background:var(--ink2);}
+.veh-sub{font-size:clamp(.8rem,1.2vw,.9rem);font-weight:300;color:var(--mu);max-width:500px;margin-bottom:3.5rem;line-height:1.85;}
+.veh-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;}
+@media(min-width:900px){.veh-grid{grid-template-columns:repeat(4,1fr);}}
+@media(max-width:480px){.veh-grid{grid-template-columns:1fr;}}
+.vc{background:var(--ink);border:1px solid var(--b1);overflow:hidden;cursor:none;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s,border-color .4s;position:relative;}
+.vc:hover{transform:translateY(-5px);box-shadow:0 22px 55px rgba(0,0,0,.5);border-color:var(--b3);}
+.vc-iw{position:relative;overflow:hidden;aspect-ratio:3/2;}
+.vc-img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1),filter .6s;}
+.vc:hover .vc-img{transform:scale(1.06);filter:brightness(.85);}
+.vc-ov{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 35%,rgba(7,7,10,.88) 100%);}
+.vc-body{padding:1.3rem 1.5rem 1.5rem;}
+.vc-br{font-size:.5rem;font-weight:400;letter-spacing:.3em;text-transform:uppercase;color:var(--mu);margin-bottom:.28rem;}
+.vc-mo{font-family:'DM Serif Display',serif;font-size:1.5rem;font-weight:400;color:var(--cr);line-height:1;margin-bottom:1.1rem;}
+.vc-btn{width:100%;font-family:'DM Sans',sans-serif;font-size:.54rem;font-weight:400;letter-spacing:.17em;text-transform:uppercase;color:var(--ink);background:var(--cr);border:none;padding:.58rem 1rem;cursor:none;transition:background .3s;}
+.vc-btn:hover{background:var(--cr2);}
+.veh-note{font-family:'DM Serif Display',serif;font-style:italic;font-size:.8rem;color:rgba(244,239,231,.22);margin-top:2.5rem;text-align:center;}
+
+/* MODAL */
+.vm-bg{position:fixed;inset:0;z-index:8000;background:rgba(7,7,10,.9);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity .4s;}
+.vm-bg.open{opacity:1;pointer-events:all;}
+.vm-box{background:var(--ink2);border:1px solid var(--b3);width:100%;max-width:500px;max-height:92vh;overflow-y:auto;padding:clamp(2rem,4vw,3rem);position:relative;transform:translateY(24px);transition:transform .45s cubic-bezier(.16,1,.3,1);}
+.vm-bg.open .vm-box{transform:translateY(0);}
+.vm-box::before{content:'';position:absolute;top:0;left:2.5rem;right:2.5rem;height:1px;background:linear-gradient(90deg,transparent,rgba(244,239,231,.25),transparent);}
+.vm-cls{position:absolute;top:1.2rem;right:1.2rem;background:transparent;border:1px solid var(--b1);color:var(--mu);width:26px;height:26px;font-size:.72rem;cursor:none;transition:all .3s;display:flex;align-items:center;justify-content:center;}
+.vm-cls:hover{border-color:rgba(244,239,231,.3);color:var(--cr);}
+.vm-tag{font-size:.5rem;font-weight:400;letter-spacing:.3em;text-transform:uppercase;color:var(--mu);margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem;}
+.vm-tag::before{content:'';width:12px;height:1px;background:rgba(244,239,231,.25);}
+.vm-h{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:400;line-height:.9;color:var(--cr);margin-bottom:.8rem;}
+.vm-h i{font-style:italic;opacity:.45;}
+.vm-sub{font-size:.78rem;font-weight:300;color:var(--mu);line-height:1.8;margin-bottom:2rem;}
+.vf{border-bottom:1px solid var(--b2);padding:.9rem 0;position:relative;}
+.vf::after{content:'';position:absolute;bottom:-1px;left:0;width:0;height:1px;background:var(--cr);opacity:.4;transition:width .4s;}
+.vf:focus-within::after{width:100%;}
+.vf label{display:block;font-size:.46rem;font-weight:400;letter-spacing:.25em;text-transform:uppercase;color:rgba(244,239,231,.32);margin-bottom:.35rem;}
+.vf input,.vf textarea,.vf select{width:100%;background:transparent;border:none;outline:none;font-family:'DM Sans',sans-serif;font-size:.84rem;font-weight:300;color:var(--cr);}
+.vf select option{background:var(--ink2);color:var(--cr);}
+.vf input::placeholder,.vf textarea::placeholder{color:rgba(244,239,231,.15);}
+.vf textarea{resize:none;min-height:60px;}
+.vm-btn{width:100%;font-family:'DM Sans',sans-serif;font-size:.6rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);background:var(--cr);border:none;padding:.95rem;cursor:none;margin-top:1.8rem;transition:background .3s;position:relative;overflow:hidden;}
+.vm-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);transform:translateX(-100%);transition:transform .5s;}
+.vm-btn:hover::after{transform:translateX(100%);}
+.vm-btn:hover{background:var(--cr2);}
+.vm-btn:disabled{opacity:.4;}
+.vm-ok{display:none;margin-top:1rem;padding:1rem 1.2rem;background:rgba(244,239,231,.04);border:1px solid rgba(244,239,231,.1);font-family:'DM Serif Display',serif;font-style:italic;font-size:.88rem;color:rgba(244,239,231,.55);line-height:1.65;}
+
+/* POUR QUI */
+#pourqui{background:var(--ink);}
+.pq-lay{display:grid;grid-template-columns:1fr;gap:4rem;}
+@media(min-width:780px){.pq-lay{grid-template-columns:1fr 1fr;gap:6rem;align-items:center;}}
+.pq-li{display:flex;flex-direction:column;gap:0;}
+.pq-it{display:flex;align-items:center;gap:1rem;padding:1.2rem 0;border-bottom:1px solid var(--b2);transition:padding .35s;}
+.pq-it:first-child{border-top:1px solid var(--b2);}
+.pq-it:hover{padding-left:.5rem;}
+.pq-ic{width:26px;height:26px;border:1px solid var(--b3);display:flex;align-items:center;justify-content:center;font-size:.78rem;flex-shrink:0;}
+.pq-tx{font-size:.84rem;font-weight:300;color:var(--mu);}
+.pq-tx strong{color:rgba(244,239,231,.65);font-weight:400;}
+.pq-qt{background:var(--ink2);border:1px solid var(--b3);padding:2.5rem;position:relative;}
+.pq-qt::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(244,239,231,.2),transparent);}
+.pq-q{font-family:'DM Serif Display',serif;font-size:clamp(1.1rem,2vw,1.4rem);font-weight:400;color:var(--cr);line-height:1.5;margin-bottom:1.2rem;}
+.pq-q i{font-style:italic;opacity:.5;}
+.pq-a{font-size:.8rem;font-weight:300;color:var(--mu);line-height:1.9;}
+.pq-a strong{color:rgba(244,239,231,.6);font-weight:400;}
+
+/* PROCESS */
+#process{background:var(--ink2);}
+.ps-wr{max-width:min(640px,100%);}
+.ps{display:flex;gap:1.8rem;padding:2.2rem 0;border-bottom:1px solid var(--b2);position:relative;transition:padding .35s;}
+.ps:last-child{border-bottom:none;}
+.ps::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(to right,rgba(244,239,231,.03),transparent);transition:width .5s;}
+.ps:hover::before{width:100%;}
+.ps:hover{padding-left:.6rem;}
+.ps-n{font-family:'DM Serif Display',serif;font-style:italic;font-size:3.8rem;font-weight:400;color:rgba(244,239,231,.07);line-height:1;flex-shrink:0;width:58px;transition:color .4s;}
+.ps:hover .ps-n{color:rgba(244,239,231,.18);}
+.ps-b{flex:1;z-index:1;position:relative;padding-top:.3rem;}
+.ps-t{font-size:.88rem;font-weight:400;color:rgba(244,239,231,.78);margin-bottom:.4rem;}
+.ps-d{font-size:.78rem;font-weight:300;color:var(--mu);line-height:1.75;}
+
+/* IMPORTANT */
+#important{background:var(--ink);}
+.imp-bx{background:var(--ink2);border:1px solid var(--b3);padding:3rem;position:relative;max-width:min(700px,100%);}
+.imp-bx::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(244,239,231,.25),transparent);}
+.imp-bx::after{content:'';position:absolute;bottom:0;right:0;width:16px;height:16px;border-bottom:1px solid rgba(244,239,231,.15);border-right:1px solid rgba(244,239,231,.15);}
+.imp-tt{font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--cr);margin-bottom:1rem;display:flex;align-items:center;gap:.6rem;}
+.imp-tt::before{content:'';width:10px;height:1px;background:rgba(244,239,231,.3);}
+.imp-tx{font-size:.84rem;font-weight:300;color:var(--mu);line-height:1.9;}
+.imp-tx strong{color:rgba(244,239,231,.6);font-weight:400;}
+
+/* FAQ */
+#faq{background:var(--ink2);}
+.fq-wr{max-width:660px;}
+.fq{border-bottom:1px solid var(--b2);}
+.fq:first-child{border-top:1px solid var(--b2);}
+.fq-q{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.5rem 0;cursor:none;transition:padding .35s;}
+.fq-q:hover{padding-left:.4rem;}
+.fq-qt{font-size:.88rem;font-weight:300;color:rgba(244,239,231,.6);flex:1;transition:color .3s;}
+.fq.open .fq-qt{color:var(--cr);}
+.fq-ic{width:22px;height:22px;border:1px solid var(--b2);flex-shrink:0;position:relative;transition:all .4s;}
+.fq-ic::before{content:'';width:7px;height:1px;background:rgba(244,239,231,.45);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);}
+.fq-ic::after{content:'';width:1px;height:7px;background:rgba(244,239,231,.45);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);transition:transform .4s,opacity .4s;}
+.fq.open .fq-ic{border-color:rgba(244,239,231,.35);background:rgba(244,239,231,.05);}
+.fq.open .fq-ic::before,.fq.open .fq-ic::after{background:var(--cr);}
+.fq.open .fq-ic::after{transform:translate(-50%,-50%) rotate(90deg);opacity:0;}
+.fq-a{max-height:0;overflow:hidden;transition:max-height .45s ease;}
+.fq.open .fq-a{max-height:300px;}
+.fq-at{padding:0 0 1.4rem;font-size:.8rem;font-weight:300;color:var(--mu);line-height:1.9;}
+.fq-at strong{color:rgba(244,239,231,.6);font-weight:400;}
+
+/* CTA */
+#cta{background:var(--ink);position:relative;overflow:hidden;}
+.cta-amb{position:absolute;bottom:-30%;left:50%;transform:translateX(-50%);width:min(600px,130vw);height:min(500px,100vw);background:radial-gradient(ellipse at center,rgba(244,239,231,.04),transparent 65%);pointer-events:none;}
+.cta-tl{position:absolute;top:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,rgba(244,239,231,.15),transparent);}
+.cta-in{position:relative;z-index:1;text-align:center;max-width:min(600px,100%);margin:0 auto;}
+.cta-ey{font-size:.5rem;font-weight:400;letter-spacing:.44em;text-transform:uppercase;color:var(--mu);margin-bottom:1.2rem;}
+.cta-h{font-family:'DM Serif Display',serif;font-size:clamp(2.4rem,6vw,5.5rem);font-weight:400;line-height:.9;color:var(--cr);margin-bottom:1rem;}
+.cta-h i{font-style:italic;opacity:.45;}
+.cta-su{font-size:clamp(.8rem,1.2vw,.9rem);font-weight:300;color:var(--mu);margin-bottom:2.5rem;line-height:1.8;}
+.cta-mb{font-family:'DM Sans',sans-serif;font-size:.64rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);background:var(--cr);padding:1.1rem 3.5rem;border:none;cursor:none;transition:all .35s;display:inline-flex;align-items:center;gap:.6rem;margin-bottom:1.4rem;position:relative;overflow:hidden;}
+.cta-mb::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);transform:translateX(-100%);transition:transform .5s;}
+.cta-mb:hover::after{transform:translateX(100%);}
+.cta-mb:hover{background:var(--cr2);transform:translateY(-2px);box-shadow:0 12px 35px rgba(0,0,0,.4);}
+.cta-rs{display:flex;align-items:center;justify-content:center;gap:2.5rem;flex-wrap:wrap;}
+.cta-ri{font-size:.58rem;font-weight:300;color:var(--mu);display:flex;align-items:center;gap:.45rem;}
+.cta-ri span{color:rgba(244,239,231,.5);}
+
+/* CONTACT */
+#contact{background:var(--ink2);}
+.ct-lay{display:grid;grid-template-columns:1fr;gap:4rem;}
+@media(min-width:730px){.ct-lay{grid-template-columns:1fr 1.25fr;gap:6rem;align-items:start;}}
+.ct-sub{font-size:.8rem;font-weight:300;color:var(--mu);line-height:1.85;margin-bottom:2.5rem;}
+.c-row{display:flex;align-items:flex-start;gap:.9rem;padding:1.1rem 0;border-bottom:1px solid var(--b2);transition:padding .35s;}
+.c-row:first-child{border-top:1px solid var(--b2);}
+.c-row:hover{padding-left:.4rem;}
+.c-ic{width:26px;height:26px;border:1px solid var(--b3);display:flex;align-items:center;justify-content:center;font-size:.72rem;flex-shrink:0;}
+.c-lb{font-size:.46rem;font-weight:400;letter-spacing:.24em;text-transform:uppercase;color:rgba(244,239,231,.3);margin-bottom:.14rem;}
+.c-vl{font-size:.8rem;font-weight:300;color:var(--mu);}
+.f-card{background:var(--ink);border:1px solid var(--b3);padding:clamp(1.8rem,3vw,3rem);position:relative;}
+.f-card::before{content:'';position:absolute;top:0;left:2.5rem;right:2.5rem;height:1px;background:linear-gradient(90deg,transparent,rgba(244,239,231,.2),transparent);}
+.ff{border-bottom:1px solid var(--b2);padding:1rem 0;position:relative;}
+.ff::after{content:'';position:absolute;bottom:-1px;left:0;width:0;height:1px;background:var(--cr);opacity:.35;transition:width .4s;}
 .ff:focus-within::after{width:100%;}
-.ff label{display:block;font-size:clamp(.38rem,.56vw,.44rem);letter-spacing:.22em;text-transform:uppercase;color:rgba(150,180,255,.65);margin-bottom:.36rem;}
-.ff input,.ff textarea,.ff select{width:100%;background:transparent;border:none;outline:none;font-family:'Inter',sans-serif;font-size:clamp(.68rem,.98vw,.76rem);font-weight:300;color:#fff;}
-.ff select option{background:#0a0a0a;color:#fff;}
-.ff input::placeholder,.ff textarea::placeholder{color:rgba(255,255,255,.25);}
-.ff textarea{resize:none;min-height:68px;}
+.ff label{display:block;font-size:.46rem;font-weight:400;letter-spacing:.25em;text-transform:uppercase;color:rgba(244,239,231,.3);margin-bottom:.35rem;}
+.ff input,.ff textarea,.ff select{width:100%;background:transparent;border:none;outline:none;font-family:'DM Sans',sans-serif;font-size:.86rem;font-weight:300;color:var(--cr);}
+.ff select option{background:var(--ink3);color:var(--cr);}
+.ff input::placeholder,.ff textarea::placeholder{color:rgba(244,239,231,.15);}
+.ff textarea{resize:none;min-height:70px;}
 .ff-row{display:grid;grid-template-columns:1fr 1fr;}
-.ff-row .ff:first-child{border-right:1px solid rgba(100,150,255,.08);padding-right:1.2rem;}
+.ff-row .ff:first-child{border-right:1px solid var(--b2);padding-right:1.2rem;}
 .ff-row .ff:last-child{padding-left:1.2rem;}
-.f-btn{font-family:'Syne',sans-serif;font-size:clamp(.5rem,.72vw,.58rem);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff;background:linear-gradient(135deg,rgba(60,100,200,.8),rgba(110,60,200,.8));border:1px solid rgba(100,150,255,.2);padding:.9rem 2.2rem;cursor:pointer;border-radius:1px;margin-top:2rem;width:100%;transition:box-shadow .3s;display:block;}
-.f-btn:hover{box-shadow:0 0 35px rgba(100,150,255,.4);}
-.f-ok{display:none;margin-top:1rem;font-size:clamp(.58rem,.85vw,.7rem);color:rgba(150,255,180,.85);padding:.9rem 1rem;border-top:1px solid rgba(100,150,255,.08);border-radius:0 0 8px 8px;line-height:1.6;}
-#mentions,#confidentialite,#cgv{display:none;padding:clamp(60px,10vw,120px) 5vw;background:var(--n2);min-height:100vh;}
-.m-grid{display:grid;grid-template-columns:1fr;gap:2.5rem;margin-top:3rem;}
-@media(min-width:600px){.m-grid{grid-template-columns:1fr 1fr;gap:3rem 4rem;}}
-.m-blk{border-top:1px solid rgba(100,150,255,.08);padding-top:1.5rem;}
-.m-n{font-size:clamp(.38rem,.56vw,.44rem);letter-spacing:.26em;text-transform:uppercase;color:rgba(150,180,255,.6);margin-bottom:.5rem;}
-.m-t{font-family:'Syne',sans-serif;font-size:clamp(.78rem,1.2vw,.88rem);font-weight:700;color:rgba(255,255,255,.88);margin-bottom:.7rem;}
-.m-tx{font-size:clamp(.6rem,.88vw,.67rem);line-height:1.9;color:rgba(255,255,255,.62);}
-.m-tx strong{color:#fff;font-weight:500;}
-.legal-nav{margin-top:3rem;padding-top:1.8rem;border-top:1px solid rgba(100,150,255,.07);display:flex;gap:1.5rem;flex-wrap:wrap;}
-.ll{font-size:clamp(.44rem,.66vw,.52rem);letter-spacing:.16em;text-transform:uppercase;cursor:pointer;text-decoration:underline;text-underline-offset:4px;font-family:'Syne',sans-serif;font-weight:700;transition:color .3s;}
-.ll.back{color:rgba(150,180,255,.5);}
-.ll.fwd{color:rgba(150,180,255,.7);}
-.ll:hover{color:#fff;}
-footer{background:#010101;border-top:1px solid rgba(100,150,255,.06);padding:1.8rem 5vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.8rem;}
-.f-logo{font-family:'Syne',sans-serif;font-size:clamp(.56rem,.82vw,.7rem);font-weight:800;color:rgba(255,255,255,.35);letter-spacing:.14em;text-transform:uppercase;}
-.f-info{font-size:clamp(.36rem,.56vw,.44rem);color:rgba(255,255,255,.35);text-align:center;}
-.f-links{display:flex;gap:1.2rem;flex-wrap:wrap;}
-.f-ml{font-size:clamp(.36rem,.56vw,.44rem);color:rgba(255,255,255,.4);cursor:pointer;text-decoration:underline;text-underline-offset:3px;transition:color .3s;}
-.f-ml:hover{color:rgba(150,180,255,.85);}
-.rv,.rv2,.rv3{opacity:0;transform:translateY(28px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1);}
-.rv2{transition-delay:.14s;}.rv3{transition-delay:.28s;}
-.rvl{opacity:0;transform:translateX(-22px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1);}
-.rv.in,.rv2.in,.rv3.in{opacity:1;transform:translateY(0);}
-.rvl.in{opacity:1;transform:translateX(0);}
-#aurora{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
-.ab{position:absolute;border-radius:50%;filter:blur(120px);mix-blend-mode:screen;animation:abl 12s ease-in-out infinite;}
-.ab1{width:min(600px,80vw);height:min(600px,80vw);background:radial-gradient(circle,rgba(60,80,180,.2),transparent 70%);top:-10%;left:-10%;}
-.ab2{width:min(450px,65vw);height:min(450px,65vw);background:radial-gradient(circle,rgba(120,60,200,.16),transparent 70%);top:20%;right:-5%;animation-delay:-4s;}
-.ab3{width:min(500px,70vw);height:min(500px,70vw);background:radial-gradient(circle,rgba(40,100,180,.14),transparent 70%);bottom:-10%;left:30%;animation-delay:-8s;}
-@keyframes abl{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(40px,-30px) scale(1.08);}}
+.f-btn{font-family:'DM Sans',sans-serif;font-size:.62rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:var(--cr);border:none;padding:1rem 2rem;cursor:none;margin-top:1.8rem;width:100%;transition:background .3s;display:block;position:relative;overflow:hidden;}
+.f-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);transform:translateX(-100%);transition:transform .5s;}
+.f-btn:hover::after{transform:translateX(100%);}
+.f-btn:hover{background:var(--cr2);}
+.f-btn:disabled{opacity:.4;}
+.f-ok{display:none;margin-top:1rem;padding:1rem 1.2rem;background:rgba(244,239,231,.04);border:1px solid rgba(244,239,231,.1);font-family:'DM Serif Display',serif;font-style:italic;font-size:.88rem;color:rgba(244,239,231,.5);line-height:1.65;}
+
+/* LEGAL */
+#mentions,#confidentialite,#cgv{display:none;padding:clamp(70px,10vw,120px) 5vw;background:var(--ink2);min-height:100vh;}
+.m-gr{display:grid;grid-template-columns:1fr;gap:2.5rem;margin-top:2.5rem;}
+@media(min-width:600px){.m-gr{grid-template-columns:1fr 1fr;gap:3rem 5rem;}}
+.m-bl{border-top:1px solid var(--b3);padding-top:1.4rem;}
+.m-n{font-size:.46rem;font-weight:400;letter-spacing:.28em;text-transform:uppercase;color:rgba(244,239,231,.25);margin-bottom:.4rem;}
+.m-t{font-family:'DM Serif Display',serif;font-size:1rem;color:rgba(244,239,231,.82);margin-bottom:.6rem;}
+.m-tx{font-size:.78rem;font-weight:300;line-height:1.95;color:var(--mu);}
+.m-tx strong{color:rgba(244,239,231,.65);font-weight:400;}
+.leg-nav{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--b2);display:flex;gap:2rem;flex-wrap:wrap;}
+.ll{font-size:.52rem;font-weight:300;letter-spacing:.17em;text-transform:uppercase;cursor:none;text-decoration:underline;text-underline-offset:4px;transition:color .3s;}
+.ll.bk{color:var(--mu);}
+.ll.fw{color:rgba(244,239,231,.38);}
+.ll:hover{color:var(--cr);}
+
+/* FOOTER */
+footer{background:var(--ink);border-top:1px solid var(--b3);padding:1.8rem 5vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.8rem;}
+.fl{font-family:'DM Serif Display',serif;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(244,239,231,.2);}
+.fl i{font-style:italic;opacity:.6;}
+.fi{font-size:.5rem;font-weight:300;color:rgba(244,239,231,.2);letter-spacing:.07em;}
+.fls{display:flex;gap:1.5rem;}
+.fm{font-size:.5rem;font-weight:300;color:rgba(244,239,231,.22);cursor:none;text-decoration:underline;text-underline-offset:3px;transition:color .3s;}
+.fm:hover{color:var(--cr);}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .9s ease,transform .9s ease;}
+.rv2{opacity:0;transform:translateY(18px);transition:opacity .9s .12s ease,transform .9s .12s ease;}
+.rv3{opacity:0;transform:translateY(18px);transition:opacity .9s .24s ease,transform .9s .24s ease;}
+.rvl{opacity:0;transform:translateX(-15px);transition:opacity .9s ease,transform .9s ease;}
+.rv.in,.rv2.in,.rv3.in,.rvl.in{opacity:1;transform:none;}
 </style>
 </head>
 <body>
-<div id="aurora"><div class="ab ab1"></div><div class="ab ab2"></div><div class="ab ab3"></div></div>
+
+<div id="cur"><div class="cr"><div class="cr-d"></div></div></div>
 <div id="sp"></div>
+
+<!-- LOADER -->
 <div id="ld">
-  <div class="ld-grid"></div>
-  <div class="ld-panel ld-pl" id="ldl"></div>
-  <div class="ld-panel ld-pr" id="ldr"></div>
+  <div class="ld-pl" id="ldl"></div>
+  <div class="ld-pr" id="ldr"></div>
   <div class="ld-c" id="ldc">
-    <div class="ld-name">La Flamme <em>De L'Automobile</em></div>
-    <div class="ld-bar-bg"><div class="ld-bar" id="ldb"></div></div>
-    <div class="ld-pct" id="ldp">0%</div>
+    <div class="ld-nm">La Flamme <i>De L'Automobile</i></div>
+    <div class="ld-tr"><div class="ld-fl" id="ldb"></div></div>
+    <div class="ld-pt">Chargement</div>
   </div>
 </div>
+
+<!-- NAV -->
 <nav id="nav">
-  <a href="#hero" class="n-logo">La Flamme <em>De L'Auto</em></a>
-  <div class="n-links">
-    <a href="#proc" class="n-lk">Methode</a>
-    <a href="#case" class="n-lk">Exemple</a>
-    <a href="#tarif" class="n-lk">Tarif</a>
+  <a href="#hero" class="n-logo">La Flamme <i>De L'Auto</i></a>
+  <div class="n-r">
+    <a href="#offres" class="n-lk">Offres</a>
+    <a href="#vehicules" class="n-lk">Véhicules</a>
+    <a href="#process" class="n-lk">Processus</a>
     <a href="#faq" class="n-lk">FAQ</a>
-    <a href="#contact" class="n-lk">Contact</a>
-    <button class="n-cta" onclick="goTo('contact')">Devis gratuit</button>
+    <button class="n-btn" onclick="goTo('contact')">Faire ma demande</button>
   </div>
 </nav>
+
+<!-- HERO -->
 <section id="hero">
-  <canvas id="cv3"></canvas>
-  <div class="h-hgrid"></div><div class="h-scan"></div><div class="h-vig"></div>
-  <div class="hcard hc1"><div class="hc-tag">Indépendant</div><div class="hc-val">100 %</div><div class="hc-sub">Aucun conflit d'intérêt</div></div>
-  <div class="hcard hc2"><div class="hc-tag">Annonces</div><div class="hc-val">200+</div><div class="hc-sub">Analysées par recherche</div></div>
-  <div class="hcard hc3"><div class="hc-tag">Réponse</div><div class="hc-val">24 h</div><div class="hc-sub">Garantie</div></div>
-  <div class="hcard hc4"><div class="hc-tag">Commission</div><div class="hc-val">0 €</div><div class="hc-sub">Sur le véhicule</div></div>
+  <canvas id="cv"></canvas>
+  <div class="hg"></div><div class="hv"></div><div class="hll"></div>
+  <div class="hctl"></div><div class="hcbr"></div>
   <div class="hz">
-    <div class="h-eye" id="heye"><div class="h-edot"></div><span class="h-etxt">Accompagnement à l'achat automobile — France entière</span></div>
-    <div class="h-title">
-      <div class="h-line"><span class="hw" id="hw1">Je trouve</span></div>
-      <div class="h-line"><span class="hw" id="hw2">votre véhicule.</span></div>
-      <div class="h-line"><span class="hw dim" id="hw3">Sereinement.</span><span class="hgap"></span><span class="hw dim" id="hw4">Bien négocié.</span></div>
-    </div>
+    <div class="h-tag" id="htag">Recherche automobile personnalisée — France entière</div>
+    <h1>
+      <div><span class="hw" id="hw1">Trouvez</span>&nbsp;<span class="hw" id="hw2">le bon</span></div>
+      <div><span class="hw it" id="hw3">véhicule.</span></div>
+      <div><span class="hw dm" id="hw4">Sans perdre</span>&nbsp;<span class="hw dm" id="hw5">de temps.</span></div>
+    </h1>
     <div class="h-bot" id="hbot">
-      <p class="h-desc">Je prends en charge la recherche, la sélection et la vérification de votre futur véhicule. Vous gagnez du temps, évitez les pièges et négociez avec les bons arguments.</p>
-      <div class="h-right">
-        <div class="h-tw" id="tw"></div>
+      <p class="h-desc">Entre les annonces trompeuses, les prix incohérents et les mauvais entretiens, il est facile de faire un mauvais choix. <strong>Je suis là pour que vous ne le fassiez pas.</strong></p>
+      <div class="h-r">
+        <div class="h-note">Première analyse d'annonce offerte</div>
         <div class="h-btns">
-          <button class="btn-p" onclick="goTo('contact')">Obtenir mon devis gratuit</button>
+          <button class="btn-p" onclick="goTo('contact')">Faire ma demande</button>
+          <button class="btn-s" onclick="goTo('offres')">Voir les offres</button>
         </div>
       </div>
     </div>
   </div>
-  <div class="h-scr" id="hscr"><div class="h-scr-b"></div><span class="h-scr-t">Defiler</span></div>
+  <div class="h-sc" id="hsc"><div class="h-sc-l"></div><span class="h-sc-t">Défiler</span></div>
 </section>
+
+<!-- MARQUEE -->
 <div class="mq"><div class="mq-t">
-  <span class="mqi">La Flamme De L'Automobile</span><span class="mqi mqs">✦</span>
-  <span class="mqi">Accompagnement à l'achat automobile</span><span class="mqi mqs">✦</span>
-  <span class="mqi">100 % indépendant</span><span class="mqi mqs">✦</span>
-  <span class="mqi">Zéro commission sur le véhicule</span><span class="mqi mqs">✦</span>
-  <span class="mqi">Recherche sur toute la France</span><span class="mqi mqs">✦</span>
-  <span class="mqi">Première analyse offerte</span><span class="mqi mqs">✦</span>
-  <span class="mqi">La Flamme De L'Automobile</span><span class="mqi mqs">✦</span>
-  <span class="mqi">Accompagnement à l'achat automobile</span><span class="mqi mqs">✦</span>
-  <span class="mqi">100 % indépendant</span><span class="mqi mqs">✦</span>
-  <span class="mqi">Zéro commission sur le véhicule</span><span class="mqi mqs">✦</span>
-  <span class="mqi">Recherche sur toute la France</span><span class="mqi mqs">✦</span>
-  <span class="mqi">Première analyse offerte</span><span class="mqi mqs">✦</span>
+  <span class="mq-i">La Flamme De L'Automobile</span><span class="mq-s"> ◆ </span>
+  <span class="mq-i">Recherche personnalisée</span><span class="mq-s"> ◆ </span>
+  <span class="mq-i">100 % indépendant</span><span class="mq-s"> ◆ </span>
+  <span class="mq-i">Première analyse offerte</span><span class="mq-s"> ◆ </span>
+  <span class="mq-i">France entière</span><span class="mq-s"> ◆ </span>
+  <span class="mq-i">La Flamme De L'Automobile</span><span class="mq-s"> ◆ </span>
+  <span class="mq-i">Recherche personnalisée</span><span class="mq-s"> ◆ </span>
+  <span class="mq-i">100 % indépendant</span><span class="mq-s"> ◆ </span>
+  <span class="mq-i">Première analyse offerte</span><span class="mq-s"> ◆ </span>
+  <span class="mq-i">France entière</span><span class="mq-s"> ◆ </span>
 </div></div>
-<section id="stats"><div class="st-grid rv">
-  <div class="st-cell"><div class="st-num">200+</div><div class="st-lbl">Annonces analysées par recherche</div></div>
-  <div class="st-cell"><div class="st-num">100%</div><div class="st-lbl">Indépendant — aucune affiliation</div></div>
-  <div class="st-cell"><div class="st-num">0 €</div><div class="st-lbl">Commission sur le véhicule</div></div>
-  <div class="st-cell"><div class="st-num">24 h</div><div class="st-lbl">Délai de réponse garanti</div></div>
-</div></section>
-<section id="proc">
-  <div class="rvl"><div class="sec-eye">Mon accompagnement</div><h2 class="sec-h">De la recherche<br><span>au bon choix.</span></h2></div>
-  <div class="proc-grid rv2">
-    <div class="pc"><div class="pc-glow"></div><div class="pc-num">01</div><span class="pc-ico">&#127919;</span><div class="pc-t">Je cerne votre besoin</div><div class="pc-d">Budget réel, motorisation adaptée, usage quotidien. Un mauvais choix de départ peut tout compromettre.</div></div>
-    <div class="pc"><div class="pc-glow"></div><div class="pc-num">02</div><span class="pc-ico">&#128269;</span><div class="pc-t">Je traque les vraies bonnes affaires</div><div class="pc-d">Leboncoin, Marketplace, La Centrale et autres. Je filtre méthodiquement pour ne garder que les annonces pertinentes.</div></div>
-    <div class="pc"><div class="pc-glow"></div><div class="pc-num">03</div><span class="pc-ico">&#129529;</span><div class="pc-t">J'élimine les pièges</div><div class="pc-d">Kilométrage incohérent, accidents non déclarés, prix gonflés. Je les identifie avant que vous ne vous déplaciez.</div></div>
-    <div class="pc"><div class="pc-glow"></div><div class="pc-num">04</div><span class="pc-ico">&#128203;</span><div class="pc-t">J'analyse chaque annonce en détail</div><div class="pc-d">Historique réel, cohérence du prix avec le marché, points de vigilance. Rien n'est laissé au hasard.</div></div>
-    <div class="pc"><div class="pc-glow"></div><div class="pc-num">05</div><span class="pc-ico">&#128222;</span><div class="pc-t">Je contacte les vendeurs à votre place</div><div class="pc-d">Les bonnes questions à poser, les incohérences à relever — je le fais pour vous, de façon objective.</div></div>
-    <div class="pc"><div class="pc-glow"></div><div class="pc-num">06</div><span class="pc-ico">&#9878;</span><div class="pc-t">Je vous aide à décider sereinement</div><div class="pc-d">Avec un avis extérieur et objectif, vous évitez les décisions prises sous le coup de l'émotion.</div></div>
-    <div class="pc"><div class="pc-glow"></div><div class="pc-num">07</div><span class="pc-ico">&#9989;</span><div class="pc-t">Je vous aide à négocier</div><div class="pc-d">Avec une analyse du prix réel du marché, vous abordez la négociation avec des arguments concrets et solides.</div></div>
-    <div class="pc"><div class="pc-glow"></div><div class="pc-num">+</div><span class="pc-ico">&#128737;</span><div class="pc-t">Je vérifie ce que vous ne pouvez pas voir seul</div><div class="pc-d">HistoVec, sinistres déclarés, cohérence kilométrique, historique de contrôle technique. Un bilan complet avant toute décision.</div></div>
+
+<!-- INTRO -->
+<section id="intro" class="sec">
+  <div class="rvl">
+    <div class="sm"><span class="sm-n">I</span><div class="sm-r"></div><span class="sm-t">Le service</span></div>
+    <h2>Un accompagnement<br><span class="it">sur mesure.</span></h2>
   </div>
-</section>
-<section id="case">
-  <div class="rvl"><div class="sec-eye">Exemple concret</div><h2 class="sec-h">Renault Clio 5 :<br><span>~2 400 € d'economies.</span></h2></div>
-  <div class="case-lay">
-    <div class="rv2">
-      <div class="case-badge"><div class="case-bdot"></div><span class="case-bt">Simulation — à titre illustratif</span></div>
-      <div class="disc">Exemple illustratif basé sur les tendances du marché</div>
-      <div class="case-t">Comment je travaille<br>concrètement.</div>
-      <p class="case-sub">Simulation pour une Renault Clio 5 TCe 90, moins de 50 000 km, à partir de 2021.</p>
-      <div class="tl">
-        <div class="tl-item"><div class="tl-dot">&#128222;</div><div><div class="tl-lbl">Etape 1</div><div class="tl-txt">Budget <strong>12 000 €</strong>, Clio 5 TCe 90ch, -50 000km, 2021+</div></div></div>
-        <div class="tl-item"><div class="tl-dot">&#128269;</div><div><div class="tl-lbl">Etape 2</div><div class="tl-txt">Analyse d'environ <strong>plusieurs annonces</strong>. Élimination des annonces au prix incohérent.</div></div></div>
-        <div class="tl-item"><div class="tl-dot">&#9989;</div><div><div class="tl-lbl">Etape 3</div><div class="tl-txt"><strong>Plusieurs annonces</strong> retenues, historique vérifié.</div></div></div>
-        <div class="tl-item"><div class="tl-dot">&#128176;</div><div><div class="tl-lbl">Résultat estimé (simulation)</div><div class="tl-txt">~<strong>9 800 €</strong> vs prix affiché. Économie estimée : <strong style="color:#4ade80">~2 400 €</strong></div></div></div>
-      </div>
+  <div class="int-lay">
+    <div class="rv">
+      <p class="int-p">Trouver une voiture est simple. <strong>Choisir la bonne est beaucoup plus complexe.</strong></p>
+      <p class="int-p">Je propose un service de recherche et d'accompagnement automobile destiné aux personnes souhaitant acheter un véhicule en toute sérénité.</p>
+      <p class="int-p">Mon objectif : <strong>vous faire gagner du temps, éviter les erreurs et vous aider à prendre la bonne décision.</strong></p>
+      <p class="int-p">Je ne vends pas de véhicules. Le véhicule est acheté directement auprès du vendeur. Je propose un service de recherche et d'accompagnement.</p>
     </div>
-    <div class="rv3">
-      <div class="pc-card" id="pc3d">
-        <div class="pc-head"><div class="pc-name">Renault Clio 5</div><div class="pc-bdg">TCe 90 - 2021 - Simulation</div></div>
-        <div class="pc-div"></div>
-        <div class="pc-row"><div class="pc-rl">Prix moyen affiché</div><div class="pc-rv bad">~12 200 €</div></div>
-        <div class="pc-row"><div class="pc-rl">Prix réel du marché</div><div class="pc-rv ok">~10 800 €</div></div>
-        <div class="pc-row"><div class="pc-rl">Prix estimé avec accompagnement</div><div class="pc-rv good">~9 800 €</div></div>
-        <div class="pc-row"><div class="pc-rl">Kilométrage cible</div><div class="pc-rv neu">-50 000 km</div></div>
-        <div class="pc-row"><div class="pc-rl">Historique vérifié</div><div class="pc-rv good">&#10003; HistoVec</div></div>
-        <div class="pc-sav"><div class="pc-sav-l">Économie estimée</div><div class="pc-sav-v" id="savval">~0 €</div><div class="pc-sav-s">vs prix affiché — simulation illustrative</div></div>
-        <div class="pc-bars">
-          <div class="b-row"><div class="b-lbl">Affiche</div><div class="b-track"><div class="bfill bad" id="bar1" data-w="100"></div></div><div class="b-val">12 200</div></div>
-          <div class="b-row"><div class="b-lbl">Marche</div><div class="b-track"><div class="bfill ok" id="bar2" data-w="88"></div></div><div class="b-val">10 800</div></div>
-          <div class="b-row"><div class="b-lbl">Avec nous</div><div class="b-track"><div class="bfill good" id="bar3" data-w="80"></div></div><div class="b-val">9 800</div></div>
+    <div class="rv2">
+      <div class="int-box">
+        <div class="ib-h">Ce que je fais pour vous</div>
+        <div class="ib-li">
+          <div class="ib-it"><span class="ib-ck">◆</span><span>Analyser votre besoin : budget, critères, utilisation</span></div>
+          <div class="ib-it"><span class="ib-ck">◆</span><span>Rechercher sur toutes les plateformes nationales</span></div>
+          <div class="ib-it"><span class="ib-ck">◆</span><span>Sélectionner les véhicules les plus pertinents</span></div>
+          <div class="ib-it"><span class="ib-ck">◆</span><span>Vérifier cohérence prix / marché et historique</span></div>
+          <div class="ib-it"><span class="ib-ck">◆</span><span>Vous donner un avis clair et objectif</span></div>
+          <div class="ib-it"><span class="ib-ck">◆</span><span>Vous accompagner jusqu'à la décision finale</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
-<section id="engage">
-  <div class="rvl"><div class="sec-eye">Mes engagements</div><h2 class="sec-h">Votre intérêt<br><span>avant tout.</span></h2></div>
-  <div class="eng-grid rv2">
-    <div class="eg-c"><span class="eg-ico">&#129309;</span><div class="eg-t">Je travaille pour vous, pas pour le vendeur</div><div class="eg-d">Aucune affiliation, aucune commission sur le véhicule. Mon seul objectif : vous aider à faire le bon choix.</div></div>
-    <div class="eg-c"><span class="eg-ico">&#128269;</span><div class="eg-t">Un avis objectif et honnête</div><div class="eg-d">Si un véhicule présente des risques, je vous le dis clairement — même si ce n'est pas ce que vous souhaitez entendre.</div></div>
-    <div class="eg-c"><span class="eg-ico">&#128172;</span><div class="eg-t">Une transparence totale</div><div class="eg-d">Chaque risque identifié, chaque doute exprimé. Vous prenez votre décision en connaissance de cause.</div></div>
-    <div class="eg-c"><span class="eg-ico">&#9888;</span><div class="eg-t">Honnête sur le périmètre de mon service</div><div class="eg-d">Ce service ne remplace pas une expertise mécanique. Je vous accompagne dans la recherche et la prise de décision.</div></div>
-    <div class="eg-c"><span class="eg-ico">&#127919;</span><div class="eg-t">Vous ne payez pas un prix surévalué</div><div class="eg-d">Je connais les prix réels du marché. Chaque véhicule proposé est cohérent avec sa valeur réelle.</div></div>
-    <div class="eg-c"><span class="eg-ico">&#9889;</span><div class="eg-t">Réactivité et disponibilité</div><div class="eg-d">Je réponds sous 24h et suis disponible à chaque étape. Une bonne opportunité peut partir rapidement.</div></div>
+
+<!-- OFFRES -->
+<section id="offres" class="sec" style="background:var(--ink);">
+  <div class="rvl">
+    <div class="sm"><span class="sm-n">II</span><div class="sm-r"></div><span class="sm-t">Nos offres</span></div>
+    <h2>Choisissez<br><span class="it">votre formule.</span></h2>
   </div>
-</section>
-<section id="tarif">
-  <div class="rvl"><div class="sec-eye">Accompagnement à l'achat automobile</div><h2 class="sec-h">Une offre claire.<br><span>Zéro surprise.</span></h2></div>
-  <div class="tarif-in rv2">
-    <div class="tarif-card">
-      <div class="tarif-badge"><div class="tarif-bdot"></div><span class="tarif-bt">Devis personnalisé — sans engagement</span></div>
-      <div class="tarif-price">100€ – 300€</div>
-      <div class="tarif-range">Première analyse d'annonce offerte</div>
-      <p class="tarif-desc">Je vous accompagne dans la recherche et la sélection de votre véhicule afin d'éviter les mauvaises surprises et faire le bon choix.
- 
-À partir de 100 € pour une recherche simple — jusqu'à 300 € pour un accompagnement complet. Le tarif dépend du niveau de recherche, du nombre de véhicules proposés et du suivi nécessaire.
- 
-Un devis clair vous est envoyé avant toute prestation.</p>
-      <div class="tarif-list">
-        <div class="tarif-li"><span class="tarif-ck">&#10003;</span><span>Recherche simple — à partir de 100 € : sélection ciblée de véhicules correspondant à vos critères</span></div>
-        <div class="tarif-li"><span class="tarif-ck">&#10003;</span><span>Accompagnement complet — jusqu'à 300 € : recherche approfondie, suivi personnalisé et conseils</span></div>
-        <div class="tarif-li"><span class="tarif-ck">&#10003;</span><span>Première analyse d'annonce offerte — sans engagement, pour decouvrir la qualite du service</span></div>
-        <div class="tarif-li"><span class="tarif-ck">&#10003;</span><span>Devis clair envoyé avant toute prestation — aucune surprise sur le tarif</span></div>
-        <div class="tarif-li"><span class="tarif-ck">&#10003;</span><span>Vérification HistoVec, historique et cohérence du kilométrage inclus</span></div>
-        <div class="tarif-li"><span class="tarif-ck">&#10003;</span><span>Accompagnement jusqu'au choix final et conseils pour la négociation</span></div>
-        <div class="tarif-li"><span class="tarif-ck">&#10003;</span><span>Zéro commission sur le véhicule — mes intérêts sont alignés avec les vôtres</span></div>
+  <div class="of-grid">
+    <div class="of-scene rv">
+      <div class="of-card" data-tilt>
+        <div class="of-c"></div>
+        <div class="of-badge"><div class="of-bd"></div><span class="of-bt">Offre 1</span></div>
+        <div class="of-nm">Recherche personnalisée</div>
+        <div class="of-tg">Une base fiable pour structurer votre recherche.</div>
+        <div class="of-pr">299 €</div>
+        <div class="of-pn">Forfait unique — tout inclus</div>
+        <div class="of-div"></div>
+        <div class="of-sec">Inclus</div>
+        <div class="of-ul">
+          <div class="of-li y"><span class="ck-y">✓</span><span>Analyse de votre besoin (budget, critères, utilisation)</span></div>
+          <div class="of-li y"><span class="ck-y">✓</span><span>Recherche ciblée sur toutes les plateformes</span></div>
+          <div class="of-li y"><span class="ck-y">✓</span><span>Sélection de 2 à 4 véhicules pertinents</span></div>
+          <div class="of-li y"><span class="ck-y">✓</span><span>Vérification cohérence prix / marché</span></div>
+          <div class="of-li y"><span class="ck-y">✓</span><span>Avis clair et objectif sur chaque véhicule</span></div>
+        </div>
+        <div class="of-sec">Non inclus</div>
+        <div class="of-ul">
+          <div class="of-li n"><span class="ck-n">✕</span><span>Contact avec les vendeurs</span></div>
+          <div class="of-li n"><span class="ck-n">✕</span><span>Négociation du prix</span></div>
+          <div class="of-li n"><span class="ck-n">✕</span><span>Accompagnement à l'achat</span></div>
+        </div>
+        <div class="of-tip">Idéal si vous souhaitez chercher vous-même avec une base fiable.</div>
+        <button class="of-btn" onclick="goTo('contact')">Faire ma demande →</button>
       </div>
-      <button class="tarif-btn" onclick="goTo('contact')">Demander mon devis gratuit</button>
-      <div class="tarif-note">Paiement avant le démarrage de la recherche. Si aucune proposition ne vous convient, une nouvelle recherche ajustée peut être proposée.</div>
+    </div>
+    <div class="of-scene rv2">
+      <div class="of-card feat" data-tilt>
+        <div class="of-c"></div>
+        <div class="of-badge"><div class="of-bd"></div><span class="of-bt">Offre 2 — Recommandée</span></div>
+        <div class="of-nm">Accompagnement complet</div>
+        <div class="of-tg">Un service complet pour acheter sans stress.</div>
+        <div class="of-pr">800 €</div>
+        <div class="of-pn">À partir de — selon le véhicule</div>
+        <div class="of-div"></div>
+        <div class="of-sec">Inclus</div>
+        <div class="of-ul">
+          <div class="of-li y"><span class="ck-y">✓</span><span>Analyse détaillée de votre besoin</span></div>
+          <div class="of-li y"><span class="ck-y">✓</span><span>Recherche complète et ciblée</span></div>
+          <div class="of-li y"><span class="ck-y">✓</span><span>Sélection de véhicules pertinents</span></div>
+          <div class="of-li y"><span class="ck-y">✓</span><span>Contact direct avec les vendeurs</span></div>
+          <div class="of-li y"><span class="ck-y">✓</span><span>Vérification approfondie</span></div>
+          <div class="of-li y"><span class="ck-y">✓</span><span>Négociation du prix</span></div>
+          <div class="of-li y"><span class="ck-y">✓</span><span>Accompagnement jusqu'à la décision finale</span></div>
+        </div>
+        <div class="of-tip">Objectif : vous faire gagner du temps et sécuriser votre achat.</div>
+        <button class="of-btn" onclick="goTo('contact')">Faire ma demande →</button>
+      </div>
+    </div>
+    <div class="of-scene rv3">
+      <div class="of-card" data-tilt>
+        <div class="of-c"></div>
+        <div class="of-badge"><div class="of-bd"></div><span class="of-bt">Option — Offre 2 uniquement</span></div>
+        <div class="of-nm">Inspection sur place</div>
+        <div class="of-tg">Un regard concret avant l'achat final.</div>
+        <div class="of-pr">250 €</div>
+        <div class="of-pn">À partir de — disponible avec l'Offre 2</div>
+        <div class="of-div"></div>
+        <div class="of-sec">Inclus</div>
+        <div class="of-ul">
+          <div class="of-li y"><span class="ck-y">✓</span><span>Déplacement sur le lieu du véhicule</span></div>
+          <div class="of-li y"><span class="ck-y">✓</span><span>Inspection visuelle complète</span></div>
+          <div class="of-li y"><span class="ck-y">✓</span><span>Vidéo complète du véhicule</span></div>
+          <div class="of-li y"><span class="ck-y">✓</span><span>Retour détaillé et honnête</span></div>
+        </div>
+        <div class="of-tip">⚠ Avis basé sur observation — non expert automobile agréé.</div>
+        <button class="of-btn gh" onclick="goTo('contact')">Ajouter à l'Offre 2 →</button>
+      </div>
     </div>
   </div>
 </section>
-<section id="faq">
-  <div class="rvl"><div class="sec-eye">Questions fréquentes</div><h2 class="sec-h">Tout ce que vous<br><span>voulez savoir.</span></h2></div>
-  <div class="faq-wrap rv2">
-    <div class="faq-item"><div class="faq-q" onclick="faqT(this)"><span class="faq-qt">Comment se passe un accompagnement ?</span><div class="faq-ic"></div></div><div class="faq-a"><div class="faq-ai">Vous m'envoyez vos critères — budget, type de véhicule, usage. J'analyse le marché, filtre les annonces, vérifie les historiques et vous envoie une sélection commentée avec mes recommandations. Vous ne vous déplacez que pour les véhicules qui le méritent vraiment. <strong></strong> Mon rôle : vous aider à faire un choix éclairé et serein.</div></div></div>
-    <div class="faq-item"><div class="faq-q" onclick="faqT(this)"><span class="faq-qt">Combien ca coute ?</span><div class="faq-ic"></div></div><div class="faq-a"><div class="faq-ai">À partir de <strong>100 € pour une recherche simple</strong>, jusqu'à <strong>300 € pour un accompagnement complet</strong>. Le tarif dépend du niveau de recherche, du nombre de véhicules proposés et du suivi nécessaire. <strong>Un devis clair vous est envoyé avant toute prestation.</strong> Paiement avant le démarrage de la recherche.</div></div></div>
-    <div class="faq-item"><div class="faq-q" onclick="faqT(this)"><span class="faq-qt">Vous garantissez l'etat du vehicule ?</span><div class="faq-ic"></div></div><div class="faq-a"><div class="faq-ai">Non. Mon service ne remplace pas une <strong>expertise mécanique</strong>. J'accompagne votre décision sur la base des informations disponibles et des vérifications effectuées.</div></div></div>
-    <div class="faq-item"><div class="faq-q" onclick="faqT(this)"><span class="faq-qt">Quel est le delai ?</span><div class="faq-ic"></div></div><div class="faq-a"><div class="faq-ai">Réponse sous <strong>24h</strong>. Pour un véhicule courant, comptez 2 à 5 jours pour recevoir une sélection complète.</div></div></div>
-    <div class="faq-item"><div class="faq-q" onclick="faqT(this)"><span class="faq-qt">Partout en France ?</span><div class="faq-ic"></div></div><div class="faq-a"><div class="faq-ai">Oui, <strong>France entière</strong>. La recherche couvre toutes les plateformes nationales.</div></div></div>
-    <div class="faq-item"><div class="faq-q" onclick="faqT(this)"><span class="faq-qt">Comment fonctionne la première analyse offerte ?</span><div class="faq-ic"></div></div><div class="faq-a"><div class="faq-ai">Envoyez-moi le lien d'une annonce qui vous intéresse. J'analyse le véhicule gratuitement : historique, cohérence du prix, points de vigilance. Sans engagement. C'est l'occasion de découvrir concrètement le service avant de vous décider.</div></div></div>
-    <div class="faq-item"><div class="faq-q" onclick="faqT(this)"><span class="faq-qt">Et si aucune proposition ne me convient ?</span><div class="faq-ic"></div></div><div class="faq-a"><div class="faq-ai">Si aucune proposition ne vous convient, <strong>une nouvelle recherche ajustée peut être proposée</strong>. L'objectif est de vous trouver le véhicule qui correspond vraiment à vos besoins et à votre budget.</div></div></div>
+
+<!-- VÉHICULES -->
+<section id="vehicules" class="sec" style="background:var(--ink2);">
+  <div class="rvl">
+    <div class="sm"><span class="sm-n">III</span><div class="sm-r"></div><span class="sm-t">Sélection</span></div>
+    <h2>Véhicules<br><span class="it">disponibles.</span></h2>
   </div>
+  <p class="veh-sub rv">Sélection de véhicules disponibles sur demande. Cliquez sur un modèle pour démarrer votre recherche personnalisée.</p>
+  <div class="veh-grid">
+    <div class="vc rv" onclick="openVeh('Porsche Macan')">
+      <div class="vc-iw">
+        <img class="vc-img" src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80&fit=crop&auto=format" alt="Porsche Macan" loading="lazy">
+        <div class="vc-ov"></div>
+      </div>
+      <div class="vc-body">
+        <div class="vc-br">Porsche</div>
+        <div class="vc-mo">Macan</div>
+        <button class="vc-btn">Voir le véhicule →</button>
+      </div>
+    </div>
+    <div class="vc rv2" onclick="openVeh('BMW X3')">
+      <div class="vc-iw">
+        <img class="vc-img" src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600&q=80&fit=crop&auto=format" alt="BMW X3" loading="lazy">
+        <div class="vc-ov"></div>
+      </div>
+      <div class="vc-body">
+        <div class="vc-br">BMW</div>
+        <div class="vc-mo">X3</div>
+        <button class="vc-btn">Voir le véhicule →</button>
+      </div>
+    </div>
+    <div class="vc rv2" onclick="openVeh('Audi Q5')">
+      <div class="vc-iw">
+        <img class="vc-img" src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=600&q=80&fit=crop&auto=format" alt="Audi Q5" loading="lazy">
+        <div class="vc-ov"></div>
+      </div>
+      <div class="vc-body">
+        <div class="vc-br">Audi</div>
+        <div class="vc-mo">Q5</div>
+        <button class="vc-btn">Voir le véhicule →</button>
+      </div>
+    </div>
+    <div class="vc rv3" onclick="openVeh('Mercedes Classe C')">
+      <div class="vc-iw">
+        <img class="vc-img" src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=600&q=80&fit=crop&auto=format" alt="Mercedes Classe C" loading="lazy">
+        <div class="vc-ov"></div>
+      </div>
+      <div class="vc-body">
+        <div class="vc-br">Mercedes</div>
+        <div class="vc-mo">Classe C</div>
+        <button class="vc-btn">Voir le véhicule →</button>
+      </div>
+    </div>
+  </div>
+  <p class="veh-note rv3">Ces modèles sont donnés à titre indicatif. Je recherche tout type de véhicule selon votre besoin et votre budget.</p>
 </section>
-<section id="contact">
-  <div class="rvl"><div class="sec-eye">Parlons de votre projet</div><h2 class="sec-h">Quel véhicule<br><span>recherchez-vous ?</span></h2></div>
-  <div class="ct-lay">
+
+<!-- MODAL -->
+<div id="veh-modal" class="vm-bg">
+  <div class="vm-box">
+    <button class="vm-cls" id="vm-cls">✕</button>
+    <div class="vm-tag" id="vm-tag">Porsche Macan</div>
+    <h3 class="vm-h">Démarrer votre<br><i>recherche</i></h3>
+    <p class="vm-sub">Remplissez ce formulaire. Je reviens vers vous sous 24 h avec une sélection personnalisée.</p>
+    <div class="vf"><label>Budget</label><input type="text" id="vf-b" placeholder="Ex : 25 000 €"></div>
+    <div class="vf"><label>Type de véhicule</label><input type="text" id="vf-t" placeholder="Ex : SUV, Berline…"></div>
+    <div class="vf"><label>Critères spécifiques</label><textarea id="vf-c" placeholder="Ex : Diesel, moins de 60 000 km, 2020+, boîte auto…"></textarea></div>
+    <div class="vf"><label>Délai souhaité</label>
+      <select id="vf-d">
+        <option value="">Sélectionnez…</option>
+        <option>Dès que possible</option>
+        <option>Dans le mois</option>
+        <option>Dans les 3 mois</option>
+        <option>Je prends mon temps</option>
+      </select>
+    </div>
+    <div class="vf"><label>Email</label><input type="email" id="vf-e" placeholder="votre@email.fr"></div>
+    <button class="vm-btn" id="vm-btn" onclick="sendVeh()">Lancer ma recherche →</button>
+    <div class="vm-ok" id="vm-ok">Reçu. Je vous réponds sous 24 h. — Ibrahim</div>
+  </div>
+</div>
+
+<!-- POUR QUI -->
+<section id="pourqui" class="sec" style="background:var(--ink);">
+  <div class="rvl">
+    <div class="sm"><span class="sm-n">IV</span><div class="sm-r"></div><span class="sm-t">Pour qui</span></div>
+    <h2>Ce service<br><span class="dm">est fait pour vous.</span></h2>
+  </div>
+  <div class="pq-lay">
+    <div class="rv">
+      <div class="pq-li">
+        <div class="pq-it"><div class="pq-ic">💶</div><div class="pq-tx">Vous avez un <strong>budget de 15 000 € ou plus</strong></div></div>
+        <div class="pq-it"><div class="pq-ic">🛡</div><div class="pq-tx">Vous souhaitez <strong>éviter les mauvaises surprises</strong></div></div>
+        <div class="pq-it"><div class="pq-ic">⏱</div><div class="pq-tx">Vous <strong>manquez de temps</strong> pour chercher vous-même</div></div>
+        <div class="pq-it"><div class="pq-ic">🎯</div><div class="pq-tx">Vous voulez être <strong>accompagné dans votre décision</strong></div></div>
+        <div class="pq-it"><div class="pq-ic">🔍</div><div class="pq-tx">Vous souhaitez un <strong>avis objectif et indépendant</strong></div></div>
+      </div>
+    </div>
     <div class="rv2">
-      <div class="c-row"><div class="c-ico">&#128231;</div><div><div class="c-lbl">Email</div><div class="c-val">laflammedelautomobile@gmail.com</div></div></div>
-      <div class="c-row"><div class="c-ico">&#128222;</div><div><div class="c-lbl">Telephone</div><div class="c-val">06 28 90 71 76</div></div></div>
-      <div class="c-row"><div class="c-ico">&#128248;</div><div><div class="c-lbl">Instagram</div><div class="c-val">La Flamme De L'Automobile</div></div></div>
-      <div class="c-row"><div class="c-ico">&#9201;</div><div><div class="c-lbl">Reponse</div><div class="c-val">Sous 24h - France entière</div></div></div>
-      <div class="c-row"><div class="c-ico">&#128182;</div><div><div class="c-lbl">Devis</div><div class="c-val">Gratuit et sans engagement</div></div></div>
+      <div class="pq-qt">
+        <p class="pq-q">« Trouver une voiture est simple.<br>Choisir <i>la bonne</i> est beaucoup plus complexe. »</p>
+        <p class="pq-a">Entre les annonces trompeuses, les mauvais entretiens et les prix incohérents, il est facile de faire un mauvais choix. <strong>Mon rôle : vous protéger de ces erreurs</strong> grâce à une recherche structurée et un avis clair.</p>
+      </div>
     </div>
-    <div class="rv3">
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="sec" style="background:var(--ink2);">
+  <div class="rvl">
+    <div class="sm"><span class="sm-n">V</span><div class="sm-r"></div><span class="sm-t">Comment ça se passe</span></div>
+    <h2>Simple.<br><span class="it">En 5 étapes.</span></h2>
+  </div>
+  <div class="ps-wr">
+    <div class="ps rv"><div class="ps-n">01</div><div class="ps-b"><div class="ps-t">Vous faites une demande</div><div class="ps-d">Remplissez le formulaire avec votre budget et vos critères. Je vous réponds rapidement pour convenir d'un échange.</div></div></div>
+    <div class="ps rv"><div class="ps-n">02</div><div class="ps-b"><div class="ps-t">Nous définissons ensemble votre besoin</div><div class="ps-d">Un échange pour comprendre précisément ce que vous cherchez : type de véhicule, usage, priorités, contraintes.</div></div></div>
+    <div class="ps rv"><div class="ps-n">03</div><div class="ps-b"><div class="ps-t">L'accompagnement est lancé</div><div class="ps-d">Vous validez le devis et réglez. Devis clair envoyé avant toute prestation. Paiement avant démarrage.</div></div></div>
+    <div class="ps rv"><div class="ps-n">04</div><div class="ps-b"><div class="ps-t">Je recherche et sélectionne</div><div class="ps-d">Analyse du marché, filtrage, vérifications, contacts vendeurs selon la formule choisie.</div></div></div>
+    <div class="ps rv"><div class="ps-n">05</div><div class="ps-b"><div class="ps-t">Je vous accompagne jusqu'à l'achat</div><div class="ps-d">Avis final, conseils de négociation, suivi jusqu'à votre décision.</div></div></div>
+  </div>
+</section>
+
+<!-- IMPORTANT -->
+<section id="important" class="sec" style="background:var(--ink);">
+  <div class="rvl">
+    <div class="sm"><span class="sm-n">VI</span><div class="sm-r"></div><span class="sm-t">À savoir</span></div>
+    <h2>Ce que<br><span class="dm">je suis.</span></h2>
+  </div>
+  <div class="imp-bx rv">
+    <div class="imp-tt">Je ne vends pas de véhicules.</div>
+    <p class="imp-tx">Le véhicule est acheté <strong>directement auprès du vendeur</strong> — garage ou particulier. Je propose un service de recherche et d'accompagnement. Je suis un intermédiaire indépendant, sans aucune commission sur la vente du véhicule.<br><br>Ce service ne remplace pas une expertise mécanique agréée. Pour l'option inspection, il s'agit d'un avis basé sur observation visuelle.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="sec" style="background:var(--ink2);">
+  <div class="rvl">
+    <div class="sm"><span class="sm-n">VII</span><div class="sm-r"></div><span class="sm-t">Questions fréquentes</span></div>
+    <h2>Tout ce que<br><span class="dm">vous voulez savoir.</span></h2>
+  </div>
+  <div class="fq-wr rv">
+    <div class="fq"><div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Quelle est la différence entre les deux offres ?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">L'<strong>Offre 1 à 299 €</strong> vous donne une sélection analysée — vous gérez ensuite vous-même les contacts et la négociation. L'<strong>Offre 2 à partir de 800 €</strong> est un service complet : je contacte les vendeurs, négocie et vous accompagne jusqu'à la décision finale.</p></div></div>
+    <div class="fq"><div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Qu'est-ce que la première analyse offerte ?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">Envoyez-moi le lien d'une annonce. J'analyse gratuitement : cohérence du prix avec le marché, historique, points de vigilance. Sans engagement.</p></div></div>
+    <div class="fq"><div class="fq-q" onclick="fqT(this)"><span class="fq-qt">L'option inspection est-elle disponible seule ?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">Non. L'option inspection est <strong>uniquement disponible avec l'Offre 2</strong>. Elle ne peut pas être souscrite de façon indépendante.</p></div></div>
+    <div class="fq"><div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Vous garantissez l'état du véhicule ?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">Non. Je suis un service d'aide à la décision. L'option inspection offre un regard visuel, mais ne remplace pas une expertise mécanique agréée.</p></div></div>
+    <div class="fq"><div class="fq-q" onclick="faqT(this)"><span class="fq-qt">Et si aucune annonce ne me convient ?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">Si aucune proposition ne vous convient, une nouvelle recherche ajustée peut être proposée pour affiner les critères.</p></div></div>
+    <div class="fq"><div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Quel est le délai ?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">Je réponds sous <strong>24 h</strong>. La recherche dure en moyenne 3 à 5 jours selon le marché.</p></div></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta" class="sec" style="background:var(--ink);">
+  <div class="cta-amb"></div><div class="cta-tl"></div>
+  <div class="cta-in">
+    <div class="cta-ey rvl">Prêt à commencer ?</div>
+    <h2 class="cta-h rvl">Faites votre demande.<br><i>C'est gratuit.</i></h2>
+    <p class="cta-su rv">Première analyse offerte. Devis sous 24 h. Aucun engagement avant validation.</p>
+    <div class="rv2"><button class="cta-mb" onclick="goTo('contact')">Faire ma demande →</button></div>
+    <div class="cta-rs rv3">
+      <div class="cta-ri"><span>◆</span> 100 % indépendant</div>
+      <div class="cta-ri"><span>◆</span> Devis avant prestation</div>
+      <div class="cta-ri"><span>◆</span> 1ʳᵉ analyse offerte</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="sec" style="background:var(--ink2);">
+  <div class="rvl">
+    <div class="sm"><span class="sm-n">VIII</span><div class="sm-r"></div><span class="sm-t">Faire ma demande</span></div>
+    <h2>Quel véhicule<br><span class="it">recherchez-vous ?</span></h2>
+  </div>
+  <div class="ct-lay">
+    <div>
+      <p class="ct-sub rv">Remplissez ce formulaire. Je vous réponds sous 24 h avec un devis clair. Si vous avez une annonce en tête, précisez-la — je l'analyse gratuitement.</p>
+      <div class="c-row rv"><div class="c-ic">📧</div><div><div class="c-lb">Email</div><div class="c-vl">laflammedelautomobile@gmail.com</div></div></div>
+      <div class="c-row rv"><div class="c-ic">📞</div><div><div class="c-lb">Téléphone</div><div class="c-vl">06 28 90 71 76</div></div></div>
+      <div class="c-row rv"><div class="c-ic">📸</div><div><div class="c-lb">Instagram</div><div class="c-vl">@laflammedelautomobile</div></div></div>
+    </div>
+    <div class="rv2">
       <div class="f-card">
         <div class="ff-row">
-          <div class="ff"><label>Prenom</label><input type="text" id="fp" placeholder="Votre prenom"></div>
+          <div class="ff"><label>Prénom</label><input type="text" id="fp" placeholder="Votre prénom"></div>
           <div class="ff"><label>Nom</label><input type="text" id="fn" placeholder="Votre nom"></div>
         </div>
         <div class="ff"><label>Email</label><input type="email" id="fe" placeholder="votre@email.fr"></div>
-        <div class="ff">
-          <label>Type de vehicule</label>
-          <select id="ftype">
-            <option value="">Selectionnez...</option>
-            <option>Citadine</option><option>Berline</option><option>SUV</option>
-            <option>Break</option><option>Monospace</option><option>Utilitaire</option><option>Autre</option>
+        <div class="ff"><label>Offre souhaitée</label>
+          <select id="foffre">
+            <option value="">Sélectionnez…</option>
+            <option>Offre 1 — Recherche personnalisée (299 €)</option>
+            <option>Offre 2 — Accompagnement complet (à partir de 800 €)</option>
+            <option>Offre 2 + Option inspection</option>
+            <option>Je ne sais pas encore</option>
           </select>
         </div>
-        <div class="ff"><label>Budget et critères</label><textarea id="fm" placeholder="Ex : Budget 10 000 €, Golf 7 diesel, moins de 100 000 km, 2017+…"></textarea></div>
-        <button class="f-btn" id="fbtn" onclick="envForm()">Recevoir mon devis gratuit →</button>
-        <div class="f-ok" id="fok">C'est parti ! Vous recevez votre devis personnalise sous 24h. Première analyse d'annonce offerte des maintenant si vous avez deja un vehicule en tete. — Ibrahim</div>
+        <div class="ff"><label>Budget &amp; critères</label><textarea id="fm" placeholder="Ex : Budget 20 000 €, SUV diesel, moins de 80 000 km, 2019+…"></textarea></div>
+        <button class="f-btn" id="fbtn" onclick="envForm()">Faire ma demande →</button>
+        <div class="f-ok" id="fok">Reçu. Je vous réponds sous 24 h avec votre devis. — Ibrahim</div>
       </div>
     </div>
   </div>
 </section>
-<section id="mentions">
-  <div class="sec-eye">Documents légaux — 1/3</div><h2 class="sec-h">Mentions<br><span>Legales.</span></h2>
-  <div class="m-grid">
-    <div class="m-blk"><div class="m-n">01 - Editeur</div><div class="m-t">Identification</div><div class="m-tx"><strong>La Flamme De L'Automobile</strong> - Micro-entreprise<br><strong>Gerant :</strong> Ibrahim Victor<br><strong>SIRET :</strong> 101 249 837 00010<br><strong>Email :</strong> laflammedelautomobile@gmail.com<br><strong>Tel :</strong> 06 28 90 71 76<br><strong>France - 2026</strong><br><strong>TVA :</strong> Non assujetti - Art. 293B CGI</div></div>
-    <div class="m-blk"><div class="m-n">02 - Hebergement</div><div class="m-t">Hebergeurs</div><div class="m-tx"><strong>IONOS SE</strong> - 7 place de la Gare, 57201 Sarreguemines<br><strong>GitHub Pages</strong> (Microsoft) - San Francisco, USA</div></div>
-    <div class="m-blk"><div class="m-n">03 - Activite</div><div class="m-t">Nature du service</div><div class="m-tx">Accompagnement à l'achat automobile et intermediation independante. Ne remplace pas une expertise mécanique professionnelle.</div></div>
-    <div class="m-blk"><div class="m-n">04 - Droit applicable</div><div class="m-t">Juridiction</div><div class="m-tx">Droit francais. ODR : ec.europa.eu/consumers/odr - 2026</div></div>
+
+<!-- LEGAL -->
+<section id="mentions"><div style="padding:clamp(70px,10vw,120px) 5vw">
+  <div class="sm"><span class="sm-n">I</span><div class="sm-r"></div><span class="sm-t">1 / 3</span></div>
+  <h2>Mentions<br><span class="dm">Légales.</span></h2>
+  <div class="m-gr">
+    <div class="m-bl"><div class="m-n">Éditeur</div><div class="m-t">Identification</div><div class="m-tx"><strong>La Flamme De L'Automobile</strong> — Micro-entreprise<br><strong>Gérant :</strong> Ibrahim Victor<br><strong>SIRET :</strong> 101 249 837 00010<br><strong>Email :</strong> laflammedelautomobile@gmail.com<br><strong>Tél :</strong> 06 28 90 71 76 — France, 2026<br><strong>TVA :</strong> Non assujetti — Art. 293B CGI</div></div>
+    <div class="m-bl"><div class="m-n">Hébergement</div><div class="m-t">Hébergeurs</div><div class="m-tx"><strong>IONOS SE</strong> — 7 place de la Gare, 57201 Sarreguemines<br><strong>GitHub Pages</strong> (Microsoft) — San Francisco, USA</div></div>
+    <div class="m-bl"><div class="m-n">Activité</div><div class="m-t">Nature</div><div class="m-tx">Service de recherche et d'accompagnement à l'achat automobile. Ne remplace pas une expertise mécanique agréée.</div></div>
+    <div class="m-bl"><div class="m-n">Droit</div><div class="m-t">Juridiction</div><div class="m-tx">Droit français. Tribunaux compétents. ODR : ec.europa.eu/consumers/odr</div></div>
   </div>
-  <div class="legal-nav"><span class="ll fwd" onclick="showPage('confidentialite')">Confidentialite</span><span class="ll fwd" onclick="showPage('cgv')">CGV</span><span class="ll back" onclick="hideLegal()">Retour au site</span></div>
-</section>
-<section id="confidentialite">
-  <div class="sec-eye">Documents légaux — 2/3</div><h2 class="sec-h">Politique de<br><span>Confidentialite.</span></h2>
-  <div class="m-grid">
-    <div class="m-blk"><div class="m-n">01</div><div class="m-t">Responsable RGPD</div><div class="m-tx"><strong>Ibrahim Victor</strong> - laflammedelautomobile@gmail.com. Conforme au RGPD (UE 2016/679).</div></div>
-    <div class="m-blk"><div class="m-n">02</div><div class="m-t">Donnees collectees</div><div class="m-tx">Formulaire : Prenom, Nom, Email, Type, Budget. Techniques : IP (anonymises).</div></div>
-    <div class="m-blk"><div class="m-n">03</div><div class="m-t">Vos droits RGPD</div><div class="m-tx">Acces, Rectification, Effacement, Opposition. Contact : laflammedelautomobile@gmail.com</div></div>
-    <div class="m-blk"><div class="m-n">04</div><div class="m-t">Securite</div><div class="m-tx">HTTPS/SSL. Aucun cookie publicitaire. Aucune donnee bancaire.</div></div>
+  <div class="leg-nav"><span class="ll fw" onclick="showPage('confidentialite')">Confidentialité →</span><span class="ll fw" onclick="showPage('cgv')">CGV →</span><span class="ll bk" onclick="hideLegal()">← Retour</span></div>
+</div></section>
+
+<section id="confidentialite"><div style="padding:clamp(70px,10vw,120px) 5vw">
+  <div class="sm"><span class="sm-n">II</span><div class="sm-r"></div><span class="sm-t">2 / 3</span></div>
+  <h2>Confidentialité.</h2>
+  <div class="m-gr">
+    <div class="m-bl"><div class="m-n">Responsable</div><div class="m-t">RGPD</div><div class="m-tx"><strong>Ibrahim Victor</strong> — laflammedelautomobile@gmail.com. Conforme au RGPD (UE 2016/679).</div></div>
+    <div class="m-bl"><div class="m-n">Données</div><div class="m-t">Collectées</div><div class="m-tx">Formulaires : Prénom, Nom, Email, Offre, Budget. Aucune donnée bancaire.</div></div>
+    <div class="m-bl"><div class="m-n">Droits</div><div class="m-t">Vos droits</div><div class="m-tx">Accès, Rectification, Effacement, Opposition. Contact : laflammedelautomobile@gmail.com — cnil.fr</div></div>
+    <div class="m-bl"><div class="m-n">Sécurité</div><div class="m-t">Protection</div><div class="m-tx">HTTPS/SSL. Aucun cookie publicitaire. Conservation 3 ans maximum.</div></div>
   </div>
-  <div class="legal-nav"><span class="ll fwd" onclick="showPage('mentions')">Mentions</span><span class="ll fwd" onclick="showPage('cgv')">CGV</span><span class="ll back" onclick="hideLegal()">Retour au site</span></div>
-</section>
-<section id="cgv">
-  <div class="sec-eye">Documents légaux — 3/3</div><h2 class="sec-h">Conditions Generales<br><span>de Vente.</span></h2>
-  <div class="m-grid">
-    <div class="m-blk"><div class="m-n">01</div><div class="m-t">Tarif</div><div class="m-tx">À partir de 100 € pour une recherche simple, jusqu'à 300 € pour un accompagnement complet. TVA non applicable — Art. 293B CGI.</div></div>
-    <div class="m-blk"><div class="m-n">02</div><div class="m-t">Paiement</div><div class="m-tx"><strong>Moyens :</strong> Virement, PayPal, Lydia. <strong>Paiement avant le démarrage de la recherche.</strong> Si aucune proposition ne convient, une nouvelle recherche ajustée peut être proposée.</div></div>
-    <div class="m-blk"><div class="m-n">03</div><div class="m-t">Retractation</div><div class="m-tx">Art. L.221-18 C. conso. : <strong>14 jours</strong>. laflammedelautomobile@gmail.com</div></div>
-    <div class="m-blk"><div class="m-n">04</div><div class="m-t">Limites</div><div class="m-tx">Ne remplace pas expertise mécanique ou inspection physique. Accompagnement decisionnel. 2026 v2.0</div></div>
+  <div class="leg-nav"><span class="ll fw" onclick="showPage('mentions')">Mentions →</span><span class="ll fw" onclick="showPage('cgv')">CGV →</span><span class="ll bk" onclick="hideLegal()">← Retour</span></div>
+</div></section>
+
+<section id="cgv"><div style="padding:clamp(70px,10vw,120px) 5vw">
+  <div class="sm"><span class="sm-n">III</span><div class="sm-r"></div><span class="sm-t">3 / 3</span></div>
+  <h2>CGV.</h2>
+  <div class="m-gr">
+    <div class="m-bl"><div class="m-n">Tarifs</div><div class="m-t">Offres</div><div class="m-tx">Offre 1 : 299 € TTC. Offre 2 : à partir de 800 € TTC. Option inspection : à partir de 250 € TTC. TVA non applicable — Art. 293B CGI.</div></div>
+    <div class="m-bl"><div class="m-n">Paiement</div><div class="m-t">Modalités</div><div class="m-tx">Virement, PayPal, Lydia. <strong>Paiement avant le démarrage.</strong> Devis envoyé avant toute prestation.</div></div>
+    <div class="m-bl"><div class="m-n">Rétractation</div><div class="m-t">14 jours</div><div class="m-tx">Art. L.221-18 C. conso. : 14 jours calendaires.</div></div>
+    <div class="m-bl"><div class="m-n">Limites</div><div class="m-t">Périmètre</div><div class="m-tx">Service d'accompagnement à la décision. Ne remplace pas une expertise mécanique agréée. v4.0 — 2026</div></div>
   </div>
-  <div class="legal-nav"><span class="ll fwd" onclick="showPage('mentions')">Mentions</span><span class="ll fwd" onclick="showPage('confidentialite')">Confidentialite</span><span class="ll back" onclick="hideLegal()">Retour au site</span></div>
-</section>
+  <div class="leg-nav"><span class="ll fw" onclick="showPage('mentions')">Mentions →</span><span class="ll fw" onclick="showPage('confidentialite')">Confidentialité →</span><span class="ll bk" onclick="hideLegal()">← Retour</span></div>
+</div></section>
+
 <footer>
-  <div class="f-logo">La Flamme De L'Automobile</div>
-  <div class="f-info">SIRET 101 249 837 00010 — Ibrahim Victor — 2026</div>
-  <div class="f-links">
-    <span class="f-ml" onclick="showPage('mentions')">Mentions legales</span>
-    <span class="f-ml" onclick="showPage('confidentialite')">Confidentialite</span>
-    <span class="f-ml" onclick="showPage('cgv')">CGV</span>
+  <div class="fl">La Flamme <i>De L'Automobile</i></div>
+  <div class="fi">SIRET 101 249 837 00010 — Ibrahim Victor — 2026</div>
+  <div class="fls">
+    <span class="fm" onclick="showPage('mentions')">Mentions légales</span>
+    <span class="fm" onclick="showPage('confidentialite')">Confidentialité</span>
+    <span class="fm" onclick="showPage('cgv')">CGV</span>
   </div>
 </footer>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-var ldDone=false,ldPct=0,ldIv=null;
-function fermerLoader(){
-  if(ldDone)return;ldDone=true;
-  if(ldIv)clearInterval(ldIv);
-  var ldb=document.getElementById('ldb'),ldp=document.getElementById('ldp');
-  var ldc=document.getElementById('ldc'),ldl=document.getElementById('ldl');
-  var ldr=document.getElementById('ldr'),ld=document.getElementById('ld');
-  if(ldb)ldb.style.width='100%';
-  if(ldp)ldp.textContent='100%';
-  setTimeout(function(){
-    if(ldc){ldc.style.opacity='0';ldc.style.transition='opacity .3s';}
-    setTimeout(function(){
-      if(ldl)ldl.style.transform='translateX(-100%)';
-      if(ldr)ldr.style.transform='translateX(100%)';
-      setTimeout(function(){
-        if(ld)ld.style.display='none';
-        animHero();
-      },1250);
-    },300);
-  },200);
+/* CURSOR */
+var curEl = document.querySelector('.cr');
+document.addEventListener('mousemove', function(e) {
+  curEl.style.transform = 'translate(' + e.clientX + 'px,' + e.clientY + 'px) translate(-50%,-50%)';
+}, {passive: true});
+document.querySelectorAll('button, a, .vc, .of-card, .pq-it, .fq-q').forEach(function(el) {
+  el.addEventListener('mouseenter', function() { document.body.classList.add('hov'); });
+  el.addEventListener('mouseleave', function() { document.body.classList.remove('hov'); });
+});
+
+/* LOADER */
+var ldDone = false;
+function closeLd() {
+  if (ldDone) return; ldDone = true;
+  var ldb = document.getElementById('ldb');
+  var ldc = document.getElementById('ldc');
+  var ldl = document.getElementById('ldl'), ldr = document.getElementById('ldr');
+  var ld  = document.getElementById('ld');
+  if (ldb) ldb.style.width = '100%';
+  setTimeout(function() {
+    if (ldc) { ldc.style.opacity = '0'; ldc.style.transition = 'opacity .35s'; }
+    setTimeout(function() {
+      if (ldl) ldl.style.transform = 'translateX(-100%)';
+      if (ldr) ldr.style.transform = 'translateX(100%)';
+      setTimeout(function() { if (ld) ld.style.display = 'none'; animHero(); }, 1250);
+    }, 320);
+  }, 200);
 }
-ldIv=setInterval(function(){
-  ldPct+=Math.random()*12+4;
-  if(ldPct>=100){ldPct=100;clearInterval(ldIv);fermerLoader();return;}
-  var b=document.getElementById('ldb'),p=document.getElementById('ldp');
-  if(b)b.style.width=ldPct+'%';
-  if(p)p.textContent=Math.floor(ldPct)+'%';
-},80);
-setTimeout(fermerLoader,2500);
-function show(el,d){setTimeout(function(){if(!el)return;el.style.transition='opacity .8s ease,transform .8s ease';el.style.opacity='1';el.style.transform='translateY(0)';},d);}
-function animHero(){
-  show(document.getElementById('heye'),0);
-  show(document.getElementById('hw1'),100);
-  show(document.getElementById('hw2'),180);
-  show(document.getElementById('hw3'),260);
-  show(document.getElementById('hw4'),340);
-  show(document.getElementById('hbot'),500);
-  show(document.getElementById('hscr'),650);
+var ldP = 0;
+var ldIv = setInterval(function() {
+  ldP += Math.random() * 10 + 4;
+  if (ldP >= 100) { ldP = 100; clearInterval(ldIv); closeLd(); return; }
+  var b = document.getElementById('ldb'); if (b) b.style.width = ldP + '%';
+}, 65);
+setTimeout(closeLd, 2400);
+
+/* HERO ANIM */
+function sh(id, d) {
+  setTimeout(function() {
+    var el = document.getElementById(id); if (!el) return;
+    el.style.transition = 'opacity .85s ease, transform .85s ease';
+    el.style.opacity = '1'; el.style.transform = 'none';
+  }, d);
 }
-window.addEventListener('scroll',function(){
-  var h=document.documentElement.scrollHeight-window.innerHeight;
-  if(h>0)document.getElementById('sp').style.width=(window.pageYOffset/h*100)+'%';
-  document.getElementById('nav').className=window.pageYOffset>60?'sc':'';
-  revealCheck();
-},{passive:true});
-function revealCheck(){
-  var els=document.querySelectorAll('.rv,.rv2,.rv3,.rvl');
-  for(var i=0;i<els.length;i++){
-    var r=els[i].getBoundingClientRect();
-    if(r.top<window.innerHeight-30)els[i].classList.add('in');
+function animHero() {
+  sh('htag', 0); sh('hw1', 80); sh('hw2', 165); sh('hw3', 270); sh('hw4', 375); sh('hw5', 465);
+  sh('hbot', 620); sh('hsc', 800);
+}
+
+/* SCROLL */
+window.addEventListener('scroll', function() {
+  var h = document.documentElement.scrollHeight - window.innerHeight;
+  if (h > 0) document.getElementById('sp').style.width = (window.pageYOffset / h * 100) + '%';
+  document.getElementById('nav').className = window.pageYOffset > 60 ? 'sc' : '';
+  revCheck();
+}, {passive: true});
+function revCheck() {
+  document.querySelectorAll('.rv,.rv2,.rv3,.rvl').forEach(function(el) {
+    if (el.getBoundingClientRect().top < window.innerHeight - 40) el.classList.add('in');
+  });
+}
+setTimeout(revCheck, 150);
+window.addEventListener('load', revCheck);
+
+/* THREE.JS */
+try {
+  var S = new THREE.Scene();
+  var CAM = new THREE.PerspectiveCamera(68, innerWidth / innerHeight, 0.1, 1000);
+  CAM.position.z = 5;
+  var REN = new THREE.WebGLRenderer({ canvas: document.getElementById('cv'), antialias: true, alpha: true });
+  REN.setSize(innerWidth, innerHeight);
+  REN.setPixelRatio(Math.min(devicePixelRatio, 2));
+  var N = 3000, pp = new Float32Array(N * 3), pc = new Float32Array(N * 3);
+  for (var i = 0; i < N; i++) {
+    pp[i*3] = (Math.random()-.5)*24; pp[i*3+1] = (Math.random()-.5)*24; pp[i*3+2] = (Math.random()-.5)*12;
+    var t = Math.random();
+    pc[i*3] = .82 + t*.1; pc[i*3+1] = .78 + t*.08; pc[i*3+2] = .72 + t*.07;
   }
-}
-setTimeout(revealCheck,200);
-try{
-  var sc3=new THREE.Scene(),cam=new THREE.PerspectiveCamera(75,innerWidth/innerHeight,.1,1000);
-  var ren=new THREE.WebGLRenderer({canvas:document.getElementById('cv3'),antialias:true,alpha:true});
-  ren.setSize(innerWidth,innerHeight);ren.setPixelRatio(Math.min(devicePixelRatio,2));cam.position.z=5;
-  var N=2500,pos=new Float32Array(N*3),col=new Float32Array(N*3);
-  for(var i=0;i<N;i++){pos[i*3]=(Math.random()-.5)*20;pos[i*3+1]=(Math.random()-.5)*20;pos[i*3+2]=(Math.random()-.5)*12;var t=Math.random();col[i*3]=.35+t*.25;col[i*3+1]=.45+t*.3;col[i*3+2]=.85+t*.15;}
-  var geo=new THREE.BufferGeometry();
-  geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
-  geo.setAttribute('color',new THREE.BufferAttribute(col,3));
-  var pts=new THREE.Points(geo,new THREE.PointsMaterial({size:.06,vertexColors:true,transparent:true,opacity:.7}));
-  sc3.add(pts);
-  var tor1=new THREE.Mesh(new THREE.TorusGeometry(3.5,.012,8,120),new THREE.MeshBasicMaterial({color:0x4080ff,transparent:true,opacity:.07}));sc3.add(tor1);
-  var tor2=new THREE.Mesh(new THREE.TorusGeometry(5.5,.008,6,100),new THREE.MeshBasicMaterial({color:0x6040ff,transparent:true,opacity:.04}));sc3.add(tor2);
-  var mx3=0,my3=0,T3=0;
-  document.addEventListener('mousemove',function(e){mx3=(e.clientX/innerWidth-.5)*.4;my3=(e.clientY/innerHeight-.5)*.3;},{passive:true});
-  (function loop(){requestAnimationFrame(loop);T3+=.003;pts.rotation.y=T3*.15+mx3*.01;pts.rotation.x=T3*.06+my3*.01;tor1.rotation.x=T3*.4;tor1.rotation.y=T3*.2;tor2.rotation.x=-T3*.25;tor2.rotation.y=T3*.35;ren.render(sc3,cam);})();
-  window.addEventListener('resize',function(){cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();ren.setSize(innerWidth,innerHeight);});
-}catch(e){}
-document.addEventListener('mousemove',function(e){
-  var mx=(e.clientX/innerWidth-.5),my=(e.clientY/innerHeight-.5);
-  var cs=[['hc1',16,9],['hc2',10,6],['hc3',20,11],['hc4',7,4]];
-  for(var i=0;i<cs.length;i++){var el=document.querySelector('.'+cs[i][0]);if(el)el.style.transform='translate('+mx*cs[i][1]+'px,'+my*cs[i][2]+'px)';}
-},{passive:true});
-var pcs=document.querySelectorAll('.pc');
-for(var i=0;i<pcs.length;i++){(function(el){
-  el.addEventListener('mousemove',function(e){var r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;el.style.transform='translateY(-8px) rotateX('+(-y*12)+'deg) rotateY('+(x*9)+'deg)';var g=el.querySelector('.pc-glow');if(g){g.style.left=(e.clientX-r.left)+'px';g.style.top=(e.clientY-r.top)+'px';g.style.opacity='1';}});
-  el.addEventListener('mouseleave',function(){el.style.transform='';var g=el.querySelector('.pc-glow');if(g)g.style.opacity='0';});
-})(pcs[i]);}
-var caseDone=false;
-var cObs=new IntersectionObserver(function(entries){
-  for(var i=0;i<entries.length;i++){
-    if(!entries[i].isIntersecting||caseDone)continue;
-    caseDone=true;
-    var sv=document.getElementById('savval');
-    if(sv){var v=0;var iv=setInterval(function(){v=Math.min(v+80,2400);sv.textContent='~'+v.toLocaleString('fr-FR')+' EUR';if(v>=2400)clearInterval(iv);},16);}
-    var bars=['bar1','bar2','bar3'];
-    for(var j=0;j<bars.length;j++){(function(id,delay){setTimeout(function(){var b=document.getElementById(id);if(b)b.style.width=b.getAttribute('data-w')+'%';},delay);})(bars[j],200+j*150);}
+  var pg = new THREE.BufferGeometry();
+  pg.setAttribute('position', new THREE.BufferAttribute(pp, 3));
+  pg.setAttribute('color', new THREE.BufferAttribute(pc, 3));
+  var pts = new THREE.Points(pg, new THREE.PointsMaterial({ size: .04, vertexColors: true, transparent: true, opacity: .55 }));
+  S.add(pts);
+  function mkTor(r, tb, op) {
+    var m = new THREE.Mesh(new THREE.TorusGeometry(r, tb, 8, 140),
+      new THREE.MeshBasicMaterial({ color: 0xf4efe7, transparent: true, opacity: op }));
+    S.add(m); return m;
   }
-},{threshold:.1});
-var caseEl=document.getElementById('case');
-if(caseEl)cObs.observe(caseEl);
-var phs=["Je trouve votre véhicule idéal.","J'analyse les annonces à votre place.","Je vous évite les mauvaises surprises.","Devis gratuit, sans engagement.","100 % indépendant, 0 % compromis."];
-var pi=0,ci=0,delT=false,tw=document.getElementById('tw');
-function type(){var ph=phs[pi];if(!delT){tw.textContent=ph.slice(0,ci+1);ci++;if(ci===ph.length){setTimeout(function(){delT=true;},2200);setTimeout(type,72);return;}setTimeout(type,55);}else{tw.textContent=ph.slice(0,ci-1);ci--;if(ci===0){delT=false;pi=(pi+1)%phs.length;}setTimeout(type,30);}}
-setTimeout(type,3500);
-function faqT(btn){
-  var item=btn.parentNode;
-  var isOpen=item.className.indexOf('open')!==-1;
-  var items=document.querySelectorAll('.faq-item');
-  for(var i=0;i<items.length;i++)items[i].className='faq-item';
-  if(!isOpen)item.className='faq-item open';
+  var t1 = mkTor(4.2, .006, .1); var t2 = mkTor(6.5, .004, .045); t2.rotation.x = 1.2;
+  var t3 = mkTor(2.6, .008, .065); t3.rotation.y = 1.0; var t4 = mkTor(7.8, .003, .025); t4.rotation.z = .8;
+  function mkW(geo, op, pos) {
+    var m = new THREE.LineSegments(new THREE.EdgesGeometry(geo),
+      new THREE.LineBasicMaterial({ color: 0xf4efe7, transparent: true, opacity: op }));
+    if (pos) m.position.set(pos[0], pos[1], pos[2]);
+    S.add(m); return m;
+  }
+  var ico = mkW(new THREE.IcosahedronGeometry(2, 1), .05, [3.5, 1.2, -2]);
+  var oct = mkW(new THREE.OctahedronGeometry(1.3), .06, [-4, -1.5, -1]);
+  var dod = mkW(new THREE.DodecahedronGeometry(1), .04, [0, 2.5, -3]);
+  var mx = 0, my = 0, T = 0;
+  document.addEventListener('mousemove', function(e) {
+    mx = (e.clientX / innerWidth - .5) * .4; my = (e.clientY / innerHeight - .5) * .28;
+  }, {passive: true});
+  (function loop() {
+    requestAnimationFrame(loop); T += .003;
+    pts.rotation.y = T * .07 + mx * .012; pts.rotation.x = T * .04 + my * .012;
+    t1.rotation.z = T * .11; t1.rotation.x = T * .055 + my * .016;
+    t2.rotation.z = -T * .07; t2.rotation.y = T * .04 + mx * .016;
+    t3.rotation.x = T * .14; t3.rotation.z = T * .09 + mx * .022;
+    t4.rotation.y = T * .06; t4.rotation.z = T * .03;
+    ico.rotation.y = T * .18; ico.rotation.x = T * .12;
+    oct.rotation.y = -T * .16; oct.rotation.z = T * .1;
+    dod.rotation.x = T * .13; dod.rotation.y = T * .09;
+    REN.render(S, CAM);
+  })();
+  window.addEventListener('resize', function() {
+    CAM.aspect = innerWidth / innerHeight; CAM.updateProjectionMatrix(); REN.setSize(innerWidth, innerHeight);
+  });
+} catch(e) {}
+
+/* TILT 3D OFFRE CARDS */
+document.querySelectorAll('.of-card[data-tilt]').forEach(function(card) {
+  card.addEventListener('mousemove', function(e) {
+    var r = card.getBoundingClientRect();
+    var x = (e.clientX - r.left) / r.width - .5;
+    var y = (e.clientY - r.top)  / r.height - .5;
+    card.style.transform = 'rotateY(' + (x*13) + 'deg) rotateX(' + (-y*9) + 'deg) translateZ(6px)';
+    card.style.boxShadow = (-x*26) + 'px ' + (-y*18) + 'px 65px rgba(0,0,0,.52)';
+  });
+  card.addEventListener('mouseleave', function() { card.style.transform = ''; card.style.boxShadow = ''; });
+});
+
+/* MODAL VÉHICULES */
+function openVeh(name) {
+  document.getElementById('vm-tag').textContent = name;
+  document.getElementById('vf-t').value = name;
+  document.getElementById('vm-ok').style.display = 'none';
+  var btn = document.getElementById('vm-btn');
+  btn.disabled = false; btn.textContent = 'Lancer ma recherche →'; btn.style.opacity = '1';
+  document.getElementById('veh-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
-function goTo(id){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'});}
-var mainIds=['hero','stats','proc','case','engage','tarif','faq','contact'];
-function showPage(id){
-  for(var i=0;i<mainIds.length;i++){var el=document.getElementById(mainIds[i]);if(el)el.style.display='none';}
-  var mq=document.querySelector('.mq');if(mq)mq.style.display='none';
-  var pages=['mentions','confidentialite','cgv'];
-  for(var i=0;i<pages.length;i++){var el=document.getElementById(pages[i]);if(el)el.style.display='none';}
-  var pg=document.getElementById(id);if(pg)pg.style.display='block';
-  window.scrollTo(0,0);
+function closeVeh() {
+  document.getElementById('veh-modal').classList.remove('open');
+  document.body.style.overflow = '';
 }
-function hideLegal(){
-  var pages=['mentions','confidentialite','cgv'];
-  for(var i=0;i<pages.length;i++){var el=document.getElementById(pages[i]);if(el)el.style.display='none';}
-  for(var i=0;i<mainIds.length;i++){var el=document.getElementById(mainIds[i]);if(el)el.style.removeProperty('display');}
-  var mq=document.querySelector('.mq');if(mq)mq.style.removeProperty('display');
-  var hero=document.getElementById('hero');if(hero)hero.style.display='flex';
-  window.scrollTo(0,0);
+document.getElementById('veh-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeVeh();
+});
+document.getElementById('vm-cls').addEventListener('click', closeVeh);
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeVeh(); });
+
+function sendVeh() {
+  var email = document.getElementById('vf-e').value.trim();
+  if (!email) { alert('Renseignez votre email.'); return; }
+  var btn = document.getElementById('vm-btn');
+  btn.disabled = true; btn.textContent = 'Envoi en cours…';
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://formspree.io/f/xaqpbblz', true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader('Accept', 'application/json');
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState !== 4) return;
+    if (xhr.status >= 200 && xhr.status < 300) {
+      document.getElementById('vm-ok').style.display = 'block';
+      btn.textContent = 'Envoyé ✓'; btn.style.opacity = '.45';
+    } else { btn.disabled = false; btn.textContent = 'Lancer ma recherche →'; }
+  };
+  xhr.onerror = function() { btn.disabled = false; btn.textContent = 'Lancer ma recherche →'; };
+  xhr.send(JSON.stringify({
+    vehicule: document.getElementById('vm-tag').textContent,
+    budget: document.getElementById('vf-b').value,
+    type: document.getElementById('vf-t').value,
+    criteres: document.getElementById('vf-c').value,
+    delai: document.getElementById('vf-d').value,
+    email: email
+  }));
 }
-function envForm(){
-  var fp=document.getElementById('fp').value.trim();
-  var fe=document.getElementById('fe').value.trim();
-  if(!fp){alert('Renseignez votre prenom.');return;}
-  if(!fe){alert('Renseignez votre email.');return;}
-  var btn=document.getElementById('fbtn');
-  btn.disabled=true;btn.textContent='Envoi...';
-  var xhr=new XMLHttpRequest();
-  xhr.open('POST','https://formspree.io/f/xaqpbblz',true);
-  xhr.setRequestHeader('Content-Type','application/json');
-  xhr.setRequestHeader('Accept','application/json');
-  xhr.onreadystatechange=function(){
-    if(xhr.readyState!==4)return;
-    if(xhr.status>=200&&xhr.status<300){
-      var fok=document.getElementById('fok');
-      if(fok)fok.style.display='block';
-      btn.textContent='Envoye !';
-      btn.style.opacity='.5';
-    }else{
-      btn.disabled=false;btn.textContent='Envoyer ma demande';
-      alert('Erreur '+xhr.status+'. Contactez Ibrahim : laflammedelautomobile@gmail.com');
+
+/* FAQ */
+function fqT(btn) {
+  var item = btn.parentNode;
+  var open = item.className.indexOf('open') !== -1;
+  document.querySelectorAll('.fq').forEach(function(f) { f.className = 'fq'; });
+  if (!open) item.className = 'fq open';
+}
+/* Typo fix */
+function faqT(btn) { fqT(btn); }
+
+/* NAV */
+function goTo(id) { var el = document.getElementById(id); if (el) el.scrollIntoView({behavior: 'smooth'}); }
+
+/* LEGAL */
+var mIds = ['hero','intro','offres','vehicules','pourqui','process','important','faq','cta','contact'];
+function showPage(id) {
+  mIds.forEach(function(s) { var el = document.getElementById(s); if (el) el.style.display = 'none'; });
+  document.querySelectorAll('.mq').forEach(function(el) { el.style.display = 'none'; });
+  ['mentions','confidentialite','cgv'].forEach(function(s) { var el = document.getElementById(s); if (el) el.style.display = 'none'; });
+  var pg = document.getElementById(id); if (pg) pg.style.display = 'block';
+  window.scrollTo(0, 0);
+}
+function hideLegal() {
+  ['mentions','confidentialite','cgv'].forEach(function(s) { var el = document.getElementById(s); if (el) el.style.display = 'none'; });
+  mIds.forEach(function(s) { var el = document.getElementById(s); if (el) el.style.removeProperty('display'); });
+  document.querySelectorAll('.mq').forEach(function(el) { el.style.removeProperty('display'); });
+  window.scrollTo(0, 0);
+}
+
+/* FORM CONTACT */
+function envForm() {
+  var fp = document.getElementById('fp').value.trim();
+  var fe = document.getElementById('fe').value.trim();
+  if (!fp) { alert('Renseignez votre prénom.'); return; }
+  if (!fe) { alert('Renseignez votre email.'); return; }
+  var btn = document.getElementById('fbtn');
+  btn.disabled = true; btn.textContent = 'Envoi en cours…';
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://formspree.io/f/xaqpbblz', true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader('Accept', 'application/json');
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState !== 4) return;
+    if (xhr.status >= 200 && xhr.status < 300) {
+      var fok = document.getElementById('fok'); if (fok) fok.style.display = 'block';
+      btn.textContent = 'Demande envoyée ✓'; btn.style.opacity = '.45';
+    } else {
+      btn.disabled = false; btn.textContent = 'Faire ma demande →';
+      alert('Erreur. Contactez Ibrahim : laflammedelautomobile@gmail.com');
     }
   };
-  xhr.onerror=function(){
-    btn.disabled=false;btn.textContent='Envoyer ma demande';
-    alert('Erreur reseau. Contactez Ibrahim : laflammedelautomobile@gmail.com');
-  };
-  var fn=document.getElementById('fn').value.trim();
-  var ft=document.getElementById('ftype').value;
-  var fm=document.getElementById('fm').value.trim();
-  xhr.send(JSON.stringify({prenom:fp,nom:fn,email:fe,type:ft,message:fm||'Aucun message'}));
+  xhr.onerror = function() { btn.disabled = false; btn.textContent = 'Faire ma demande →'; };
+  xhr.send(JSON.stringify({
+    prenom: fp, nom: document.getElementById('fn').value.trim(),
+    email: fe, offre: document.getElementById('foffre').value,
+    message: document.getElementById('fm').value.trim() || 'Aucun message'
+  }));
 }
 </script>
 </body>
