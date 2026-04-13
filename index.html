@@ -354,6 +354,18 @@ footer{background:var(--w);border-top:1px solid var(--b1);padding:1.8rem 6vw;dis
 .rv.in,.rv2.in,.rv3.in,.rvl.in{opacity:1;transform:none;}
 
 /* DEPOT VENTE */
+/* UPLOAD PHOTOS */
+.dv-upload{border:1px dashed var(--b3);padding:2rem;text-align:center;cursor:pointer;transition:background .3s,border-color .3s;margin-top:.5rem;}
+.dv-upload:hover{background:var(--w2);border-color:var(--k);}
+.dv-upload-ico{font-size:1.6rem;margin-bottom:.5rem;opacity:.4;}
+.dv-upload-txt{font-size:.78rem;font-weight:400;color:var(--k);margin-bottom:.2rem;}
+.dv-upload-sub{font-size:.62rem;font-weight:300;color:var(--g);}
+.dv-photo-list{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem;}
+.dv-photo-item{position:relative;width:64px;height:64px;border:1px solid var(--b1);overflow:hidden;}
+.dv-photo-item img{width:100%;height:100%;object-fit:cover;}
+.dv-photo-del{position:absolute;top:0;right:0;background:rgba(10,10,10,.7);color:#fff;width:18px;height:18px;font-size:.55rem;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;}
+.dv-photo-note{font-size:.62rem;font-weight:300;color:var(--g);margin-top:.4rem;}
+
 .dv-lay{display:grid;grid-template-columns:1fr;gap:4rem;align-items:start;}
 @media(min-width:780px){.dv-lay{grid-template-columns:1fr 1fr;gap:6rem;}}
 .dv-intro{font-size:clamp(.84rem,1.2vw,.96rem);font-weight:300;color:var(--g);line-height:1.95;margin-bottom:1.2rem;}
@@ -413,8 +425,8 @@ footer{background:var(--w);border-top:1px solid var(--b1);padding:1.8rem 6vw;dis
     <div class="h-meta" id="hbot">
       <p class="h-desc">Vous me confiez la vente de votre voiture. Je g&#232;re les annonces, les contacts et la n&#233;gociation &#8212; <strong>100&#8239;% &#224; distance. Z&#233;ro effort de votre c&#244;t&#233;.</strong></p>
       <div class="h-btns">
-        <button class="btnk" onclick="goTo('contact')">Vendre ma voiture &#8594;</button>
-        <button class="btno" onclick="goTo('offres')">Voir toutes les formules</button>
+        <button class="btnk" onclick="goTo('contact')">Faire ma demande</button>
+        <button class="btno" onclick="goTo('offres')">Voir les formules</button>
       </div>
     </div>
   </div>
@@ -450,46 +462,154 @@ footer{background:var(--w);border-top:1px solid var(--b1);padding:1.8rem 6vw;dis
 </section>
 
 <!-- DÉPÔT VENTE -->
-<section id="depot" class="sec" style="background:var(--w);">
+<section id="depot" class="sec" style="background:var(--w2);">
   <div class="rvl">
-    <div class="sm"><span class="smn">&#9733;</span><div class="smr"></div><span class="smt">Vente &#224; distance</span></div>
-    <h2>Vous d&#233;posez.<br><span class="it">Je vends.</span></h2>
+    <div class="sm"><span class="smn">&#9733;</span><div class="smr"></div><span class="smt">Service</span></div>
+    <h2>D&#233;p&#244;t<br><span class="it">vente.</span></h2>
   </div>
   <div class="dv-lay">
     <div class="rv">
-      <p class="dv-intro">Vous souhaitez vendre votre voiture sans vous prendre la t&#234;te&#160;? Je m'occupe de tout &#224; distance.</p>
-      <p class="dv-intro">Je publie les annonces, je g&#232;re les messages, je filtre les acheteurs s&#233;rieux et je n&#233;gocie pour vous. <strong>Vous, vous attendez que la vente soit faite.</strong></p>
+      <p class="dv-intro">Vous souhaitez vendre votre voiture&#160;? Je m&#8217;occupe de tout &#224; distance&#160;: annonces, contacts acheteurs, n&#233;gociation. <strong>Vous n&#8217;avez qu&#8217;&#224; valider la vente.</strong></p>
+      <p class="dv-intro">Aucun d&#233;placement. Aucune prise de t&#234;te. Un service pens&#233; pour aller vite et vendre au bon prix.</p>
       <div class="dv-note">
         <div class="dv-note-t">Service sur devis</div>
-        <div class="dv-note-d">Le tarif est adapt&#233; selon le v&#233;hicule. Tout se passe &#224; distance &#8212; aucun d&#233;placement requis.</div>
+        <div class="dv-note-d">Tarif adapt&#233; selon le v&#233;hicule et le niveau de suivi souhait&#233;. Devis envoy&#233; avant tout d&#233;marrage.</div>
+      </div>
+      <div style="margin-top:2rem;">
+        <button class="btnk" onclick="goTo('depot-form')">Soumettre mon v&#233;hicule &#8594;</button>
       </div>
     </div>
     <div class="dv-cards rv2">
       <div class="dv-card">
         <div class="dvc-n">01</div>
         <div class="dvc-t">Estimation</div>
-        <div class="dvc-d">J'analyse le prix du march&#233; et vous propose un tarif de vente r&#233;aliste pour vendre vite et bien.</div>
+        <div class="dvc-d">J&#8217;analyse le prix r&#233;el du march&#233; et vous propose un tarif de vente coh&#233;rent pour vendre vite et bien.</div>
       </div>
       <div class="dv-card">
         <div class="dvc-n">02</div>
         <div class="dvc-t">Mise en vente</div>
-        <div class="dvc-d">Je r&#233;dige l'annonce, vous envoyez les photos, je publie partout : Leboncoin, Marketplace, La Centrale&#8230;</div>
+        <div class="dvc-d">Je r&#233;dige l&#8217;annonce et la publie sur toutes les plateformes&#160;: Leboncoin, Marketplace, La Centrale&#8230;</div>
       </div>
       <div class="dv-card">
         <div class="dvc-n">03</div>
         <div class="dvc-t">Gestion des contacts</div>
-        <div class="dvc-d">Je r&#233;ponds aux messages, filtre les curieux, et ne vous transmets que les acheteurs vraiment int&#233;ress&#233;s.</div>
+        <div class="dvc-d">Je filtre les acheteurs s&#233;rieux et ne vous transmets que les demandes qualifi&#233;es.</div>
       </div>
       <div class="dv-card">
         <div class="dvc-n">04</div>
-        <div class="dvc-t">N&#233;gociation &amp; vente</div>
-        <div class="dvc-d">Je n&#233;gocie pour vous obtenir le meilleur prix. Vous finalisez directement avec l'acheteur.</div>
+        <div class="dvc-t">N&#233;gociation</div>
+        <div class="dvc-d">Je n&#233;gocie pour obtenir le meilleur prix. Vous finalisez directement avec l&#8217;acheteur.</div>
       </div>
     </div>
   </div>
-  <div class="dv-cta rv3">
-    <button class="btnk" onclick="goTo('contact')">Vendre ma voiture &#8594;</button>
-    <span class="dv-cta-note">Service distinct de l'accompagnement &#224; l'achat &#8212; devis sur demande</span>
+</section>
+
+<!-- FORMULAIRE DÉPÔT VENTE -->
+<section id="depot-form" class="sec" style="background:var(--w);">
+  <div class="rvl">
+    <div class="sm"><span class="smn">&#9733;</span><div class="smr"></div><span class="smt">Soumettre mon v&#233;hicule</span></div>
+    <h2>Votre<br><span class="it">v&#233;hicule.</span></h2>
+  </div>
+  <div class="ctlay">
+    <div>
+      <p class="ctsub rv">Remplissez ce formulaire. Je reviens vers vous sous 24&#160;h avec une estimation et un devis.</p>
+      <div class="crow rv"><div class="cic">&#128231;</div><div><div class="clb">Email</div><div class="cvl">laflammedelautomobile@gmail.com</div></div></div>
+      <div class="crow rv"><div class="cic">&#128222;</div><div><div class="clb">T&#233;l&#233;phone</div><div class="cvl">06 28 90 71 76</div></div></div>
+      <div class="crow rv"><div class="cic">&#128248;</div><div><div class="clb">Instagram</div><div class="cvl">@laflammedelautomobile</div></div></div>
+    </div>
+    <div class="rv2">
+      <div class="fcard" id="depot-fcard">
+        <!-- INDICATEURS -->
+        <div class="fstep-ind" id="dvindic">
+          <div class="fstep-dot act" id="dvd1"></div>
+          <div class="fstep-dot" id="dvd2"></div>
+          <div class="fstep-dot" id="dvd3"></div>
+          <span class="fstep-lbl" id="dvlbl">&#201;tape 1 sur 3</span>
+        </div>
+
+        <!-- ÉTAPE 1 — Vendeur -->
+        <div class="fstep active" id="dvs1">
+          <div class="ftitle">Vos coordonn&#233;es</div>
+          <div class="ff-row">
+            <div class="ff"><label>Pr&#233;nom</label><input type="text" id="dvp" placeholder="Votre pr&#233;nom"></div>
+            <div class="ff"><label>Nom</label><input type="text" id="dvn" placeholder="Votre nom"></div>
+          </div>
+          <div class="ff"><label>Email</label><input type="email" id="dve" placeholder="votre@email.fr"></div>
+          <div class="ff"><label>T&#233;l&#233;phone</label><input type="tel" id="dvtel" placeholder="06 00 00 00 00"></div>
+          <div class="fnav"><button class="fnext" onclick="dvStep(2)">Continuer &#8594;</button></div>
+        </div>
+
+        <!-- ÉTAPE 2 — Véhicule -->
+        <div class="fstep" id="dvs2">
+          <div class="ftitle">Votre v&#233;hicule</div>
+          <div class="ff-row">
+            <div class="ff"><label>Marque</label><input type="text" id="dvmarque" placeholder="Ex&#160;: Renault"></div>
+            <div class="ff"><label>Mod&#232;le</label><input type="text" id="dvmodele" placeholder="Ex&#160;: Clio"></div>
+          </div>
+          <div class="ff-row">
+            <div class="ff"><label>Ann&#233;e</label><input type="text" id="dvannee" placeholder="Ex&#160;: 2019"></div>
+            <div class="ff"><label>Kilom&#233;trage</label><input type="text" id="dvkm" placeholder="Ex&#160;: 65&#160;000 km"></div>
+          </div>
+          <div class="ff"><label>Motorisation</label>
+            <select id="dvmoto">
+              <option value="">S&#233;lectionnez&#8230;</option>
+              <option>Essence</option><option>Diesel</option><option>Hybride</option>
+              <option>Hybride rechargeable</option><option>&#201;lectrique</option>
+            </select>
+          </div>
+          <div class="ff"><label>Bo&#238;te de vitesses</label>
+            <select id="dvboite">
+              <option value="">S&#233;lectionnez&#8230;</option>
+              <option>Manuelle</option><option>Automatique</option>
+            </select>
+          </div>
+          <div class="ff"><label>Prix souhait&#233; (optionnel)</label><input type="text" id="dvprix" placeholder="Ex&#160;: 9&#160;500"></div>
+          <div class="fnav">
+            <button class="fprev" onclick="dvStep(1)">&#8592; Retour</button>
+            <button class="fnext" onclick="dvStep(3)">Continuer &#8594;</button>
+          </div>
+        </div>
+
+        <!-- ÉTAPE 3 — Photos & détails -->
+        <div class="fstep" id="dvs3">
+          <div class="ftitle">Photos &amp; d&#233;tails</div>
+          <div class="ff"><label>&#201;tat g&#233;n&#233;ral</label>
+            <select id="dvetat">
+              <option value="">S&#233;lectionnez&#8230;</option>
+              <option>Excellent &#8212; comme neuf</option>
+              <option>Tr&#232;s bon &#8212; quelques marques</option>
+              <option>Bon &#8212; usure normale</option>
+              <option>Correct &#8212; r&#233;parations &#224; pr&#233;voir</option>
+            </select>
+          </div>
+          <div class="ff"><label>Options &amp; &#233;quipements</label><textarea id="dvopt" placeholder="GPS, toit ouvrant, sièges cuir, pack sport&#8230;" style="min-height:56px;"></textarea></div>
+          <div class="ff"><label>Observations (accidents, r&#233;parations&#8230;)</label><textarea id="dvobs" placeholder="Carrosserie intacte, pas d'accident, entretien suivi&#8230;" style="min-height:56px;"></textarea></div>
+          <!-- PHOTOS -->
+          <div class="ff dv-photo-block">
+            <label>Photos du v&#233;hicule</label>
+            <div class="dv-upload" id="dv-upload" onclick="document.getElementById('dvphotos').click()">
+              <div class="dv-upload-ico">&#128247;</div>
+              <div class="dv-upload-txt">Cliquez pour ajouter vos photos</div>
+              <div class="dv-upload-sub">Ext&#233;rieur, int&#233;rieur, compteur — JPG, PNG jusqu'&#224; 10 Mo chacune</div>
+            </div>
+            <input type="file" id="dvphotos" multiple accept="image/*" style="display:none;" onchange="handlePhotos(this)">
+            <div class="dv-photo-list" id="dv-photo-list"></div>
+            <div class="dv-photo-note" id="dv-photo-note"></div>
+          </div>
+          <div class="fnav">
+            <button class="fprev" onclick="dvStep(2)">&#8592; Retour</button>
+            <button class="fnext" id="dvsubmit" onclick="sendDepot()">Envoyer &#8594;</button>
+          </div>
+        </div>
+
+        <!-- SUCCÈS -->
+        <div class="fok" id="dvok">
+          <span class="fok-icon">&#10022;</span>
+          <div class="fok-t">Demande envoy&#233;e.</div>
+          <div class="fok-s">Je reviens vers vous sous 24&#160;h avec une estimation et un devis. &#8212; Ibrahim</div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1018,11 +1138,104 @@ function goTo(id){var el=document.getElementById(id);if(el)el.scrollIntoView({be
 
 
 
-var mIds=['hero','stats','valeur','offres','vehicules','depot','process','faq','cta','contact'];
+var mIds=['hero','stats','depot','depot-form','valeur','offres','vehicules','process','faq','cta','contact'];
 function showPage(id){
   mIds.forEach(function(s){var el=document.getElementById(s);if(el)el.style.display='none';});
   document.querySelectorAll('.mq').forEach(function(el){el.style.removeProperty('display');});
   window.scrollTo(0,0);
+}
+
+/* DÉPÔT VENTE FORM */
+var dvCurStep = 1;
+var dvFiles = [];
+function dvStep(n) {
+  if (n === 2) {
+    var p = document.getElementById('dvp').value.trim();
+    var e = document.getElementById('dve').value.trim();
+    if (!p || !e) { alert('Renseignez votre prénom et email.'); return; }
+  }
+  document.getElementById('dvs' + dvCurStep).classList.remove('active');
+  dvCurStep = n;
+  document.getElementById('dvs' + dvCurStep).classList.add('active');
+  [1,2,3].forEach(function(i){
+    var d = document.getElementById('dvd'+i);
+    d.className = 'fstep-dot' + (i===dvCurStep?' act':(i<dvCurStep?' done':''));
+  });
+  document.getElementById('dvlbl').textContent = 'Étape ' + dvCurStep + ' sur 3';
+}
+function handlePhotos(input) {
+  var files = Array.from(input.files);
+  dvFiles = dvFiles.concat(files).slice(0, 8);
+  var list = document.getElementById('dv-photo-list');
+  var note = document.getElementById('dv-photo-note');
+  list.innerHTML = '';
+  dvFiles.forEach(function(f, i) {
+    var div = document.createElement('div'); div.className = 'dv-photo-item';
+    var img = document.createElement('img'); img.src = URL.createObjectURL(f);
+    var btn = document.createElement('button'); btn.className = 'dv-photo-del';
+    btn.textContent = '×';
+    btn.onclick = function(e) { e.stopPropagation(); dvFiles.splice(i,1); handlePhotos({files:[]}); };
+    div.appendChild(img); div.appendChild(btn); list.appendChild(div);
+  });
+  note.textContent = dvFiles.length > 0 ? dvFiles.length + ' photo(s) sélectionnée(s)' : '';
+  input.value = '';
+}
+function sendDepot() {
+  var p = document.getElementById('dvp').value.trim();
+  var e = document.getElementById('dve').value.trim();
+  if (!p || !e) { alert('Renseignez votre prénom et email.'); return; }
+  var btn = document.getElementById('dvsubmit');
+  btn.disabled = true; btn.textContent = 'Envoi…';
+
+  var data = {
+    type: 'DEPOT VENTE',
+    prenom: p, nom: document.getElementById('dvn').value,
+    email: e, telephone: document.getElementById('dvtel').value,
+    marque: document.getElementById('dvmarque').value,
+    modele: document.getElementById('dvmodele').value,
+    annee: document.getElementById('dvannee').value,
+    kilometrage: document.getElementById('dvkm').value,
+    motorisation: document.getElementById('dvmoto').value,
+    boite: document.getElementById('dvboite').value,
+    prix_souhaite: document.getElementById('dvprix').value,
+    etat: document.getElementById('dvetat').value,
+    options: document.getElementById('dvopt').value,
+    observations: document.getElementById('dvobs').value,
+    photos: dvFiles.length + ' photo(s) jointe(s)'
+  };
+
+  if (dvFiles.length > 0) {
+    var fd = new FormData();
+    Object.keys(data).forEach(function(k){ fd.append(k, data[k]); });
+    dvFiles.forEach(function(f, i){ fd.append('photo_' + (i+1), f, f.name); });
+    var xhr2 = new XMLHttpRequest();
+    xhr2.open('POST','https://formspree.io/f/xaqpbblz',true);
+    xhr2.setRequestHeader('Accept','application/json');
+    xhr2.onreadystatechange = function(){
+      if(xhr2.readyState!==4) return;
+      if(xhr2.status>=200&&xhr2.status<300){ dvSuccess(); }
+      else { btn.disabled=false; btn.textContent='Envoyer →'; }
+    };
+    xhr2.onerror = function(){ btn.disabled=false; btn.textContent='Envoyer →'; };
+    xhr2.send(fd);
+  } else {
+    var xhr3 = new XMLHttpRequest();
+    xhr3.open('POST','https://formspree.io/f/xaqpbblz',true);
+    xhr3.setRequestHeader('Content-Type','application/json');
+    xhr3.setRequestHeader('Accept','application/json');
+    xhr3.onreadystatechange = function(){
+      if(xhr3.readyState!==4) return;
+      if(xhr3.status>=200&&xhr3.status<300){ dvSuccess(); }
+      else { btn.disabled=false; btn.textContent='Envoyer →'; }
+    };
+    xhr3.onerror = function(){ btn.disabled=false; btn.textContent='Envoyer →'; };
+    xhr3.send(JSON.stringify(data));
+  }
+}
+function dvSuccess() {
+  document.getElementById('dvindic').style.display='none';
+  ['dvs1','dvs2','dvs3'].forEach(function(s){document.getElementById(s).classList.remove('active');});
+  document.getElementById('dvok').style.display='block';
 }
 </script>
 </body>
