@@ -11,18 +11,18 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{overflow-x:hidden;scroll-behavior:smooth;}
 :root{
-  --w:#ffffff;
-  --w2:#f8f7f5;
-  --w3:#f0ede8;
+  --w:#f0ece4;
+  --w2:#e8e3da;
+  --w3:#ddd7cc;
   --k:#0a0a0a;
   --k2:#1a1a1a;
   --k3:#2d2d2d;
-  --g:#8a8a8a;
-  --g2:#c8c4be;
-  --g3:#e8e5e0;
-  --b1:rgba(10,10,10,.08);
-  --b2:rgba(10,10,10,.05);
-  --b3:rgba(10,10,10,.14);
+  --g:#4a4a4a;
+  --g2:#888278;
+  --g3:#ccc7be;
+  --b1:rgba(10,10,10,.14);
+  --b2:rgba(10,10,10,.09);
+  --b3:rgba(10,10,10,.22);
 }
 body{background:var(--w);color:var(--k);font-family:'Albert Sans',sans-serif;font-weight:300;overflow-x:hidden;}
 
@@ -304,6 +304,24 @@ h2 .dm{color:var(--g2);}
 .vmbtn:disabled{opacity:.35;}
 .vmok{display:none;margin-top:.9rem;padding:.9rem 1.1rem;background:var(--w2);border:1px solid var(--b1);font-family:'Playfair Display',serif;font-style:italic;font-size:.86rem;color:var(--g);line-height:1.6;}
 
+
+/* DÉPÔT VENTE */
+.dv-lay{display:grid;grid-template-columns:1fr;gap:4rem;align-items:start;}
+@media(min-width:780px){.dv-lay{grid-template-columns:1fr 1fr;gap:6rem;}}
+.dv-intro{font-size:clamp(.84rem,1.2vw,.96rem);font-weight:300;color:var(--g);line-height:1.95;margin-bottom:1.2rem;}
+.dv-intro strong{color:var(--k);font-weight:400;}
+.dv-note{margin-top:2rem;padding:1.8rem 2rem;background:var(--w2);border:1px solid var(--b1);border-left:2px solid var(--k);position:relative;}
+.dv-note-t{font-family:'Playfair Display',serif;font-size:.92rem;font-weight:400;color:var(--k);margin-bottom:.4rem;}
+.dv-note-d{font-size:.74rem;font-weight:300;color:var(--g);line-height:1.75;}
+.dv-cards{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--b1);}
+.dv-card{background:var(--w2);padding:2rem;transition:background .35s;}
+.dv-card:hover{background:var(--w);}
+.dvc-n{font-family:'Playfair Display',serif;font-style:italic;font-size:2.8rem;font-weight:400;color:rgba(10,10,10,.08);line-height:1;margin-bottom:.8rem;transition:color .4s;display:block;}
+.dv-card:hover .dvc-n{color:rgba(10,10,10,.18);}
+.dvc-t{font-size:.86rem;font-weight:400;color:var(--k);margin-bottom:.35rem;}
+.dvc-d{font-size:.72rem;font-weight:300;color:var(--g);line-height:1.75;}
+.dv-cta{display:flex;align-items:center;gap:2rem;margin-top:3.5rem;flex-wrap:wrap;}
+.dv-cta-note{font-family:'Playfair Display',serif;font-style:italic;font-size:.78rem;color:var(--g2);}
 /* LEGAL */
 #mentions,#confidentialite,#cgv{display:none;padding:clamp(70px,10vw,120px) 6vw;background:var(--w2);min-height:100vh;}
 .mgr{display:grid;grid-template-columns:1fr;gap:2.5rem;margin-top:2.5rem;}
@@ -334,6 +352,25 @@ footer{background:var(--w);border-top:1px solid var(--b1);padding:1.8rem 6vw;dis
 .rv3{opacity:0;transform:translateY(18px);transition:opacity .9s .24s ease,transform .9s .24s ease;}
 .rvl{opacity:0;transform:translateX(-14px);transition:opacity .9s ease,transform .9s ease;}
 .rv.in,.rv2.in,.rv3.in,.rvl.in{opacity:1;transform:none;}
+
+/* DEPOT VENTE */
+.dv-lay{display:grid;grid-template-columns:1fr;gap:4rem;align-items:start;}
+@media(min-width:780px){.dv-lay{grid-template-columns:1fr 1fr;gap:6rem;}}
+.dv-intro{font-size:clamp(.84rem,1.2vw,.96rem);font-weight:300;color:var(--g);line-height:1.95;margin-bottom:1.2rem;}
+.dv-intro strong{color:var(--k);font-weight:400;}
+.dv-note{margin-top:2rem;padding:1.8rem 2rem;background:var(--w2);border:1px solid var(--b1);border-left:2px solid var(--k);position:relative;}
+.dv-note-t{font-family:'Playfair Display',serif;font-size:.92rem;font-weight:400;color:var(--k);margin-bottom:.4rem;}
+.dv-note-d{font-size:.74rem;font-weight:300;color:var(--g);line-height:1.75;}
+.dv-cards{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--b1);}
+.dv-card{background:var(--w2);padding:2rem;transition:background .35s;}
+.dv-card:hover{background:var(--w);}
+.dvc-n{font-family:'Playfair Display',serif;font-style:italic;font-size:2.8rem;font-weight:400;color:rgba(10,10,10,.08);line-height:1;margin-bottom:.8rem;transition:color .4s;display:block;}
+.dv-card:hover .dvc-n{color:rgba(10,10,10,.18);}
+.dvc-t{font-size:.86rem;font-weight:400;color:var(--k);margin-bottom:.35rem;}
+.dvc-d{font-size:.72rem;font-weight:300;color:var(--g);line-height:1.75;}
+.dv-cta{display:flex;align-items:center;gap:2rem;margin-top:3.5rem;flex-wrap:wrap;}
+.dv-cta-note{font-family:'Playfair Display',serif;font-style:italic;font-size:.78rem;color:var(--g2);}
+/* LEGAL */
 </style>
 </head>
 <body>
@@ -356,6 +393,8 @@ footer{background:var(--w);border-top:1px solid var(--b1);padding:1.8rem 6vw;dis
   <div class="nr">
     <a href="#offres" class="nlk">Formules</a>
     <a href="#vehicules" class="nlk">V&#233;hicules</a>
+    <a href="#depot" class="nlk">Vendre ma voiture</a>
+    <a href="#offres" class="nlk">Achat</a>
     <a href="#faq" class="nlk">FAQ</a>
     <button class="nbtn" onclick="goTo('contact')">Faire ma demande</button>
   </div>
@@ -365,17 +404,17 @@ footer{background:var(--w);border-top:1px solid var(--b1);padding:1.8rem 6vw;dis
 <section id="hero">
   <canvas id="cv"></canvas>
   <div class="hz">
-    <div class="h-eyebrow">Accompagnement automobile personnalis&#233; &#8212; France enti&#232;re</div>
+    <div class="h-eyebrow">D&#233;p&#244;t vente &amp; accompagnement automobile &#8212; France enti&#232;re</div>
     <h1>
-      <div><span class="hw" id="hw1">Votre prochaine</span></div>
-      <div><span class="hw it" id="hw2">voiture,</span></div>
-      <div><span class="hw" id="hw3" style="color:var(--g2);">bien choisie.</span></div>
+      <div><span class="hw" id="hw1">D&#233;posez.</span></div>
+      <div><span class="hw it" id="hw2">Je vends</span></div>
+      <div><span class="hw" id="hw3" style="color:var(--g2);">pour vous.</span></div>
     </h1>
     <div class="h-meta" id="hbot">
-      <p class="h-desc">Je prends en charge la recherche, la s&#233;lection et la v&#233;rification. <strong>Vous gagnez du temps. Vous &#233;vitez les pi&#232;ges.</strong></p>
+      <p class="h-desc">Vous me confiez la vente de votre voiture. Je g&#232;re les annonces, les contacts et la n&#233;gociation &#8212; <strong>100&#8239;% &#224; distance. Z&#233;ro effort de votre c&#244;t&#233;.</strong></p>
       <div class="h-btns">
-        <button class="btnk" onclick="goTo('contact')">Faire ma demande</button>
-        <button class="btno" onclick="goTo('offres')">Voir les formules</button>
+        <button class="btnk" onclick="goTo('contact')">Vendre ma voiture &#8594;</button>
+        <button class="btno" onclick="goTo('offres')">Voir toutes les formules</button>
       </div>
     </div>
   </div>
@@ -384,11 +423,15 @@ footer{background:var(--w);border-top:1px solid var(--b1);padding:1.8rem 6vw;dis
 
 <!-- MARQUEE -->
 <div class="mq"><div class="mqt">
+  <span class="mqi">Vente &#224; distance</span><span class="mqs"> &#9670; </span>
+  <span class="mqi">Je g&#232;re tout pour vous</span><span class="mqs"> &#9670; </span>
   <span class="mqi">La Flamme De L'Automobile</span><span class="mqs"> &#9670; </span>
   <span class="mqi">Accompagnement sur mesure</span><span class="mqs"> &#9670; </span>
   <span class="mqi">100&#8239;% ind&#233;pendant</span><span class="mqs"> &#9670; </span>
   <span class="mqi">Premier avis offert</span><span class="mqs"> &#9670; </span>
   <span class="mqi">France enti&#232;re</span><span class="mqs"> &#9670; </span>
+  <span class="mqi">Vente &#224; distance</span><span class="mqs"> &#9670; </span>
+  <span class="mqi">Je g&#232;re tout pour vous</span><span class="mqs"> &#9670; </span>
   <span class="mqi">La Flamme De L'Automobile</span><span class="mqs"> &#9670; </span>
   <span class="mqi">Accompagnement sur mesure</span><span class="mqs"> &#9670; </span>
   <span class="mqi">100&#8239;% ind&#233;pendant</span><span class="mqs"> &#9670; </span>
@@ -399,17 +442,61 @@ footer{background:var(--w);border-top:1px solid var(--b1);padding:1.8rem 6vw;dis
 <!-- STATS -->
 <section id="stats">
   <div class="stgrid">
-    <div class="stc rv"><span class="stn">Sur</span><span class="stl">Mesure &#8212; chaque projet est unique</span></div>
+    <div class="stc rv"><span class="stn">Vente</span><span class="stl">&#224; distance &#8212; service principal</span></div>
     <div class="stc rv2"><span class="stn">100&#8239;%</span><span class="stl">Ind&#233;pendant &#8212; z&#233;ro commission</span></div>
     <div class="stc rv3"><span class="stn">24&#8239;h</span><span class="stl">D&#233;lai de r&#233;ponse</span></div>
-    <div class="stc rv3"><span class="stn">3</span><span class="stl">Formules adapt&#233;es &#224; votre projet</span></div>
+    <div class="stc rv3"><span class="stn">0</span><span class="stl">Effort de votre c&#244;t&#233;</span></div>
+  </div>
+</section>
+
+<!-- DÉPÔT VENTE -->
+<section id="depot" class="sec" style="background:var(--w);">
+  <div class="rvl">
+    <div class="sm"><span class="smn">&#9733;</span><div class="smr"></div><span class="smt">Vente &#224; distance</span></div>
+    <h2>Vous d&#233;posez.<br><span class="it">Je vends.</span></h2>
+  </div>
+  <div class="dv-lay">
+    <div class="rv">
+      <p class="dv-intro">Vous souhaitez vendre votre voiture sans vous prendre la t&#234;te&#160;? Je m'occupe de tout &#224; distance.</p>
+      <p class="dv-intro">Je publie les annonces, je g&#232;re les messages, je filtre les acheteurs s&#233;rieux et je n&#233;gocie pour vous. <strong>Vous, vous attendez que la vente soit faite.</strong></p>
+      <div class="dv-note">
+        <div class="dv-note-t">Service sur devis</div>
+        <div class="dv-note-d">Le tarif est adapt&#233; selon le v&#233;hicule. Tout se passe &#224; distance &#8212; aucun d&#233;placement requis.</div>
+      </div>
+    </div>
+    <div class="dv-cards rv2">
+      <div class="dv-card">
+        <div class="dvc-n">01</div>
+        <div class="dvc-t">Estimation</div>
+        <div class="dvc-d">J'analyse le prix du march&#233; et vous propose un tarif de vente r&#233;aliste pour vendre vite et bien.</div>
+      </div>
+      <div class="dv-card">
+        <div class="dvc-n">02</div>
+        <div class="dvc-t">Mise en vente</div>
+        <div class="dvc-d">Je r&#233;dige l'annonce, vous envoyez les photos, je publie partout : Leboncoin, Marketplace, La Centrale&#8230;</div>
+      </div>
+      <div class="dv-card">
+        <div class="dvc-n">03</div>
+        <div class="dvc-t">Gestion des contacts</div>
+        <div class="dvc-d">Je r&#233;ponds aux messages, filtre les curieux, et ne vous transmets que les acheteurs vraiment int&#233;ress&#233;s.</div>
+      </div>
+      <div class="dv-card">
+        <div class="dvc-n">04</div>
+        <div class="dvc-t">N&#233;gociation &amp; vente</div>
+        <div class="dvc-d">Je n&#233;gocie pour vous obtenir le meilleur prix. Vous finalisez directement avec l'acheteur.</div>
+      </div>
+    </div>
+  </div>
+  <div class="dv-cta rv3">
+    <button class="btnk" onclick="goTo('contact')">Vendre ma voiture &#8594;</button>
+    <span class="dv-cta-note">Service distinct de l'accompagnement &#224; l'achat &#8212; devis sur demande</span>
   </div>
 </section>
 
 <!-- VALEUR -->
 <section id="valeur" class="sec">
   <div class="rvl">
-    <div class="sm"><span class="smn">I</span><div class="smr"></div><span class="smt">Ce que vous gagnez</span></div>
+    <div class="sm"><span class="smn">II</span><div class="smr"></div><span class="smt">Ce que vous gagnez</span></div>
     <h2>La valeur<br><span class="it">du service.</span></h2>
   </div>
   <div class="val-grid">
@@ -422,7 +509,7 @@ footer{background:var(--w);border-top:1px solid var(--b1);padding:1.8rem 6vw;dis
 <!-- OFFRES -->
 <section id="offres" class="sec" style="background:var(--w);">
   <div class="rvl">
-    <div class="sm"><span class="smn">II</span><div class="smr"></div><span class="smt">Nos formules</span></div>
+    <div class="sm"><span class="smn">III</span><div class="smr"></div><span class="smt">Nos formules</span></div>
     <h2>Un accompagnement<br><span class="it">&#224; votre mesure.</span></h2>
   </div>
   <div class="ofgrid">
@@ -499,7 +586,7 @@ footer{background:var(--w);border-top:1px solid var(--b1);padding:1.8rem 6vw;dis
 <!-- VÉHICULES -->
 <section id="vehicules" class="sec" style="background:var(--w2);">
   <div class="rvl">
-    <div class="sm"><span class="smn">III</span><div class="smr"></div><span class="smt">V&#233;hicules recherch&#233;s</span></div>
+    <div class="sm"><span class="smn">IV</span><div class="smr"></div><span class="smt">V&#233;hicules recherch&#233;s</span></div>
     <h2>Je recherche<br><span class="it">tout type de v&#233;hicule.</span></h2>
   </div>
   <p class="vehsub rv">Cat&#233;gories et mod&#232;les recherch&#233;s r&#233;guli&#232;rement. Cliquez sur une cat&#233;gorie pour d&#233;marrer votre demande.</p>
@@ -534,10 +621,12 @@ footer{background:var(--w);border-top:1px solid var(--b1);padding:1.8rem 6vw;dis
   </div>
 </div>
 
+
+
 <!-- PROCESS -->
 <section id="process" class="sec" style="background:var(--w);">
   <div class="rvl">
-    <div class="sm"><span class="smn">IV</span><div class="smr"></div><span class="smt">Comment &#231;a se passe</span></div>
+    <div class="sm"><span class="smn">V</span><div class="smr"></div><span class="smt">Comment &#231;a se passe</span></div>
     <h2>Simple.<br><span class="it">En 5 &#233;tapes.</span></h2>
   </div>
   <div class="pswr">
@@ -552,7 +641,7 @@ footer{background:var(--w);border-top:1px solid var(--b1);padding:1.8rem 6vw;dis
 <!-- FAQ -->
 <section id="faq" class="sec" style="background:var(--w2);">
   <div class="rvl">
-    <div class="sm"><span class="smn">V</span><div class="smr"></div><span class="smt">Questions fr&#233;quentes</span></div>
+    <div class="sm"><span class="smn">VI</span><div class="smr"></div><span class="smt">Questions fr&#233;quentes</span></div>
     <h2>Ce que vous<br><span class="dm">voulez savoir.</span></h2>
   </div>
   <div class="fqwr rv">
@@ -583,13 +672,13 @@ footer{background:var(--w);border-top:1px solid var(--b1);padding:1.8rem 6vw;dis
 <!-- CONTACT -->
 <section id="contact" class="sec" style="background:var(--w);">
   <div class="rvl">
-    <div class="sm"><span class="smn">VI</span><div class="smr"></div><span class="smt">Faire ma demande</span></div>
+    <div class="sm"><span class="smn">VII</span><div class="smr"></div><span class="smt">Faire ma demande</span></div>
     <h2>Parlons de<br><span class="it">votre projet.</span></h2>
   </div>
   <div class="ctlay">
     <div>
       <p class="ctsub rv">Je vous r&#233;ponds sous 24&#160;h. Premier avis offert si vous avez une annonce en t&#234;te.</p>
-      <div class="crow rv"><div class="cic">&#128231;</div><div><div class="clb">Email</div><div class="cvl">laflammedelautomobile@gmail.com</div></div></div>
+      <div class="crow rv"><div class="cic">&#128231;</div><div><div class="clb">Email</div><div class="cvl"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="83efe2e5efe2eeeee6e7e6efe2f6f7eceeece1eaefe6c3e4eee2eaefade0ecee">[email&#160;protected]</a></div></div></div>
       <div class="crow rv"><div class="cic">&#128222;</div><div><div class="clb">T&#233;l&#233;phone</div><div class="cvl">06 28 90 71 76</div></div></div>
       <div class="crow rv"><div class="cic">&#128248;</div><div><div class="clb">Instagram</div><div class="cvl">@laflammedelautomobile</div></div></div>
     </div>
@@ -671,7 +760,7 @@ footer{background:var(--w);border-top:1px solid var(--b1);padding:1.8rem 6vw;dis
   <div class="sm"><span class="smn">I</span><div class="smr"></div><span class="smt">1 / 3</span></div>
   <h2>Mentions<br><span class="dm">L&#233;gales.</span></h2>
   <div class="mgr">
-    <div class="mbl"><div class="mn">&#201;diteur</div><div class="mt">Identification</div><div class="mtx"><strong>La Flamme De L'Automobile</strong> &#8212; Micro-entreprise<br><strong>G&#233;rant&#160;:</strong> Ibrahim Victor<br><strong>SIRET&#160;:</strong> 101 249 837 00010<br><strong>Email&#160;:</strong> laflammedelautomobile@gmail.com<br><strong>T&#233;l&#160;:</strong> 06 28 90 71 76 &#8212; France, 2026<br><strong>TVA&#160;:</strong> Non assujetti &#8212; Art. 293B CGI</div></div>
+    <div class="mbl"><div class="mn">&#201;diteur</div><div class="mt">Identification</div><div class="mtx"><strong>La Flamme De L'Automobile</strong> &#8212; Micro-entreprise<br><strong>G&#233;rant&#160;:</strong> Ibrahim Victor<br><strong>SIRET&#160;:</strong> 101 249 837 00010<br><strong>Email&#160;:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f995989f959894949c9d9c95988c8d9694969b90959cb99e94989095d79a9694">[email&#160;protected]</a><br><strong>T&#233;l&#160;:</strong> 06 28 90 71 76 &#8212; France, 2026<br><strong>TVA&#160;:</strong> Non assujetti &#8212; Art. 293B CGI</div></div>
     <div class="mbl"><div class="mn">H&#233;bergement</div><div class="mt">H&#233;bergeurs</div><div class="mtx"><strong>IONOS SE</strong> &#8212; 7 place de la Gare, 57201 Sarreguemines<br><strong>GitHub Pages</strong> (Microsoft) &#8212; San Francisco, USA</div></div>
     <div class="mbl"><div class="mn">Activit&#233;</div><div class="mt">Nature</div><div class="mtx">Service d'accompagnement &#224; l'achat automobile. Ne remplace pas une expertise m&#233;canique agr&#233;&#233;e.</div></div>
     <div class="mbl"><div class="mn">Droit</div><div class="mt">Juridiction</div><div class="mtx">Droit fran&#231;ais. ODR&#160;: ec.europa.eu/consumers/odr</div></div>
@@ -682,9 +771,9 @@ footer{background:var(--w);border-top:1px solid var(--b1);padding:1.8rem 6vw;dis
   <div class="sm"><span class="smn">II</span><div class="smr"></div><span class="smt">2 / 3</span></div>
   <h2>Confidentialit&#233;.</h2>
   <div class="mgr">
-    <div class="mbl"><div class="mn">Responsable</div><div class="mt">RGPD</div><div class="mtx"><strong>Ibrahim Victor</strong> &#8212; laflammedelautomobile@gmail.com. Conforme RGPD (UE 2016/679).</div></div>
+    <div class="mbl"><div class="mn">Responsable</div><div class="mt">RGPD</div><div class="mtx"><strong>Ibrahim Victor</strong> &#8212; <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d0bcb1b6bcb1bdbdb5b4b5bcb1a5a4bfbdbfb2b9bcb590b7bdb1b9bcfeb3bfbd">[email&#160;protected]</a>. Conforme RGPD (UE 2016/679).</div></div>
     <div class="mbl"><div class="mn">Donn&#233;es</div><div class="mt">Collect&#233;es</div><div class="mtx">Pr&#233;nom, Nom, Email, T&#233;l&#233;phone, Formule, Budget, Crit&#232;res. Aucune donn&#233;e bancaire.</div></div>
-    <div class="mbl"><div class="mn">Droits</div><div class="mt">Vos droits</div><div class="mtx">Acc&#232;s, Rectification, Effacement, Opposition. Contact&#160;: laflammedelautomobile@gmail.com &#8212; cnil.fr</div></div>
+    <div class="mbl"><div class="mn">Droits</div><div class="mt">Vos droits</div><div class="mtx">Acc&#232;s, Rectification, Effacement, Opposition. Contact&#160;: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="91fdf0f7fdf0fcfcf4f5f4fdf0e4e5fefcfef3f8fdf4d1f6fcf0f8fdbff2fefc">[email&#160;protected]</a> &#8212; cnil.fr</div></div>
     <div class="mbl"><div class="mn">S&#233;curit&#233;</div><div class="mt">Protection</div><div class="mtx">HTTPS/SSL. Aucun cookie publicitaire. Conservation 3 ans max.</div></div>
   </div>
   <div class="lnav"><span class="ll fw" onclick="showPage('mentions')">Mentions &#8594;</span><span class="ll fw" onclick="showPage('cgv')">CGV &#8594;</span><span class="ll bk" onclick="hideLegal()">&#8592; Retour</span></div>
@@ -711,7 +800,7 @@ footer{background:var(--w);border-top:1px solid var(--b1);padding:1.8rem 6vw;dis
   </div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 /* LOADER */
 var ldDone=false;
@@ -927,18 +1016,11 @@ function fqT(btn){
 /* NAV */
 function goTo(id){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'});}
 
-/* LEGAL */
-var mIds=['hero','stats','valeur','offres','vehicules','process','faq','cta','contact'];
+
+
+var mIds=['hero','stats','valeur','offres','vehicules','depot','process','faq','cta','contact'];
 function showPage(id){
   mIds.forEach(function(s){var el=document.getElementById(s);if(el)el.style.display='none';});
-  document.querySelectorAll('.mq').forEach(function(el){el.style.display='none';});
-  ['mentions','confidentialite','cgv'].forEach(function(s){var el=document.getElementById(s);if(el)el.style.display='none';});
-  var pg=document.getElementById(id);if(pg)pg.style.display='block';
-  window.scrollTo(0,0);
-}
-function hideLegal(){
-  ['mentions','confidentialite','cgv'].forEach(function(s){var el=document.getElementById(s);if(el)el.style.display='none';});
-  mIds.forEach(function(s){var el=document.getElementById(s);if(el)el.style.removeProperty('display');});
   document.querySelectorAll('.mq').forEach(function(el){el.style.removeProperty('display');});
   window.scrollTo(0,0);
 }
