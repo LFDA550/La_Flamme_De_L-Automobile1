@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>La Flamme De L'Automobile — Courtier Automobile</title>
-<meta name="description" content="Intermédiaire automobile sur Rennes et ses alentours. Recherche, accompagnement à l'achat et dépôt-vente. De la recherche à la remise des clés.">
+<title>La Flamme De L'Automobile — Import Allemagne</title>
+<meta name="description" content="Courtier automobile spécialisé dans l'import de véhicules sportifs et premium depuis l'Allemagne. 15 000 € – 30 000 €. Rennes, France entière.">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Albert+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -24,8 +24,6 @@ html { overflow-x: hidden; scroll-behavior: smooth; }
   --b3: rgba(10,10,10,.20);
 }
 body { background: var(--w); color: var(--k); font-family: 'Albert Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
-
-/* BARRE PROGRESSION */
 #sp { position: fixed; top: 0; left: 0; height: 1px; width: 0%; background: var(--k); opacity: .18; z-index: 900; }
 
 /* LOADER */
@@ -33,14 +31,14 @@ body { background: var(--w); color: var(--k); font-family: 'Albert Sans', sans-s
 .ld-pl, .ld-pr { position: absolute; top: 0; bottom: 0; width: 51%; background: var(--w); transition: transform 1.3s cubic-bezier(.77,0,.175,1); }
 .ld-pl { left: 0; } .ld-pr { right: 0; }
 .ld-c { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 1.6rem; transition: opacity .35s; }
-.ld-nm { font-family: 'Playfair Display', serif; font-size: clamp(.9rem, 2.5vw, 1.4rem); letter-spacing: .32em; text-transform: uppercase; color: var(--k); opacity: 0; animation: fi .9s .2s ease forwards; }
+.ld-nm { font-family: 'Playfair Display', serif; font-size: clamp(.9rem,2.5vw,1.4rem); letter-spacing: .32em; text-transform: uppercase; color: var(--k); opacity: 0; animation: fi .9s .2s ease forwards; }
 .ld-nm em { font-style: italic; color: var(--g2); }
 @keyframes fi { to { opacity: 1; } }
-.ld-tr { width: min(120px, 32vw); height: 1px; background: var(--b1); }
+.ld-tr { width: min(120px,32vw); height: 1px; background: var(--b1); }
 .ld-fl { height: 1px; width: 0%; background: var(--k); opacity: .4; transition: width .06s linear; }
 .ld-pt { font-size: .4rem; letter-spacing: .6em; text-transform: uppercase; color: var(--g2); opacity: 0; animation: fi .7s .7s ease forwards; }
 
-/* NAVIGATION */
+/* NAV */
 nav { position: fixed; top: 0; left: 0; right: 0; z-index: 700; padding: 1.8rem 6vw; display: flex; align-items: center; justify-content: space-between; transition: all .5s; }
 nav.sc { background: rgba(240,236,228,.96); backdrop-filter: blur(20px); padding: 1rem 6vw; border-bottom: 1px solid var(--b1); }
 .n-logo { font-family: 'Playfair Display', serif; font-size: .88rem; letter-spacing: .18em; text-transform: uppercase; color: var(--k); text-decoration: none; }
@@ -53,116 +51,139 @@ nav.sc { background: rgba(240,236,228,.96); backdrop-filter: blur(20px); padding
 .n-cta:hover { background: var(--k3); }
 
 /* HERO */
-#hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: clamp(7rem,14vw,11rem) 6vw clamp(5rem,10vw,8rem); position: relative; }
+#hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: clamp(7rem,14vw,11rem) 6vw clamp(5rem,10vw,8rem); }
 .h-rule { width: 32px; height: 1px; background: var(--g3); margin-bottom: 3rem; opacity: 0; animation: slideIn .8s 2.6s ease forwards; }
 @keyframes slideIn { from { opacity: 0; transform: translateX(-12px); } to { opacity: 1; transform: none; } }
-h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 5.5vw, 5.5rem); font-weight: 400; line-height: 1.12; letter-spacing: -.01em; color: var(--k); max-width: min(760px, 100%); margin-bottom: 2.5rem; }
+h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.6rem,6vw,6rem); font-weight: 400; line-height: 1.08; letter-spacing: -.01em; color: var(--k); max-width: min(780px,100%); margin-bottom: 2.5rem; }
 h1 em { font-style: italic; color: var(--g2); }
 .h-word { display: inline-block; opacity: 0; transform: translateY(20px); }
-.h-sub { font-size: clamp(.82rem, 1.1vw, .96rem); font-weight: 300; color: var(--g); max-width: min(480px, 100%); line-height: 2; margin-bottom: 3rem; opacity: 0; }
-.h-meta { display: flex; align-items: center; gap: 3rem; flex-wrap: wrap; opacity: 0; }
+.h-sub { font-size: clamp(.82rem,1.1vw,.96rem); font-weight: 300; color: var(--g); max-width: min(500px,100%); line-height: 2; margin-bottom: 3rem; opacity: 0; }
+.h-meta { display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap; opacity: 0; }
 .h-cta { font-family: 'Albert Sans', sans-serif; font-size: .56rem; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; color: var(--w); background: var(--k); border: none; padding: .9rem 2.4rem; cursor: pointer; transition: background .3s; position: relative; overflow: hidden; }
-.h-cta::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent); transform: translateX(-100%); transition: transform .5s; }
+.h-cta::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent); transform: translateX(-100%); transition: transform .5s; }
 .h-cta:hover::after { transform: translateX(100%); }
 .h-cta:hover { background: var(--k3); }
 .h-note { font-family: 'Playfair Display', serif; font-style: italic; font-size: .82rem; color: var(--g3); }
-.h-indicator { position: absolute; bottom: clamp(2.5rem, 4vw, 4rem); right: 6vw; display: flex; flex-direction: column; align-items: center; gap: .5rem; opacity: 0; animation: fi .8s 3.4s ease forwards; }
-.h-ind-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--k), transparent); opacity: .15; animation: indPulse 2.2s ease-in-out infinite; }
-@keyframes indPulse { 0%,100%{opacity:.08;} 50%{opacity:.28;} }
-.h-ind-txt { font-size: .35rem; letter-spacing: .45em; text-transform: uppercase; color: var(--g3); }
+.h-ind { position: absolute; bottom: clamp(2.5rem,4vw,4rem); right: 6vw; display: flex; flex-direction: column; align-items: center; gap: .5rem; opacity: 0; animation: fi .8s 3.4s ease forwards; }
+.h-ind-l { width: 1px; height: 40px; background: linear-gradient(to bottom,var(--k),transparent); opacity: .15; animation: ip 2.2s ease-in-out infinite; }
+@keyframes ip { 0%,100%{opacity:.08;} 50%{opacity:.28;} }
+.h-ind-t { font-size: .35rem; letter-spacing: .45em; text-transform: uppercase; color: var(--g3); }
 
-/* SÉPARATEUR */
+/* SEP */
 .sep { height: 1px; background: var(--b1); margin: 0 6vw; }
 
-/* SECTIONS */
-.sec { padding: clamp(80px, 11vw, 140px) 6vw; }
+/* SECTION */
+.sec { padding: clamp(80px,11vw,140px) 6vw; }
 .sec-label { display: flex; align-items: center; gap: 1rem; margin-bottom: .6rem; }
 .sec-num { font-family: 'Playfair Display', serif; font-style: italic; font-size: .7rem; color: var(--g3); letter-spacing: .12em; }
 .sec-rule { width: 22px; height: 1px; background: var(--g3); }
 .sec-tag { font-size: .46rem; font-weight: 400; letter-spacing: .38em; text-transform: uppercase; color: var(--g2); }
-h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 5rem); font-weight: 400; line-height: .92; letter-spacing: -.01em; color: var(--k); margin-bottom: clamp(3rem, 5vw, 5rem); }
+h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem,5vw,5rem); font-weight: 400; line-height: .92; letter-spacing: -.01em; color: var(--k); margin-bottom: clamp(3rem,5vw,5rem); }
 h2 em { font-style: italic; color: var(--g2); }
 h2 .dm { color: var(--g3); }
 
+/* STATS */
+#stats { background: var(--k); }
+.st-grid { display: grid; grid-template-columns: repeat(4,1fr); }
+@media (max-width:600px) { .st-grid { grid-template-columns: repeat(2,1fr); } }
+.st-c { padding: clamp(2rem,4.5vw,3.5rem) clamp(1.5rem,3vw,2.5rem); border-right: 1px solid rgba(255,255,255,.08); transition: background .4s; }
+.st-c:last-child { border-right: none; }
+.st-c:hover { background: var(--k2); }
+.st-n { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem,4vw,3rem); font-weight: 400; color: var(--w); line-height: 1; display: block; }
+.st-l { font-size: .46rem; font-weight: 300; letter-spacing: .22em; text-transform: uppercase; color: rgba(240,236,228,.35); margin-top: .5rem; display: block; }
+
+/* POURQUOI */
+#pourquoi { background: var(--w); }
+.pq-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--b1); }
+@media (min-width:700px) { .pq-grid { grid-template-columns: repeat(3,1fr); } }
+.pq-c { background: var(--w); padding: 2.8rem; transition: background .4s; }
+.pq-c:hover { background: var(--w2); }
+.pq-n { font-family: 'Playfair Display', serif; font-style: italic; font-size: 3.5rem; color: rgba(10,10,10,.06); line-height: 1; margin-bottom: 1.2rem; display: block; transition: color .4s; }
+.pq-c:hover .pq-n { color: rgba(10,10,10,.14); }
+.pq-t { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--k); margin-bottom: .8rem; }
+.pq-d { font-size: .78rem; font-weight: 300; color: var(--g); line-height: 1.9; }
+
 /* SERVICES */
-#services { background: var(--w); }
+#services { background: var(--w2); }
 .srv-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--b1); }
-@media (min-width: 700px) { .srv-grid { grid-template-columns: 1fr 1fr; } }
-.srv { background: var(--w); padding: clamp(2.5rem, 4vw, 4rem); position: relative; overflow: hidden; transition: background .4s; }
-.srv:hover { background: var(--w2); }
-.srv::before { content: ''; position: absolute; top: 0; left: 0; width: 1px; height: 0; background: var(--k); opacity: .25; transition: height .5s; }
+@media (min-width:700px) { .srv-grid { grid-template-columns: 1fr 1fr; } }
+.srv { background: var(--w2); padding: clamp(2.5rem,4vw,4rem); position: relative; overflow: hidden; transition: background .4s; }
+.srv:hover { background: var(--w3); }
+.srv::before { content: ''; position: absolute; top: 0; left: 0; width: 1px; height: 0; background: var(--k); opacity: .2; transition: height .5s; }
 .srv:hover::before { height: 100%; }
-.srv-n { font-family: 'Playfair Display', serif; font-style: italic; font-size: 3.5rem; font-weight: 400; color: rgba(10,10,10,.06); line-height: 1; margin-bottom: 1.2rem; display: block; transition: color .4s; }
+.srv-n { font-family: 'Playfair Display', serif; font-style: italic; font-size: 3.5rem; color: rgba(10,10,10,.06); line-height: 1; margin-bottom: 1.2rem; display: block; transition: color .4s; }
 .srv:hover .srv-n { color: rgba(10,10,10,.14); }
-.srv-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 400; color: var(--k); margin-bottom: 1.2rem; letter-spacing: .01em; }
-.srv-text { font-size: .8rem; font-weight: 300; color: var(--g); line-height: 1.95; margin-bottom: 1.6rem; }
+.srv-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--k); margin-bottom: 1.2rem; }
+.srv-text { font-size: .8rem; font-weight: 300; color: var(--g); line-height: 2; margin-bottom: 1.6rem; }
 .srv-list { display: flex; flex-direction: column; gap: .5rem; }
 .srv-li { display: flex; align-items: flex-start; gap: .75rem; font-size: .76rem; font-weight: 300; color: var(--g); line-height: 1.6; }
 .srv-li::before { content: '—'; color: var(--g3); flex-shrink: 0; font-size: .7rem; margin-top: .15rem; }
-.srv-cta { display: inline-block; font-family: 'Albert Sans', sans-serif; font-size: .5rem; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; color: var(--k); margin-top: 1.8rem; text-decoration: none; border-bottom: 1px solid var(--b1); padding-bottom: .1rem; transition: border-color .3s; cursor: pointer; background: none; border-top: none; border-left: none; border-right: none; }
+.srv-cta { display: inline-block; font-family: 'Albert Sans', sans-serif; font-size: .5rem; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; color: var(--k); margin-top: 1.8rem; border-bottom: 1px solid var(--b1); padding-bottom: .1rem; transition: border-color .3s; cursor: pointer; background: none; border-top: none; border-left: none; border-right: none; border-bottom: 1px solid var(--b3); }
 .srv-cta:hover { border-color: var(--k); }
+
+/* VÉHICULES */
+#vehicules { background: var(--w); }
+.veh-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--b1); }
+@media (max-width:580px) { .veh-grid { grid-template-columns: 1fr; } }
+.veh-c { background: var(--w); padding: 2.5rem; transition: background .4s; }
+.veh-c:hover { background: var(--w2); }
+.veh-label { font-size: .44rem; font-weight: 400; letter-spacing: .38em; text-transform: uppercase; color: var(--g2); margin-bottom: .9rem; }
+.veh-list { display: flex; flex-direction: column; gap: .4rem; }
+.veh-item { font-size: .78rem; font-weight: 300; color: var(--g); line-height: 1.5; }
+.veh-item strong { color: var(--k2); font-weight: 400; }
 
 /* FONCTIONNEMENT */
 #fonctionnement { background: var(--w2); }
-.fn-steps { display: flex; flex-direction: column; max-width: min(620px, 100%); }
-.fn-step { display: flex; gap: 2rem; padding: 2.2rem 0; border-bottom: 1px solid var(--b1); transition: padding .35s; cursor: default; }
+.fn-steps { max-width: min(620px,100%); }
+.fn-step { display: flex; gap: 2rem; padding: 2.2rem 0; border-bottom: 1px solid var(--b1); transition: padding .35s; }
 .fn-step:last-child { border-bottom: none; }
 .fn-step:hover { padding-left: .5rem; }
-.fn-n { font-family: 'Playfair Display', serif; font-style: italic; font-size: 3.5rem; font-weight: 400; color: rgba(10,10,10,.07); line-height: 1; flex-shrink: 0; width: 52px; transition: color .4s; }
+.fn-n { font-family: 'Playfair Display', serif; font-style: italic; font-size: 3.5rem; color: rgba(10,10,10,.07); line-height: 1; flex-shrink: 0; width: 52px; transition: color .4s; }
 .fn-step:hover .fn-n { color: rgba(10,10,10,.18); }
-.fn-body { flex: 1; padding-top: .3rem; }
-.fn-title { font-size: .9rem; font-weight: 400; color: var(--k); margin-bottom: .35rem; letter-spacing: .01em; }
-.fn-desc { font-size: .76rem; font-weight: 300; color: var(--g); line-height: 1.85; }
+.fn-b { flex: 1; padding-top: .3rem; }
+.fn-t { font-size: .9rem; font-weight: 400; color: var(--k); margin-bottom: .35rem; }
+.fn-d { font-size: .76rem; font-weight: 300; color: var(--g); line-height: 1.85; }
 
-/* ENGAGEMENTS */
-#engagements { background: var(--w); }
-.eng-grid { display: grid; grid-template-columns: 1fr; gap: 0; border: 1px solid var(--b1); }
-@media (min-width: 700px) { .eng-grid { grid-template-columns: repeat(3, 1fr); } }
-.eng { padding: 2.8rem; border-right: 1px solid var(--b1); position: relative; overflow: hidden; transition: background .4s; }
-.eng:last-child { border-right: none; }
-@media (max-width: 699px) { .eng { border-right: none; border-bottom: 1px solid var(--b1); } .eng:last-child { border-bottom: none; } }
-.eng:hover { background: var(--w2); }
-.eng-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 400; color: var(--k); margin-bottom: .8rem; letter-spacing: .01em; }
-.eng-text { font-size: .78rem; font-weight: 300; color: var(--g); line-height: 1.9; }
-
-/* CTA SECTION */
-#cta-section { background: var(--k); }
-.cta-inner { max-width: min(640px, 100%); }
-.cta-label { font-size: .46rem; font-weight: 400; letter-spacing: .44em; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 1.4rem; }
-h2.cta-title { color: var(--w); margin-bottom: 1rem; }
-h2.cta-title em { color: rgba(255,255,255,.3); }
-.cta-text { font-size: clamp(.8rem, 1.1vw, .9rem); font-weight: 300; color: rgba(255,255,255,.4); line-height: 1.95; margin-bottom: 2.5rem; max-width: 440px; }
-.cta-btn { font-family: 'Albert Sans', sans-serif; font-size: .56rem; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; color: var(--k); background: var(--w); border: none; padding: 1rem 3rem; cursor: pointer; transition: all .3s; display: inline-block; position: relative; overflow: hidden; }
-.cta-btn::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,.1), transparent); transform: translateX(-100%); transition: transform .5s; }
+/* CTA BLOCK */
+#cta-block { background: var(--k); }
+.cta-in { max-width: min(620px,100%); }
+.cta-label { font-size: .46rem; letter-spacing: .44em; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 1.4rem; }
+h2.cta-h { color: var(--w); margin-bottom: 1rem; }
+h2.cta-h em { color: rgba(255,255,255,.3); }
+.cta-text { font-size: clamp(.8rem,1.1vw,.9rem); font-weight: 300; color: rgba(255,255,255,.4); line-height: 1.95; margin-bottom: 2.5rem; max-width: 440px; }
+.cta-btn { font-family: 'Albert Sans', sans-serif; font-size: .56rem; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; color: var(--k); background: var(--w); border: none; padding: 1rem 3rem; cursor: pointer; transition: all .3s; position: relative; overflow: hidden; }
+.cta-btn::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent); transform: translateX(-100%); transition: transform .5s; }
 .cta-btn:hover::after { transform: translateX(100%); }
 .cta-btn:hover { background: var(--w2); transform: translateY(-1px); }
 
 /* CONTACT */
 #contact { background: var(--w2); }
-.ct-layout { display: grid; grid-template-columns: 1fr; gap: 4rem; }
-@media (min-width: 780px) { .ct-layout { grid-template-columns: 1fr 1.3fr; gap: 7rem; align-items: start; } }
-.ct-info-text { font-size: .82rem; font-weight: 300; color: var(--g); line-height: 2; margin-bottom: 2.5rem; }
+.ct-lay { display: grid; grid-template-columns: 1fr; gap: 4rem; }
+@media (min-width:780px) { .ct-lay { grid-template-columns: 1fr 1.3fr; gap: 7rem; align-items: start; } }
+.ct-sub { font-size: .82rem; font-weight: 300; color: var(--g); line-height: 2; margin-bottom: 2.5rem; }
 .ct-row { display: flex; align-items: flex-start; gap: .9rem; padding: 1.1rem 0; border-bottom: 1px solid var(--b1); transition: padding .35s; }
 .ct-row:first-child { border-top: 1px solid var(--b1); }
 .ct-row:hover { padding-left: .35rem; }
-.ct-ico { width: 26px; height: 26px; border: 1px solid var(--b1); display: flex; align-items: center; justify-content: center; font-size: .72rem; flex-shrink: 0; }
+.ct-ico { width: 26px; height: 26px; border: 1px solid var(--b1); display: flex; align-items: center; justify-content: center; font-size: .62rem; font-weight: 500; color: var(--g2); flex-shrink: 0; font-family: 'Albert Sans', sans-serif; }
 .ct-lbl { font-size: .44rem; font-weight: 400; letter-spacing: .24em; text-transform: uppercase; color: var(--g2); margin-bottom: .12rem; }
 .ct-val { font-size: .8rem; font-weight: 300; color: var(--g); }
-.ct-zone { margin-top: 2rem; padding: 1.4rem 1.6rem; border: 1px solid var(--b1); border-left: 2px solid var(--k); }
-.ct-zone-t { font-family: 'Playfair Display', serif; font-size: .88rem; color: var(--k); margin-bottom: .3rem; }
-.ct-zone-d { font-size: .74rem; font-weight: 300; color: var(--g); line-height: 1.75; }
+.ct-val a { color: var(--g); text-decoration: none; }
+.ct-val a:hover { color: var(--k); }
+.ct-note { margin-top: 2rem; padding: 1.4rem 1.6rem; border: 1px solid var(--b1); border-left: 2px solid var(--k); }
+.ct-note-t { font-family: 'Playfair Display', serif; font-size: .88rem; color: var(--k); margin-bottom: .3rem; }
+.ct-note-d { font-size: .74rem; font-weight: 300; color: var(--g); line-height: 1.75; }
 
 /* FORMULAIRE */
-.f-card { background: var(--w); border: 1px solid var(--b1); padding: clamp(1.8rem, 3vw, 2.8rem); position: relative; }
-.f-card::before { content: ''; position: absolute; top: 0; left: 2.5rem; right: 2.5rem; height: 1px; background: linear-gradient(90deg, transparent, var(--g3), transparent); }
-.f-steps-ind { display: flex; align-items: center; gap: .6rem; margin-bottom: 2rem; }
+.f-card { background: var(--w); border: 1px solid var(--b1); padding: clamp(1.8rem,3vw,2.8rem); position: relative; }
+.f-card::before { content: ''; position: absolute; top: 0; left: 2.5rem; right: 2.5rem; height: 1px; background: linear-gradient(90deg,transparent,var(--g3),transparent); }
+.f-ind { display: flex; align-items: center; gap: .6rem; margin-bottom: 2rem; }
 .f-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--b1); border: 1px solid var(--g3); transition: all .3s; }
 .f-dot.act { background: var(--k); border-color: var(--k); }
 .f-dot.done { background: var(--g3); border-color: var(--g3); }
-.f-step-lbl { font-size: .44rem; font-weight: 400; letter-spacing: .28em; text-transform: uppercase; color: var(--g2); margin-left: .4rem; }
+.f-lbl { font-size: .44rem; font-weight: 400; letter-spacing: .28em; text-transform: uppercase; color: var(--g2); margin-left: .4rem; }
 .f-step { display: none; }
 .f-step.active { display: block; }
-.f-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 400; color: var(--k); margin-bottom: 1.6rem; }
+.f-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--k); margin-bottom: 1.6rem; }
 .ff { border-bottom: 1px solid var(--b2); padding: .95rem 0; position: relative; }
 .ff::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 0; height: 1px; background: var(--k); transition: width .4s; }
 .ff:focus-within::after { width: 100%; }
@@ -185,21 +206,21 @@ h2.cta-title em { color: rgba(255,255,255,.3); }
 .f-ok-t { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--k); margin-bottom: .5rem; }
 .f-ok-s { font-size: .76rem; font-weight: 300; color: var(--g); line-height: 1.75; }
 
-/* DÉPÔT-VENTE FORMULAIRE */
+/* DEPOT-VENTE FORM */
 #depot-form { background: var(--w); }
-.dv-upload-zone { border: 1px dashed var(--b3); padding: 2rem; text-align: center; cursor: pointer; transition: background .3s, border-color .3s; margin-top: .5rem; }
-.dv-upload-zone:hover { background: var(--w2); border-color: var(--k); }
-.dv-upload-txt { font-size: .78rem; font-weight: 300; color: var(--g); margin-bottom: .2rem; }
-.dv-upload-sub { font-size: .62rem; font-weight: 300; color: var(--g2); }
-.dv-photos-preview { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .8rem; }
-.dv-photo-thumb { position: relative; width: 60px; height: 60px; border: 1px solid var(--b1); overflow: hidden; }
-.dv-photo-thumb img { width: 100%; height: 100%; object-fit: cover; }
-.dv-photo-del { position: absolute; top: 0; right: 0; background: rgba(10,10,10,.65); color: #fff; width: 18px; height: 18px; font-size: .55rem; display: flex; align-items: center; justify-content: center; cursor: pointer; border: none; }
-.dv-photo-count { font-size: .6rem; font-weight: 300; color: var(--g2); margin-top: .35rem; }
+.dv-upload { border: 1px dashed var(--b3); padding: 2rem; text-align: center; cursor: pointer; transition: background .3s, border-color .3s; margin-top: .5rem; }
+.dv-upload:hover { background: var(--w2); border-color: var(--k); }
+.dv-upload-t { font-size: .78rem; font-weight: 300; color: var(--g); margin-bottom: .2rem; }
+.dv-upload-s { font-size: .62rem; font-weight: 300; color: var(--g2); }
+.dv-prev { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .8rem; }
+.dv-thumb { position: relative; width: 60px; height: 60px; border: 1px solid var(--b1); overflow: hidden; }
+.dv-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.dv-del { position: absolute; top: 0; right: 0; background: rgba(10,10,10,.65); color: #fff; width: 18px; height: 18px; font-size: .55rem; display: flex; align-items: center; justify-content: center; cursor: pointer; border: none; }
+.dv-cnt { font-size: .6rem; font-weight: 300; color: var(--g2); margin-top: .35rem; }
 
 /* FAQ */
 #faq { background: var(--w2); }
-.fq-wrap { max-width: min(640px, 100%); }
+.fq-wrap { max-width: min(640px,100%); }
 .fq { border-bottom: 1px solid var(--b1); }
 .fq:first-child { border-top: 1px solid var(--b1); }
 .fq-q { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.4rem 0; cursor: pointer; transition: padding .35s; }
@@ -213,14 +234,14 @@ h2.cta-title em { color: rgba(255,255,255,.3); }
 .fq.open .fq-ic::before, .fq.open .fq-ic::after { background: var(--w); }
 .fq.open .fq-ic::after { transform: translate(-50%,-50%) rotate(90deg); opacity: 0; }
 .fq-a { max-height: 0; overflow: hidden; transition: max-height .45s ease; }
-.fq.open .fq-a { max-height: 280px; }
+.fq.open .fq-a { max-height: 300px; }
 .fq-at { padding: 0 0 1.3rem; font-size: .78rem; font-weight: 300; color: var(--g); line-height: 1.95; }
 .fq-at strong { color: var(--k); font-weight: 400; }
 
 /* LEGAL */
 #mentions, #confidentialite, #cgv { display: none; padding: clamp(70px,10vw,120px) 6vw; background: var(--w2); min-height: 100vh; }
 .m-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; margin-top: 2.5rem; }
-@media (min-width: 600px) { .m-grid { grid-template-columns: 1fr 1fr; gap: 3rem 5rem; } }
+@media (min-width:600px) { .m-grid { grid-template-columns: 1fr 1fr; gap: 3rem 5rem; } }
 .m-blk { border-top: 1px solid var(--b1); padding-top: 1.4rem; }
 .m-n { font-size: .42rem; font-weight: 400; letter-spacing: .28em; text-transform: uppercase; color: var(--g2); margin-bottom: .38rem; }
 .m-t { font-family: 'Playfair Display', serif; font-size: .98rem; color: var(--k); margin-bottom: .5rem; }
@@ -232,13 +253,15 @@ h2.cta-title em { color: rgba(255,255,255,.3); }
 .ll:hover { color: var(--k); }
 
 /* FOOTER */
-footer { background: var(--w); border-top: 1px solid var(--b1); padding: 1.8rem 6vw; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .8rem; }
-.f-logo { font-family: 'Playfair Display', serif; font-size: .76rem; letter-spacing: .16em; text-transform: uppercase; color: var(--g2); }
+footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.2rem; }
+.f-logo { font-family: 'Playfair Display', serif; font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; color: rgba(240,236,228,.3); }
 .f-logo em { font-style: italic; }
-.f-info { font-size: .45rem; font-weight: 300; color: var(--g2); }
-.f-links { display: flex; gap: 1.4rem; }
-.f-ml { font-size: .45rem; font-weight: 300; color: var(--g2); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; transition: color .3s; }
-.f-ml:hover { color: var(--k); }
+.f-socials { display: flex; gap: 1.8rem; }
+.f-soc { font-size: .48rem; font-weight: 300; letter-spacing: .18em; text-transform: uppercase; color: rgba(240,236,228,.3); text-decoration: none; transition: color .3s; }
+.f-soc:hover { color: var(--w); }
+.f-links { display: flex; gap: 1.4rem; flex-wrap: wrap; }
+.f-ml { font-size: .45rem; font-weight: 300; color: rgba(240,236,228,.2); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; transition: color .3s; }
+.f-ml:hover { color: rgba(240,236,228,.6); }
 
 /* REVEAL */
 .rv  { opacity: 0; transform: translateY(18px); transition: opacity .9s ease, transform .9s ease; }
@@ -246,28 +269,9 @@ footer { background: var(--w); border-top: 1px solid var(--b1); padding: 1.8rem 
 .rv3 { opacity: 0; transform: translateY(18px); transition: opacity .9s .24s ease, transform .9s .24s ease; }
 .rvl { opacity: 0; transform: translateX(-14px); transition: opacity .9s ease, transform .9s ease; }
 .rv.in, .rv2.in, .rv3.in, .rvl.in { opacity: 1; transform: none; }
-
-/* VÉHICULES */
-#vehicules { background: var(--w2); }
-.veh-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--b1); }
-@media (min-width: 600px)  { .veh-grid { grid-template-columns: 1fr 1fr; } }
-@media (min-width: 1000px) { .veh-grid { grid-template-columns: repeat(3, 1fr); } }
-.veh-cat { background: var(--w2); padding: 2.5rem; position: relative; overflow: hidden; transition: background .4s; }
-.veh-cat:hover { background: var(--w); }
-.veh-cat::before { content: ''; position: absolute; top: 0; left: 0; width: 1px; height: 0; background: var(--k); opacity: .2; transition: height .5s; }
-.veh-cat:hover::before { height: 100%; }
-.veh-cat-label { font-size: .44rem; font-weight: 400; letter-spacing: .38em; text-transform: uppercase; color: var(--g2); margin-bottom: 1rem; }
-.veh-cat-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 400; color: var(--k); margin-bottom: 1.4rem; letter-spacing: .01em; }
-.veh-list { display: flex; flex-direction: column; gap: .45rem; }
-.veh-item { display: flex; align-items: baseline; gap: .7rem; font-size: .78rem; font-weight: 300; color: var(--g); line-height: 1.55; }
-.veh-item::before { content: '—'; color: var(--g3); flex-shrink: 0; font-size: .65rem; }
-.veh-item strong { color: var(--k2); font-weight: 400; }
-.veh-note { margin-top: 1.2rem; font-size: .68rem; font-weight: 300; color: var(--g2); font-style: italic; }
-
 </style>
 </head>
 <body>
-
 <div id="sp"></div>
 
 <!-- LOADER -->
@@ -281,265 +285,199 @@ footer { background: var(--w); border-top: 1px solid var(--b1); padding: 1.8rem 
   </div>
 </div>
 
-<!-- NAVIGATION -->
+<!-- NAV -->
 <nav id="nav">
   <a href="#hero" class="n-logo">La Flamme <em>De L'Auto</em></a>
   <div class="n-links">
     <a href="#services"       class="n-lk">Services</a>
-    <a href="#vehicules" class="n-lk">Véhicules</a>
+    <a href="#vehicules"      class="n-lk">Véhicules</a>
     <a href="#fonctionnement" class="n-lk">Fonctionnement</a>
     <a href="#contact"        class="n-lk">Contact</a>
-    <button class="n-cta" onclick="goTo('contact')">Présenter mon projet</button>
+    <button class="n-cta" onclick="goTo('contact')">Importer mon véhicule</button>
   </div>
 </nav>
 
 <!-- HERO -->
-<section id="hero">
+<section id="hero" style="position:relative;">
   <div class="h-rule"></div>
   <h1>
-    <span class="h-word" id="hw1">Je vous accompagne</span><br>
-    <span class="h-word" id="hw2">de la recherche</span><br>
-    <span class="h-word" id="hw3"><em>à la remise des clés.</em></span>
+    <span class="h-word" id="hw1">Votre véhicule,</span><br>
+    <span class="h-word" id="hw2">importé</span><br>
+    <span class="h-word" id="hw3"><em>d'Allemagne.</em></span>
   </h1>
   <p class="h-sub" id="hsub">
-    Courtier automobile indépendant, j'interviens à chaque étape de votre projet&nbsp;: recherche du véhicule, vérification, négociation et finalisation. Vous gardez le contrôle, je gère les démarches.
+    Courtier automobile indépendant, je source et importe des véhicules sportifs et premium directement depuis l'Allemagne. Un marché plus large, des équipements plus riches, des prix souvent inférieurs au marché français. Je gère tout, de la recherche à la livraison.
   </p>
   <div class="h-meta" id="hmeta">
-    <button class="h-cta" onclick="goTo('contact')">Présenter mon projet</button>
-    <span class="h-note">Rennes et ses alentours &mdash; 100&thinsp;% à distance sur demande</span>
+    <button class="h-cta" onclick="goTo('contact')">Importer mon véhicule</button>
+    <span class="h-note">Sportives &amp; premium &mdash; Import Allemagne &mdash; France entière</span>
   </div>
-  <div class="h-indicator">
-    <div class="h-ind-line"></div>
-    <span class="h-ind-txt">Défiler</span>
+  <div class="h-ind">
+    <div class="h-ind-l"></div>
+    <span class="h-ind-t">Défiler</span>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="st-grid">
+    <div class="st-c rv"><span class="st-n">DE</span><span class="st-l">Import direct depuis l'Allemagne</span></div>
+    <div class="st-c rv2"><span class="st-n">Sport</span><span class="st-l">Spécialisation — sportives &amp; premium</span></div>
+    <div class="st-c rv3"><span class="st-n">100&thinsp;%</span><span class="st-l">Indépendant — aucune affiliation</span></div>
+    <div class="st-c rv3"><span class="st-n">24&thinsp;h</span><span class="st-l">Délai de réponse</span></div>
+  </div>
+</section>
+
+<!-- POURQUOI L'ALLEMAGNE -->
+<section id="pourquoi" class="sec">
+  <div class="rvl">
+    <div class="sec-label"><span class="sec-num">I</span><div class="sec-rule"></div><span class="sec-tag">Pourquoi l'Allemagne</span></div>
+    <h2>Le marché<br><em>de référence.</em></h2>
+  </div>
+  <div class="pq-grid">
+    <div class="pq-c rv">
+      <span class="pq-n">01</span>
+      <div class="pq-t">Plus de choix</div>
+      <div class="pq-d">Le marché allemand est l'un des plus fournis d'Europe. Le volume d'annonces disponibles est sans commune mesure avec le marché français, notamment sur le segment sportif et premium.</div>
+    </div>
+    <div class="pq-c rv2">
+      <span class="pq-n">02</span>
+      <div class="pq-t">Mieux équipés</div>
+      <div class="pq-d">Les véhicules commercialisés en Allemagne sont fréquemment mieux équipés à budget équivalent. Options, packs, finitions haut de gamme souvent inclus d'origine.</div>
+    </div>
+    <div class="pq-c rv3">
+      <span class="pq-n">03</span>
+      <div class="pq-t">Prix compétitifs</div>
+      <div class="pq-d">L'écart de prix constaté entre les deux marchés permet, à véhicule équivalent, de réaliser une économie significative ou d'accéder à une version plus équipée pour le même budget.</div>
+    </div>
   </div>
 </section>
 
 <div class="sep"></div>
 
 <!-- SERVICES -->
-<section id="services" class="sec">
+<section id="services" class="sec" style="background:var(--w2);">
   <div class="rvl">
-    <div class="sec-label">
-      <span class="sec-num">I</span>
-      <div class="sec-rule"></div>
-      <span class="sec-tag">Services</span>
-    </div>
+    <div class="sec-label"><span class="sec-num">II</span><div class="sec-rule"></div><span class="sec-tag">Services</span></div>
     <h2>Ce que<br><em>je propose.</em></h2>
   </div>
   <div class="srv-grid">
-
-    <!-- Bloc 1 : Recherche & accompagnement -->
     <div class="srv rv">
       <span class="srv-n">01</span>
-      <div class="srv-title">Recherche &amp; accompagnement à l'achat</div>
-      <p class="srv-text">
-        Vous avez un projet d'achat&nbsp;? Je prends en charge l'ensemble du processus&nbsp;: définition du besoin, recherche sur les marchés français et allemand, sélection des annonces, vérification et accompagnement jusqu'à la finalisation. Vous bénéficiez d'un regard indépendant à chaque étape.
-      </p>
+      <div class="srv-title">Import depuis l'Allemagne</div>
+      <p class="srv-text">Nous sourceons votre véhicule directement sur les plateformes allemandes (Mobile.de, AutoScout24.de), le vérifions, négocions et gérons l'ensemble des formalités jusqu'à la livraison en France. Vous n'avez rien à faire depuis la France.</p>
       <div class="srv-list">
-        <div class="srv-li">Définition précise de votre besoin et de votre budget</div>
-        <div class="srv-li">Recherche ciblée sur les plateformes françaises et allemandes</div>
-        <div class="srv-li">Accès au marché allemand&nbsp;: offre plus large, véhicules souvent mieux équipés à budget équivalent</div>
-        <div class="srv-li">Vérification de la cohérence du prix, de l'historique et de l'état annoncé</div>
-        <div class="srv-li">Accompagnement dans la prise de décision et la négociation</div>
-        <div class="srv-li">Suivi jusqu'à la remise des clés</div>
+        <div class="srv-li">Recherche ciblée sur les plateformes allemandes</div>
+        <div class="srv-li">Vérification de l'historique, du kilométrage et de l'état annoncé</div>
+        <div class="srv-li">Négociation directe avec le vendeur en Allemagne</div>
+        <div class="srv-li">Gestion des formalités d'importation et d'immatriculation</div>
+        <div class="srv-li">Livraison du véhicule en France</div>
       </div>
-      <button class="srv-cta" onclick="goTo('contact')">Présenter mon projet de recherche</button>
+      <button class="srv-cta" onclick="goTo('contact')">Démarrer mon import</button>
     </div>
-
-    <!-- Bloc 2 : Dépôt-vente -->
     <div class="srv rv2">
       <span class="srv-n">02</span>
-      <div class="srv-title">Dépôt-vente</div>
-      <p class="srv-text">
-        Vous souhaitez vendre votre véhicule&nbsp;? J'interviens en tant qu'intermédiaire pour prendre en charge l'ensemble du processus de vente, de la mise en scène du véhicule jusqu'au filtrage des acheteurs. Le service est <strong>100&thinsp;% digital</strong>&nbsp;: aucun déplacement requis de votre part. La transaction se conclut directement entre vous et l'acheteur.
-      </p>
+      <div class="srv-title">Dépôt-vente digital</div>
+      <p class="srv-text">Vous souhaitez vendre votre véhicule sans en gérer les contraintes&nbsp;? Nous intervenons en tant qu'intermédiaire, 100&thinsp;% à distance. La transaction se conclut directement entre vous et l'acheteur.</p>
       <div class="srv-list">
-        <div class="srv-li"><strong>Showroom virtuel</strong>&nbsp;: mise en valeur professionnelle du véhicule avec photos et présentation soignée</div>
-        <div class="srv-li">Rédaction et diffusion de l'annonce sur toutes les plateformes&nbsp;: Leboncoin, La Centrale, Marketplace, et réseaux sociaux</div>
-        <div class="srv-li">Diffusion ciblée sur les réseaux sociaux pour maximiser la visibilité</div>
-        <div class="srv-li">Filtrage des acheteurs&nbsp;: je qualifie les contacts sérieux et élimine les sollicitations non pertinentes</div>
-        <div class="srv-li">Gestion de l'ensemble des échanges avec les acheteurs potentiels</div>
-        <div class="srv-li">Accompagnement jusqu'à la conclusion de la transaction</div>
+        <div class="srv-li">Showroom virtuel — mise en valeur professionnelle du véhicule</div>
+        <div class="srv-li">Diffusion sur toutes les plateformes et réseaux sociaux</div>
+        <div class="srv-li">Filtrage et qualification des acheteurs sérieux</div>
+        <div class="srv-li">Gestion de l'ensemble des échanges</div>
+        <div class="srv-li">Accompagnement jusqu'à la conclusion de la vente</div>
       </div>
       <button class="srv-cta" onclick="goTo('depot-form')">Soumettre mon véhicule</button>
     </div>
-
   </div>
 </section>
 
 <div class="sep"></div>
 
 <!-- VÉHICULES -->
-<section id="vehicules" class="sec" style="background:var(--w2);">
+<section id="vehicules" class="sec" style="background:var(--w);">
   <div class="rvl">
-    <div class="sec-label">
-      <span class="sec-num">II</span>
-      <div class="sec-rule"></div>
-      <span class="sec-tag">Véhicules</span>
-    </div>
-    <h2>Exemples de<br><em>véhicules accompagnés.</em></h2>
+    <div class="sec-label"><span class="sec-num">III</span><div class="sec-rule"></div><span class="sec-tag">Véhicules</span></div>
+    <h2>Exemples de<br><em>véhicules importés.</em></h2>
   </div>
-  <p style="font-size:.82rem;font-weight:300;color:var(--g);max-width:520px;line-height:1.95;margin-bottom:3.5rem;" class="rv">
-    J'interviens sur tous types de véhicules, des plus accessibles aux plus haut de gamme. Voici quelques exemples représentatifs, sans caractère exhaustif.
+  <p style="font-size:.82rem;font-weight:300;color:var(--g);max-width:500px;line-height:1.95;margin-bottom:3.5rem;" class="rv">
+    Sportives et premium sourcées directement en Allemagne. Quelques modèles régulièrement disponibles sur le marché allemand.
   </p>
   <div class="veh-grid">
-
-    <div class="veh-cat rv">
-      <div class="veh-cat-label">01</div>
-      <div class="veh-cat-title">Citadine</div>
-      <div class="veh-list">
-        <div class="veh-item"><strong>Renault Clio</strong> — polyvalente, bien diffusée</div>
-        <div class="veh-item"><strong>Peugeot 208</strong> — finitions soignées, bon rapport qualité</div>
-        <div class="veh-item"><strong>Volkswagen Polo</strong> — fiabilité reconnue, tenue de route</div>
-        <div class="veh-item"><strong>Toyota Yaris</strong> — hybride disponible, faible consommation</div>
-        <div class="veh-item"><strong>Opel Corsa</strong> — version électrique ou thermique</div>
+    <div class="veh-c rv">
+      <div class="veh-label">Compactes sportives</div>
+      <div class="veh-list" style="margin-top:.8rem;">
+        <div class="veh-item"><strong>Volkswagen Golf R</strong></div>
+        <div class="veh-item"><strong>Renault Mégane RS</strong></div>
+        <div class="veh-item"><strong>Honda Civic Type R</strong></div>
       </div>
     </div>
-
-    <div class="veh-cat rv">
-      <div class="veh-cat-label">02</div>
-      <div class="veh-cat-title">Berline</div>
-      <div class="veh-list">
-        <div class="veh-item"><strong>Mercedes Classe C</strong> — finition premium, habitacle référence</div>
-        <div class="veh-item"><strong>BMW Série 3</strong> — dynamisme et confort, segment phare</div>
-        <div class="veh-item"><strong>Audi A4</strong> — qualité d'assemblage, motorisations variées</div>
-        <div class="veh-item"><strong>Volkswagen Passat</strong> — polyvalence, volume de coffre</div>
-        <div class="veh-item"><strong>Peugeot 508</strong> — design affirmé, version SW disponible</div>
+    <div class="veh-c rv">
+      <div class="veh-label">Berlines &amp; coupés sportifs</div>
+      <div class="veh-list" style="margin-top:.8rem;">
+        <div class="veh-item"><strong>BMW M3 / M4</strong></div>
+        <div class="veh-item"><strong>Mercedes-AMG C 43</strong></div>
+        <div class="veh-item"><strong>Audi S4 / RS4</strong></div>
       </div>
     </div>
-
-    <div class="veh-cat rv2">
-      <div class="veh-cat-label">03</div>
-      <div class="veh-cat-title">SUV</div>
-      <div class="veh-list">
-        <div class="veh-item"><strong>BMW X3</strong> — équilibre usage quotidien et dynamisme</div>
-        <div class="veh-item"><strong>Audi Q5</strong> — intérieur soigné, modularité</div>
-        <div class="veh-item"><strong>Mercedes GLC</strong> — confort, présence, technologies embarquées</div>
-        <div class="veh-item"><strong>Peugeot 3008 / 5008</strong> — rapport qualité accessible</div>
-        <div class="veh-item"><strong>Volvo XC60</strong> — sécurité, design scandinave</div>
+    <div class="veh-c rv2">
+      <div class="veh-label">SUV sportifs</div>
+      <div class="veh-list" style="margin-top:.8rem;">
+        <div class="veh-item"><strong>Porsche Macan</strong></div>
+        <div class="veh-item"><strong>BMW X3 M40i</strong></div>
+        <div class="veh-item"><strong>Audi SQ5</strong></div>
       </div>
     </div>
-
-    <div class="veh-cat rv2">
-      <div class="veh-cat-label">04</div>
-      <div class="veh-cat-title">Sportive</div>
-      <div class="veh-list">
-        <div class="veh-item"><strong>BMW M3 / M4</strong> — performances, suivi entretien exigeant</div>
-        <div class="veh-item"><strong>Mercedes-AMG C 43</strong> — sportivité intégrée à la gamme C</div>
-        <div class="veh-item"><strong>Porsche Macan / Cayenne</strong> — polyvalence et plaisir de conduite</div>
-        <div class="veh-item"><strong>Audi RS / S</strong> — motorisations puissantes, équipement riche</div>
+    <div class="veh-c rv2">
+      <div class="veh-label">Autres</div>
+      <div class="veh-list" style="margin-top:.8rem;">
+        <div class="veh-item"><strong>Porsche Boxster / Cayman</strong></div>
+        <div class="veh-item"><strong>Audi RS4 Avant</strong></div>
+        <div class="veh-item"><strong>BMW M3 Touring</strong></div>
       </div>
-      <div class="veh-note">Pour les sportives, je recommande systématiquement une inspection mécanique approfondie.</div>
+      <p style="font-size:.68rem;font-weight:300;color:var(--g2);font-style:italic;margin-top:1rem;">Tout véhicule sur ce segment peut faire l'objet d'une demande.</p>
     </div>
-
-    <div class="veh-cat rv3">
-      <div class="veh-cat-label">05</div>
-      <div class="veh-cat-title">Électrique &amp; hybride</div>
-      <div class="veh-list">
-        <div class="veh-item"><strong>Tesla Model 3 / Model Y</strong> — autonomie, réseau de charge</div>
-        <div class="veh-item"><strong>BMW i4 / iX</strong> — qualité de fabrication, autonomie réelle</div>
-        <div class="veh-item"><strong>Volkswagen ID.4</strong> — espace, accessibilité tarifaire</div>
-        <div class="veh-item"><strong>Peugeot e-2008</strong> — usage urbain et périurbain</div>
-      </div>
-    </div>
-
-    <div class="veh-cat rv3">
-      <div class="veh-cat-label">06</div>
-      <div class="veh-cat-title">Autre</div>
-      <div class="veh-list">
-        <div class="veh-item"><strong>Break</strong> — Audi A6 Avant, BMW Série 5 Touring, Passat SW</div>
-        <div class="veh-item"><strong>Monospace</strong> — Renault Espace, Citroën Grand C5</div>
-        <div class="veh-item"><strong>Utilitaire léger</strong> — Renault Kangoo, Citroën Berlingo</div>
-        <div class="veh-item"><strong>Coupé</strong> — BMW Série 4, Audi A5, Mercedes Classe E Coupé</div>
-      </div>
-      <div class="veh-note">Tout projet en dehors de ces catégories peut faire l'objet d'une demande.</div>
-    </div>
-
   </div>
 </section>
+
 <div class="sep"></div>
 
 <!-- FONCTIONNEMENT -->
 <section id="fonctionnement" class="sec" style="background:var(--w2);">
   <div class="rvl">
-    <div class="sec-label">
-      <span class="sec-num">III</span>
-      <div class="sec-rule"></div>
-      <span class="sec-tag">Fonctionnement</span>
-    </div>
+    <div class="sec-label"><span class="sec-num">IV</span><div class="sec-rule"></div><span class="sec-tag">Fonctionnement</span></div>
     <h2>Comment<br><em>ça se passe.</em></h2>
   </div>
   <div class="fn-steps">
     <div class="fn-step rv">
       <div class="fn-n">01</div>
-      <div class="fn-body">
-        <div class="fn-title">Échange sur le projet</div>
-        <div class="fn-desc">Nous définissons ensemble votre besoin, vos critères et votre calendrier. Cet échange est gratuit et sans engagement.</div>
-      </div>
+      <div class="fn-b"><div class="fn-t">Échange sur le projet</div><div class="fn-d">Nous définissons ensemble votre besoin, vos critères et votre budget. Cet échange est gratuit et sans engagement.</div></div>
     </div>
     <div class="fn-step rv">
       <div class="fn-n">02</div>
-      <div class="fn-body">
-        <div class="fn-title">Recherche ou mise en vente</div>
-        <div class="fn-desc">Pour un achat, je lance la recherche sur les marchés français et allemand. Pour une vente, je crée le showroom virtuel et diffuse l'annonce sur l'ensemble des plateformes et réseaux sociaux. Je vous tiens informé à chaque étape.</div>
-      </div>
+      <div class="fn-b"><div class="fn-t">Recherche en Allemagne</div><div class="fn-d">Nous lançons la recherche sur les plateformes allemandes. Nous sélectionnons les annonces pertinentes et vérifions chaque véhicule avant de vous le soumettre.</div></div>
     </div>
     <div class="fn-step rv">
       <div class="fn-n">03</div>
-      <div class="fn-body">
-        <div class="fn-title">Vérification et accompagnement</div>
-        <div class="fn-desc">Je vérifie les éléments accessibles à distance et vous accompagne dans l'analyse des propositions. Pour tout doute, une inspection physique par un professionnel peut être recommandée.</div>
-      </div>
+      <div class="fn-b"><div class="fn-t">Validation et négociation</div><div class="fn-d">Vous validez votre choix. Nous négocions directement avec le vendeur en Allemagne et gérons les démarches administratives d'importation.</div></div>
     </div>
     <div class="fn-step rv">
       <div class="fn-n">04</div>
-      <div class="fn-body">
-        <div class="fn-title">Finalisation</div>
-        <div class="fn-desc">La transaction se conclut directement entre les parties. Je reste disponible jusqu'à la remise des clés pour répondre à vos questions.</div>
-      </div>
+      <div class="fn-b"><div class="fn-t">Livraison en France</div><div class="fn-d">Le véhicule est livré en France, prêt à immatriculer. Nous restons disponibles jusqu'à la remise des clés.</div></div>
     </div>
   </div>
 </section>
 
 <div class="sep"></div>
 
-<!-- ENGAGEMENTS -->
-<section id="engagements" class="sec" style="background:var(--w);">
-  <div class="rvl">
-    <div class="sec-label">
-      <span class="sec-num">IV</span>
-      <div class="sec-rule"></div>
-      <span class="sec-tag">Engagements</span>
-    </div>
-    <h2>Ce sur quoi<br><span class="dm">vous pouvez compter.</span></h2>
-  </div>
-  <div class="eng-grid">
-    <div class="eng rv">
-      <div class="eng-title">Transparence</div>
-      <div class="eng-text">Je vous communique l'ensemble des informations dont je dispose, y compris les points de vigilance. Mon rôle est de vous permettre de décider en connaissance de cause.</div>
-    </div>
-    <div class="eng rv2">
-      <div class="eng-title">Accompagnement humain</div>
-      <div class="eng-text">Un interlocuteur unique, disponible et impliqué dans votre projet. Je m'adapte à votre rythme et à vos contraintes.</div>
-    </div>
-    <div class="eng rv3">
-      <div class="eng-title">Gain de temps</div>
-      <div class="eng-text">Les démarches, les recherches et les échanges sont pris en charge. Vous intervenez aux moments qui comptent, sans vous disperser dans les détails.</div>
-    </div>
-  </div>
-</section>
-
-<div class="sep"></div>
-
-<!-- CTA SECTION -->
-<section id="cta-section" class="sec" style="background:var(--k);">
-  <div class="cta-inner">
+<!-- CTA -->
+<section id="cta-block" class="sec">
+  <div class="cta-in">
     <div class="cta-label rvl">Un projet en tête&nbsp;?</div>
-    <h2 class="cta-title rvl">Présentez votre<br><em>projet.</em></h2>
-    <p class="cta-text rv">Je reviens vers vous sous 24&thinsp;h. L'échange initial est gratuit et sans engagement. Il n'est pas nécessaire d'avoir un projet entièrement défini pour me contacter.</p>
-    <div class="rv2">
-      <button class="cta-btn" onclick="goTo('contact')">Présenter mon projet</button>
-    </div>
+    <h2 class="cta-h rvl">Importez votre<br><em>prochain véhicule.</em></h2>
+    <p class="cta-text rv">Nous revenons vers vous sous 24&thinsp;h avec une première sélection de véhicules disponibles en Allemagne. L'échange initial est gratuit et sans engagement.</p>
+    <div class="rv2"><button class="cta-btn" onclick="goTo('contact')">Démarrer mon projet</button></div>
   </div>
 </section>
 
@@ -548,54 +486,29 @@ footer { background: var(--w); border-top: 1px solid var(--b1); padding: 1.8rem 
 <!-- CONTACT -->
 <section id="contact" class="sec" style="background:var(--w2);">
   <div class="rvl">
-    <div class="sec-label">
-      <span class="sec-num">IV</span>
-      <div class="sec-rule"></div>
-      <span class="sec-tag">Contact</span>
-    </div>
+    <div class="sec-label"><span class="sec-num">V</span><div class="sec-rule"></div><span class="sec-tag">Contact</span></div>
     <h2>Votre<br><em>projet.</em></h2>
   </div>
-  <div class="ct-layout">
+  <div class="ct-lay">
     <div>
-      <p class="ct-info-text rv">
-        Remplissez ce formulaire avec les informations disponibles. Je vous recontacte rapidement pour en discuter.
-      </p>
-      <div class="ct-row rv">
-        <div class="ct-ico">@</div>
-        <div>
-          <div class="ct-lbl">Email</div>
-          <div class="ct-val">laflammedelautomobile@gmail.com</div>
-        </div>
-      </div>
-      <div class="ct-row rv">
-        <div class="ct-ico">#</div>
-        <div>
-          <div class="ct-lbl">Téléphone</div>
-          <div class="ct-val">06 28 90 71 76</div>
-        </div>
-      </div>
-      <div class="ct-row rv">
-        <div class="ct-ico">@</div>
-        <div>
-          <div class="ct-lbl">Instagram</div>
-          <div class="ct-val">@laflammedelautomobile</div>
-        </div>
-      </div>
-      <div class="ct-zone rv2">
-        <div class="ct-zone-t">Zone d'intervention</div>
-        <div class="ct-zone-d">Rennes et ses alentours pour les interventions physiques. Accompagnement à distance disponible pour l'ensemble de la France.</div>
+      <p class="ct-sub rv">Remplissez ce formulaire. Nous revenons vers vous sous 24&thinsp;h avec une première approche et, si possible, des véhicules disponibles en Allemagne.</p>
+      <div class="ct-row rv"><div class="ct-ico">@</div><div><div class="ct-lbl">Email</div><div class="ct-val">laflammedelautomobile@gmail.com</div></div></div>
+      <div class="ct-row rv"><div class="ct-ico">#</div><div><div class="ct-lbl">Téléphone</div><div class="ct-val">07 80 94 39 46</div></div></div>
+      <div class="ct-row rv"><div class="ct-ico">IG</div><div><div class="ct-lbl">Instagram</div><div class="ct-val"><a href="https://instagram.com/laflammedelautomobile" target="_blank">@laflammedelautomobile</a></div></div></div>
+      <div class="ct-row rv"><div class="ct-ico">TK</div><div><div class="ct-lbl">TikTok</div><div class="ct-val"><a href="https://tiktok.com/@laflammedelautomobile" target="_blank">@laflammedelautomobile</a></div></div></div>
+      <div class="ct-note rv2">
+        <div class="ct-note-t">Zone d'intervention</div>
+        <div class="ct-note-d">Import depuis l'Allemagne pour toute la France. Dépôt-vente 100&thinsp;% digital, sans contrainte géographique. Livraison possible partout en France.</div>
       </div>
     </div>
     <div class="rv2">
-      <div class="f-card" id="contact-form">
-        <div class="f-steps-ind" id="f-ind">
+      <div class="f-card">
+        <div class="f-ind" id="f-ind">
           <div class="f-dot act" id="fd1"></div>
           <div class="f-dot" id="fd2"></div>
           <div class="f-dot" id="fd3"></div>
-          <span class="f-step-lbl" id="f-lbl">Étape 1 sur 3</span>
+          <span class="f-lbl" id="f-lbl">Étape 1 sur 3</span>
         </div>
-
-        <!-- Étape 1 — Identité -->
         <div class="f-step active" id="fs1">
           <div class="f-title">Vos coordonnées</div>
           <div class="ff-row">
@@ -604,43 +517,32 @@ footer { background: var(--w); border-top: 1px solid var(--b1); padding: 1.8rem 
           </div>
           <div class="ff"><label>Email</label><input type="email" id="fe" placeholder="votre@email.fr"></div>
           <div class="ff"><label>Téléphone (optionnel)</label><input type="tel" id="ftel" placeholder="06 00 00 00 00"></div>
-          <div class="f-nav">
-            <button class="f-next" onclick="fStep(2)">Continuer</button>
-          </div>
+          <div class="f-nav"><button class="f-next" onclick="fStep(2)">Continuer</button></div>
         </div>
-
-        <!-- Étape 2 — Projet -->
         <div class="f-step" id="fs2">
           <div class="f-title">Votre projet</div>
-          <div class="ff">
-            <label>Type de demande</label>
+          <div class="ff"><label>Type de demande</label>
             <select id="f-type">
               <option value="">Sélectionnez…</option>
-              <option>Recherche d'un véhicule à l'achat</option>
-              <option>Dépôt-vente d'un véhicule</option>
+              <option>Import depuis l'Allemagne</option>
+              <option>Dépôt-vente de mon véhicule</option>
               <option>Les deux</option>
               <option>Autre demande</option>
             </select>
           </div>
-          <div class="ff">
-            <label>Type de véhicule</label>
+          <div class="ff"><label>Type de véhicule souhaité</label>
             <select id="f-veh">
               <option value="">Sélectionnez…</option>
-              <option>Citadine</option>
-              <option>Berline compacte</option>
-              <option>Berline premium</option>
-              <option>SUV / Crossover</option>
-              <option>SUV premium</option>
-              <option>Break</option>
-              <option>Coupé</option>
-              <option>Électrique / Hybride</option>
-              <option>Utilitaire</option>
-              <option>Autre</option>
+              <option>Compacte sportive (Golf R, Mégane RS…)</option>
+              <option>Berline sportive (M3, AMG C, S4…)</option>
+              <option>SUV sportif (Macan, GLC 43, SQ5…)</option>
+              <option>Coupé / Cabriolet (M4, TT RS, Boxster…)</option>
+              <option>Break sportif (RS4, M3 Touring…)</option>
+              <option>Autre — à préciser</option>
             </select>
           </div>
-          <div class="ff"><label>Budget estimé</label><input type="text" id="f-budget" placeholder="Ex&nbsp;: 20 000"></div>
-          <div class="ff">
-            <label>Délai souhaité</label>
+          <div class="ff"><label>Budget estimé</label><input type="text" id="f-budget" placeholder="Ex : 22 000"></div>
+          <div class="ff"><label>Délai souhaité</label>
             <select id="f-delai">
               <option value="">Sélectionnez…</option>
               <option>Dès que possible</option>
@@ -654,16 +556,10 @@ footer { background: var(--w); border-top: 1px solid var(--b1); padding: 1.8rem 
             <button class="f-next" onclick="fStep(3)">Continuer</button>
           </div>
         </div>
-
-        <!-- Étape 3 — Détails -->
         <div class="f-step" id="fs3">
           <div class="f-title">Précisions</div>
-          <div class="ff">
-            <label>Description du projet</label>
-            <textarea id="f-msg" placeholder="Décrivez votre projet, vos critères, contraintes spécifiques…"></textarea>
-          </div>
-          <div class="ff">
-            <label>Avez-vous déjà identifié des annonces&nbsp;?</label>
+          <div class="ff"><label>Description du projet</label><textarea id="f-msg" placeholder="Modèle précis, motorisation, options souhaitées, contraintes…"></textarea></div>
+          <div class="ff"><label>Avez-vous des annonces en tête&nbsp;?</label>
             <select id="f-annonce">
               <option value="">Sélectionnez…</option>
               <option>Non, je pars de zéro</option>
@@ -676,11 +572,10 @@ footer { background: var(--w); border-top: 1px solid var(--b1); padding: 1.8rem 
             <button class="f-next" id="fsubmit" onclick="sendContact()">Envoyer</button>
           </div>
         </div>
-
         <div class="f-ok" id="f-ok">
           <span class="f-ok-sym">*</span>
           <div class="f-ok-t">Demande reçue.</div>
-          <div class="f-ok-s">Je reviens vers vous sous 24&thinsp;h. &mdash; Ibrahim</div>
+          <div class="f-ok-s">Nous revenons vers vous sous 24&thinsp;h.</div>
         </div>
       </div>
     </div>
@@ -689,36 +584,28 @@ footer { background: var(--w); border-top: 1px solid var(--b1); padding: 1.8rem 
 
 <div class="sep"></div>
 
-<!-- DÉPÔT-VENTE FORMULAIRE -->
+<!-- DÉPÔT-VENTE FORM -->
 <section id="depot-form" class="sec" style="background:var(--w);">
   <div class="rvl">
-    <div class="sec-label">
-      <span class="sec-num">V</span>
-      <div class="sec-rule"></div>
-      <span class="sec-tag">Dépôt-vente</span>
-    </div>
+    <div class="sec-label"><span class="sec-num">VI</span><div class="sec-rule"></div><span class="sec-tag">Dépôt-vente</span></div>
     <h2>Soumettre<br><em>mon véhicule.</em></h2>
   </div>
-  <div class="ct-layout">
+  <div class="ct-lay">
     <div>
-      <p class="ct-info-text rv">
-        Ce formulaire me permet de disposer des informations nécessaires pour analyser votre véhicule et vous faire un retour rapide. Il n'engage à rien.
-      </p>
-      <div class="ct-zone rv">
-        <div class="ct-zone-t">Service 100&thinsp;% digital</div>
-        <div class="ct-zone-d">Aucun déplacement requis. Le service se déroule entièrement à distance. Vous transmettez les informations et photos de votre véhicule, je prends en charge le reste. La transaction se conclut directement entre vous et l'acheteur.</div>
+      <p class="ct-sub rv">Remplissez ce formulaire. Nous revenons vers vous sous 24&thinsp;h. Aucun engagement.</p>
+      <div class="ct-note rv">
+        <div class="ct-note-t">Service 100&thinsp;% digital</div>
+        <div class="ct-note-d">Aucun déplacement requis. Vous transmettez les informations et photos de votre véhicule. Nous prenons en charge la mise en vente, les échanges et le filtrage des acheteurs. La transaction se conclut directement entre vous et l'acheteur.</div>
       </div>
     </div>
     <div class="rv2">
-      <div class="f-card" id="dv-form">
-        <div class="f-steps-ind" id="dv-ind">
+      <div class="f-card">
+        <div class="f-ind" id="dv-ind">
           <div class="f-dot act" id="dvd1"></div>
           <div class="f-dot" id="dvd2"></div>
           <div class="f-dot" id="dvd3"></div>
-          <span class="f-step-lbl" id="dv-lbl">Étape 1 sur 3</span>
+          <span class="f-lbl" id="dv-lbl">Étape 1 sur 3</span>
         </div>
-
-        <!-- Étape 1 — Coordonnées -->
         <div class="f-step active" id="dvs1">
           <div class="f-title">Vos coordonnées</div>
           <div class="ff-row">
@@ -727,48 +614,35 @@ footer { background: var(--w); border-top: 1px solid var(--b1); padding: 1.8rem 
           </div>
           <div class="ff"><label>Email</label><input type="email" id="dve" placeholder="votre@email.fr"></div>
           <div class="ff"><label>Téléphone</label><input type="tel" id="dvtel" placeholder="06 00 00 00 00"></div>
-          <div class="f-nav">
-            <button class="f-next" onclick="dvStep(2)">Continuer</button>
-          </div>
+          <div class="f-nav"><button class="f-next" onclick="dvStep(2)">Continuer</button></div>
         </div>
-
-        <!-- Étape 2 — Véhicule -->
         <div class="f-step" id="dvs2">
           <div class="f-title">Le véhicule</div>
           <div class="ff-row">
-            <div class="ff"><label>Marque</label><input type="text" id="dv-marque" placeholder="Ex : Renault"></div>
-            <div class="ff"><label>Modèle</label><input type="text" id="dv-modele" placeholder="Ex : Clio"></div>
+            <div class="ff"><label>Marque</label><input type="text" id="dv-marque" placeholder="Ex : BMW"></div>
+            <div class="ff"><label>Modèle</label><input type="text" id="dv-modele" placeholder="Ex : M3"></div>
           </div>
           <div class="ff-row">
-            <div class="ff"><label>Année</label><input type="text" id="dv-annee" placeholder="Ex : 2019"></div>
-            <div class="ff"><label>Kilométrage</label><input type="text" id="dv-km" placeholder="Ex : 65 000 km"></div>
+            <div class="ff"><label>Année</label><input type="text" id="dv-annee" placeholder="Ex : 2020"></div>
+            <div class="ff"><label>Kilométrage</label><input type="text" id="dv-km" placeholder="Ex : 45 000 km"></div>
           </div>
-          <div class="ff">
-            <label>Motorisation</label>
+          <div class="ff"><label>Motorisation</label>
             <select id="dv-moto">
               <option value="">Sélectionnez…</option>
-              <option>Essence</option><option>Diesel</option><option>Hybride</option>
-              <option>Hybride rechargeable</option><option>Électrique</option>
+              <option>Essence</option><option>Diesel</option><option>Hybride</option><option>Hybride rechargeable</option><option>Électrique</option>
             </select>
           </div>
-          <div class="ff">
-            <label>Boîte de vitesses</label>
-            <select id="dv-boite">
-              <option value="">Sélectionnez…</option>
-              <option>Manuelle</option><option>Automatique</option>
-            </select>
+          <div class="ff"><label>Boîte de vitesses</label>
+            <select id="dv-boite"><option value="">Sélectionnez…</option><option>Manuelle</option><option>Automatique</option></select>
           </div>
           <div class="f-nav">
             <button class="f-prev" onclick="dvStep(1)">Retour</button>
             <button class="f-next" onclick="dvStep(3)">Continuer</button>
           </div>
         </div>
-
-        <!-- Étape 3 — État & Photos -->
         <div class="f-step" id="dvs3">
           <div class="f-title">État &amp; photos</div>
-          <div class="ff">
-            <label>État général</label>
+          <div class="ff"><label>État général</label>
             <select id="dv-etat">
               <option value="">Sélectionnez…</option>
               <option>Excellent — aucune remarque</option>
@@ -777,30 +651,26 @@ footer { background: var(--w); border-top: 1px solid var(--b1); padding: 1.8rem 
               <option>Correct — points à signaler</option>
             </select>
           </div>
-          <div class="ff">
-            <label>Observations (accidents, réparations, options…)</label>
-            <textarea id="dv-obs" placeholder="Entretien suivi, carrosserie intacte, options, remarques éventuelles…"></textarea>
-          </div>
+          <div class="ff"><label>Observations (accidents, options, entretien…)</label><textarea id="dv-obs" placeholder="Carrosserie intacte, entretien suivi, options…"></textarea></div>
           <div class="ff">
             <label>Photos du véhicule</label>
-            <div class="dv-upload-zone" onclick="document.getElementById('dv-file').click()">
-              <div class="dv-upload-txt">Cliquez pour ajouter des photos</div>
-              <div class="dv-upload-sub">Extérieur, intérieur, compteur kilométrique &mdash; JPG ou PNG, 10 Mo maximum par photo</div>
+            <div class="dv-upload" onclick="document.getElementById('dv-file').click()">
+              <div class="dv-upload-t">Cliquez pour ajouter des photos</div>
+              <div class="dv-upload-s">Extérieur, intérieur, compteur — JPG ou PNG, 10 Mo max par photo</div>
             </div>
-            <input type="file" id="dv-file" multiple accept="image/*" style="display:none;" onchange="dvHandlePhotos(this)">
-            <div class="dv-photos-preview" id="dv-preview"></div>
-            <div class="dv-photo-count" id="dv-count"></div>
+            <input type="file" id="dv-file" multiple accept="image/*" style="display:none;" onchange="dvPhotos(this)">
+            <div class="dv-prev" id="dv-prev"></div>
+            <div class="dv-cnt" id="dv-cnt"></div>
           </div>
           <div class="f-nav">
             <button class="f-prev" onclick="dvStep(2)">Retour</button>
             <button class="f-next" id="dv-submit" onclick="dvSend()">Envoyer</button>
           </div>
         </div>
-
         <div class="f-ok" id="dv-ok">
           <span class="f-ok-sym">*</span>
           <div class="f-ok-t">Demande reçue.</div>
-          <div class="f-ok-s">J'analyse votre véhicule et reviens vers vous sous 24&thinsp;h. &mdash; Ibrahim</div>
+          <div class="f-ok-s">Nous analysons votre véhicule et revenons vers vous sous 24&thinsp;h.</div>
         </div>
       </div>
     </div>
@@ -812,77 +682,61 @@ footer { background: var(--w); border-top: 1px solid var(--b1); padding: 1.8rem 
 <!-- FAQ -->
 <section id="faq" class="sec" style="background:var(--w2);">
   <div class="rvl">
-    <div class="sec-label">
-      <span class="sec-num">VI</span>
-      <div class="sec-rule"></div>
-      <span class="sec-tag">Questions fréquentes</span>
-    </div>
+    <div class="sec-label"><span class="sec-num">VII</span><div class="sec-rule"></div><span class="sec-tag">Questions fréquentes</span></div>
     <h2>Questions<br><span class="dm">fréquentes.</span></h2>
   </div>
   <div class="fq-wrap rv">
-    <div class="fq">
-      <div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Êtes-vous un garage ou un vendeur de véhicules&nbsp;?</span><div class="fq-ic"></div></div>
-      <div class="fq-a"><p class="fq-at">Non. Je suis un intermédiaire indépendant. Je ne vends pas de véhicules et je ne possède pas de stock. Mon rôle est d'accompagner vos démarches — achat ou vente — en agissant dans votre intérêt.</p></div>
-    </div>
-    <div class="fq">
-      <div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Quelle est votre zone d'intervention&nbsp;?</span><div class="fq-ic"></div></div>
-      <div class="fq-a"><p class="fq-at">J'interviens <strong>physiquement sur Rennes et ses alentours</strong>. Pour la recherche à l'achat, je travaille à distance sur les plateformes françaises et allemandes. Pour le dépôt-vente, le service est <strong>100&thinsp;% digital</strong>, sans contrainte géographique.</p></div>
-    </div>
-    <div class="fq">
-      <div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Comment se déroule la première prise de contact&nbsp;?</span><div class="fq-ic"></div></div>
-      <div class="fq-a"><p class="fq-at">Vous remplissez le formulaire de contact avec les informations disponibles. Je vous recontacte sous 24&thinsp;h pour un échange sur votre projet. Cet échange est gratuit et sans engagement.</p></div>
-    </div>
-    <div class="fq">
-      <div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Garantissez-vous la vente dans le cadre du dépôt-vente&nbsp;?</span><div class="fq-ic"></div></div>
-      <div class="fq-a"><p class="fq-at">Non. Je ne garantis pas la vente d'un véhicule. Je mets en place les conditions pour optimiser les chances de vendre dans de bonnes conditions&nbsp;: showroom virtuel, diffusion multiplateforme, filtrage des acheteurs. La décision finale appartient aux parties concernées.</p></div>
-    </div>
-    <div class="fq">
-      <div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Quel type de véhicules accompagnez-vous&nbsp;?</span><div class="fq-ic"></div></div>
-      <div class="fq-a"><p class="fq-at">J'accompagne des projets allant de véhicules d'entrée de gamme à des véhicules premium. Chaque projet est traité avec le même niveau d'attention, quel que soit le budget.</p></div>
-    </div>
+    <div class="fq"><div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Êtes-vous un garage ou un vendeur de véhicules&nbsp;?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">Non. Nous sommes un service de courtage automobile indépendant. Nous ne vendons pas de véhicules et n'en possédons aucun en stock. Notre rôle est d'accompagner votre projet d'achat ou de vente en agissant dans votre intérêt.</p></div></div>
+    <div class="fq"><div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Pourquoi importer depuis l'Allemagne plutôt qu'acheter en France&nbsp;?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">Le marché allemand offre un volume d'annonces bien supérieur au marché français, notamment sur le segment sportif et premium. Les véhicules sont souvent mieux équipés et les prix plus compétitifs à budget équivalent.</p></div></div>
+    <div class="fq"><div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Quelles sont les formalités d'importation&nbsp;?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">Nous gérons l'ensemble des démarches administratives liées à l'importation&nbsp;: quitus fiscal, demande d'immatriculation, conformité. Vous recevez votre véhicule prêt à être immatriculé en France.</p></div></div>
+    <div class="fq"><div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Garantissez-vous l'état du véhicule&nbsp;?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">Nous ne sommes pas un garage et ne délivrons pas de garantie mécanique. Nous vérifions l'historique, la cohérence du kilométrage et de l'annonce. Pour les sportives, une inspection mécanique par un professionnel agréé reste recommandée avant tout engagement.</p></div></div>
+    <div class="fq"><div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Quel est le délai pour un import&nbsp;?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">Nous répondons sous <strong>24&thinsp;h</strong> avec une première sélection. Le délai total, de la recherche à la livraison en France, varie selon la disponibilité des véhicules et les démarches administratives, généralement entre 2 et 5 semaines.</p></div></div>
   </div>
 </section>
 
 <!-- LEGAL -->
-<section id="mentions"><div style="padding:clamp(70px,10vw,120px) 6vw">
+<section id="mentions" style="display:none;"><div style="padding:clamp(70px,10vw,120px) 6vw">
   <div class="sec-label"><span class="sec-num">I</span><div class="sec-rule"></div><span class="sec-tag">1 / 3</span></div>
   <h2>Mentions<br><span class="dm">légales.</span></h2>
   <div class="m-grid">
     <div class="m-blk"><div class="m-n">Éditeur</div><div class="m-t">Identification</div><div class="m-tx"><strong>La Flamme De L'Automobile</strong> — Micro-entreprise<br><strong>Gérant :</strong> Ibrahim Victor<br><strong>SIRET :</strong> 101 249 837 00010<br><strong>Email :</strong> laflammedelautomobile@gmail.com<br><strong>Tél :</strong> 07 80 94 39 46 — Rennes, France 2026<br><strong>TVA :</strong> Non assujetti — Art. 293B CGI</div></div>
     <div class="m-blk"><div class="m-n">Hébergement</div><div class="m-t">Hébergeurs</div><div class="m-tx"><strong>IONOS SE</strong> — 7 place de la Gare, 57201 Sarreguemines<br><strong>GitHub Pages</strong> (Microsoft) — San Francisco, USA</div></div>
-    <div class="m-blk"><div class="m-n">Activité</div><div class="m-t">Nature</div><div class="m-tx">Courtier automobile indépendant. Ne vend pas de véhicules et n'est pas un garage. Recherche à l'achat (France et Allemagne) et dépôt-vente 100&thinsp;% digital.</div></div>
+    <div class="m-blk"><div class="m-n">Activité</div><div class="m-t">Nature</div><div class="m-tx">Service de courtage automobile indépendant, spécialisé dans l'import depuis l'Allemagne. Ne vend pas de véhicules et n'est pas un garage.</div></div>
     <div class="m-blk"><div class="m-n">Droit applicable</div><div class="m-t">Juridiction</div><div class="m-tx">Droit français. ODR : ec.europa.eu/consumers/odr</div></div>
   </div>
   <div class="l-nav"><span class="ll fw" onclick="showPage('confidentialite')">Confidentialité →</span><span class="ll fw" onclick="showPage('cgv')">CGV →</span><span class="ll bk" onclick="hideLegal()">← Retour</span></div>
 </div></section>
 
-<section id="confidentialite"><div style="padding:clamp(70px,10vw,120px) 6vw">
+<section id="confidentialite" style="display:none;"><div style="padding:clamp(70px,10vw,120px) 6vw">
   <div class="sec-label"><span class="sec-num">II</span><div class="sec-rule"></div><span class="sec-tag">2 / 3</span></div>
   <h2>Confidentialité.</h2>
   <div class="m-grid">
     <div class="m-blk"><div class="m-n">Responsable</div><div class="m-t">RGPD</div><div class="m-tx"><strong>Ibrahim Victor</strong> — laflammedelautomobile@gmail.com. Conforme au RGPD (UE 2016/679).</div></div>
     <div class="m-blk"><div class="m-n">Données</div><div class="m-t">Collectées</div><div class="m-tx">Formulaires : prénom, nom, email, téléphone, projet, budget. Aucune donnée bancaire collectée.</div></div>
     <div class="m-blk"><div class="m-n">Droits</div><div class="m-t">Vos droits</div><div class="m-tx">Accès, rectification, effacement, opposition. Contact : laflammedelautomobile@gmail.com — cnil.fr</div></div>
-    <div class="m-blk"><div class="m-n">Sécurité</div><div class="m-t">Protection</div><div class="m-tx">HTTPS/SSL. Aucun cookie publicitaire. Conservation des données : 3 ans maximum.</div></div>
+    <div class="m-blk"><div class="m-n">Sécurité</div><div class="m-t">Protection</div><div class="m-tx">HTTPS/SSL. Aucun cookie publicitaire. Conservation 3 ans maximum.</div></div>
   </div>
   <div class="l-nav"><span class="ll fw" onclick="showPage('mentions')">Mentions →</span><span class="ll fw" onclick="showPage('cgv')">CGV →</span><span class="ll bk" onclick="hideLegal()">← Retour</span></div>
 </div></section>
 
-<section id="cgv"><div style="padding:clamp(70px,10vw,120px) 6vw">
+<section id="cgv" style="display:none;"><div style="padding:clamp(70px,10vw,120px) 6vw">
   <div class="sec-label"><span class="sec-num">III</span><div class="sec-rule"></div><span class="sec-tag">3 / 3</span></div>
   <h2>Conditions générales.</h2>
   <div class="m-grid">
-    <div class="m-blk"><div class="m-n">Tarifs</div><div class="m-t">Sur devis</div><div class="m-tx">Les tarifs sont communiqués sur devis selon la nature et le niveau d'accompagnement souhaité. TVA non applicable — Art. 293B CGI.</div></div>
-    <div class="m-blk"><div class="m-n">Paiement</div><div class="m-t">Modalités</div><div class="m-tx">Virement bancaire, PayPal, Lydia. Paiement avant le démarrage de la prestation. Devis transmis avant tout engagement.</div></div>
+    <div class="m-blk"><div class="m-n">Tarifs</div><div class="m-t">Sur devis</div><div class="m-tx">Les tarifs sont communiqués sur devis selon la nature et le niveau d'accompagnement. TVA non applicable — Art. 293B CGI.</div></div>
+    <div class="m-blk"><div class="m-n">Paiement</div><div class="m-t">Modalités</div><div class="m-tx">Virement bancaire, PayPal, Lydia. Paiement avant le démarrage. Devis transmis avant tout engagement.</div></div>
     <div class="m-blk"><div class="m-n">Rétractation</div><div class="m-t">14 jours</div><div class="m-tx">Art. L.221-18 C. conso. : droit de rétractation de 14 jours calendaires.</div></div>
-    <div class="m-blk"><div class="m-n">Périmètre</div><div class="m-t">Limites</div><div class="m-tx">Service d'accompagnement et d'intermédiation. Ne garantit pas la vente d'un véhicule. Ne se substitue pas à une expertise mécanique professionnelle. v6.0 — 2026</div></div>
+    <div class="m-blk"><div class="m-n">Périmètre</div><div class="m-t">Limites</div><div class="m-tx">Service d'accompagnement et d'intermédiation. Ne garantit pas la vente. Ne se substitue pas à une expertise mécanique professionnelle. v6.0 — 2026</div></div>
   </div>
   <div class="l-nav"><span class="ll fw" onclick="showPage('mentions')">Mentions →</span><span class="ll fw" onclick="showPage('confidentialite')">Confidentialité →</span><span class="ll bk" onclick="hideLegal()">← Retour</span></div>
 </div></section>
 
 <footer>
   <div class="f-logo">La Flamme <em>De L'Automobile</em></div>
-  <div class="f-info">SIRET 101 249 837 00010 — Ibrahim Victor — Rennes, 2026</div>
+  <div class="f-socials">
+    <a href="https://instagram.com/laflammedelautomobile" target="_blank" class="f-soc">Instagram</a>
+    <a href="https://tiktok.com/@laflammedelautomobile" target="_blank" class="f-soc">TikTok</a>
+  </div>
   <div class="f-links">
     <span class="f-ml" onclick="showPage('mentions')">Mentions légales</span>
     <span class="f-ml" onclick="showPage('confidentialite')">Confidentialité</span>
@@ -895,21 +749,19 @@ footer { background: var(--w); border-top: 1px solid var(--b1); padding: 1.8rem 
 var ldDone = false;
 function closeLd() {
   if (ldDone) return; ldDone = true;
-  var ldb = document.getElementById('ldb');
-  var ldc = document.getElementById('ldc');
-  var ldl = document.getElementById('ldl'), ldr = document.getElementById('ldr'), ld = document.getElementById('ld');
-  if (ldb) ldb.style.width = '100%';
+  var b = document.getElementById('ldb'), c = document.getElementById('ldc');
+  var l = document.getElementById('ldl'), r = document.getElementById('ldr'), d = document.getElementById('ld');
+  if (b) b.style.width = '100%';
   setTimeout(function() {
-    if (ldc) { ldc.style.opacity = '0'; ldc.style.transition = 'opacity .35s'; }
+    if (c) { c.style.opacity = '0'; c.style.transition = 'opacity .35s'; }
     setTimeout(function() {
-      if (ldl) ldl.style.transform = 'translateX(-100%)';
-      if (ldr) ldr.style.transform = 'translateX(100%)';
-      setTimeout(function() { if (ld) ld.style.display = 'none'; animHero(); }, 1250);
+      if (l) l.style.transform = 'translateX(-100%)';
+      if (r) r.style.transform = 'translateX(100%)';
+      setTimeout(function() { if (d) d.style.display = 'none'; animHero(); }, 1250);
     }, 320);
   }, 200);
 }
-var ldP = 0;
-var ldIv = setInterval(function() {
+var ldP = 0, ldIv = setInterval(function() {
   ldP += Math.random() * 10 + 4;
   if (ldP >= 100) { ldP = 100; clearInterval(ldIv); closeLd(); return; }
   var b = document.getElementById('ldb'); if (b) b.style.width = ldP + '%';
@@ -924,9 +776,7 @@ function sh(id, d) {
     el.style.opacity = '1'; el.style.transform = 'none';
   }, d);
 }
-function animHero() {
-  sh('hw1', 0); sh('hw2', 140); sh('hw3', 280); sh('hsub', 420); sh('hmeta', 580);
-}
+function animHero() { sh('hw1',0); sh('hw2',140); sh('hw3',280); sh('hsub',420); sh('hmeta',580); }
 
 /* SCROLL */
 window.addEventListener('scroll', function() {
@@ -936,7 +786,7 @@ window.addEventListener('scroll', function() {
   revCheck();
 }, { passive: true });
 function revCheck() {
-  document.querySelectorAll('.rv, .rv2, .rv3, .rvl').forEach(function(el) {
+  document.querySelectorAll('.rv,.rv2,.rv3,.rvl').forEach(function(el) {
     if (el.getBoundingClientRect().top < window.innerHeight - 40) el.classList.add('in');
   });
 }
@@ -945,8 +795,7 @@ window.addEventListener('load', revCheck);
 
 /* FAQ */
 function fqT(btn) {
-  var item = btn.parentNode;
-  var open = item.className.indexOf('open') !== -1;
+  var item = btn.parentNode, open = item.className.indexOf('open') !== -1;
   document.querySelectorAll('.fq').forEach(function(f) { f.className = 'fq'; });
   if (!open) item.className = 'fq open';
 }
@@ -954,7 +803,7 @@ function fqT(btn) {
 /* NAV */
 function goTo(id) { var el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: 'smooth' }); }
 
-/* FORMULAIRE CONTACT — multi-étapes */
+/* FORMULAIRE CONTACT */
 var cStep = 1;
 function fStep(n) {
   if (n === 2) {
@@ -965,15 +814,14 @@ function fStep(n) {
   document.getElementById('fs' + cStep).classList.remove('active');
   cStep = n;
   document.getElementById('fs' + cStep).classList.add('active');
-  [1, 2, 3].forEach(function(i) {
+  [1,2,3].forEach(function(i) {
     var d = document.getElementById('fd' + i);
     d.className = 'f-dot' + (i === cStep ? ' act' : (i < cStep ? ' done' : ''));
   });
   document.getElementById('f-lbl').textContent = 'Étape ' + cStep + ' sur 3';
 }
 function sendContact() {
-  var p = document.getElementById('fp').value.trim();
-  var e = document.getElementById('fe').value.trim();
+  var p = document.getElementById('fp').value.trim(), e = document.getElementById('fe').value.trim();
   if (!p || !e) { alert('Renseignez votre prénom et votre email.'); return; }
   var btn = document.getElementById('fsubmit');
   btn.disabled = true; btn.textContent = 'Envoi…';
@@ -989,17 +837,14 @@ function sendContact() {
       document.getElementById('f-ok').style.display = 'block';
     } else {
       btn.disabled = false; btn.textContent = 'Envoyer';
-      alert('Erreur d\'envoi. Contactez directement : laflammedelautomobile@gmail.com');
+      alert('Erreur. Contactez : laflammedelautomobile@gmail.com');
     }
   };
-  xhr.onerror = function() {
-    btn.disabled = false; btn.textContent = 'Envoyer';
-    alert('Erreur réseau. Contactez : laflammedelautomobile@gmail.com');
-  };
+  xhr.onerror = function() { btn.disabled = false; btn.textContent = 'Envoyer'; alert('Erreur réseau.'); };
   xhr.send(JSON.stringify({
     _replyto: e,
-    _subject: '[La Flamme] Nouvelle demande achat — ' + p,
-    type: 'ACHAT',
+    _subject: '[La Flamme] Import — ' + p,
+    type: 'IMPORT',
     prenom: p, nom: document.getElementById('fn').value,
     email: e, telephone: document.getElementById('ftel').value,
     demande: document.getElementById('f-type').value,
@@ -1011,47 +856,38 @@ function sendContact() {
   }));
 }
 
-/* FORMULAIRE DÉPÔT-VENTE — multi-étapes */
-var dvStep_ = 1;
-var dvFiles = [];
+/* FORMULAIRE DÉPÔT-VENTE */
+var dvStep_ = 1, dvFiles = [];
 function dvStep(n) {
   if (n === 2) {
-    var p = document.getElementById('dvp').value.trim();
-    var e = document.getElementById('dve').value.trim();
+    var p = document.getElementById('dvp').value.trim(), e = document.getElementById('dve').value.trim();
     if (!p || !e) { alert('Renseignez votre prénom et votre email.'); return; }
   }
   document.getElementById('dvs' + dvStep_).classList.remove('active');
   dvStep_ = n;
   document.getElementById('dvs' + dvStep_).classList.add('active');
-  [1, 2, 3].forEach(function(i) {
+  [1,2,3].forEach(function(i) {
     var d = document.getElementById('dvd' + i);
     d.className = 'f-dot' + (i === dvStep_ ? ' act' : (i < dvStep_ ? ' done' : ''));
   });
   document.getElementById('dv-lbl').textContent = 'Étape ' + dvStep_ + ' sur 3';
 }
-function dvHandlePhotos(input) {
-  var added = Array.from(input.files);
-  dvFiles = dvFiles.concat(added).slice(0, 8);
-  var prev = document.getElementById('dv-preview');
-  var cnt = document.getElementById('dv-count');
+function dvPhotos(input) {
+  dvFiles = dvFiles.concat(Array.from(input.files)).slice(0, 8);
+  var prev = document.getElementById('dv-prev'), cnt = document.getElementById('dv-cnt');
   prev.innerHTML = '';
   dvFiles.forEach(function(f, i) {
-    var wrap = document.createElement('div'); wrap.className = 'dv-photo-thumb';
+    var w = document.createElement('div'); w.className = 'dv-thumb';
     var img = document.createElement('img'); img.src = URL.createObjectURL(f);
-    var del = document.createElement('button'); del.className = 'dv-photo-del';
-    del.textContent = '×';
-    del.onclick = function(e) {
-      e.stopPropagation(); dvFiles.splice(i, 1);
-      dvHandlePhotos({ files: [] });
-    };
-    wrap.appendChild(img); wrap.appendChild(del); prev.appendChild(wrap);
+    var del = document.createElement('button'); del.className = 'dv-del'; del.textContent = '×';
+    del.onclick = function(e) { e.stopPropagation(); dvFiles.splice(i,1); dvPhotos({files:[]}); };
+    w.appendChild(img); w.appendChild(del); prev.appendChild(w);
   });
   cnt.textContent = dvFiles.length > 0 ? dvFiles.length + ' photo(s) sélectionnée(s)' : '';
   input.value = '';
 }
 function dvSend() {
-  var p = document.getElementById('dvp').value.trim();
-  var e = document.getElementById('dve').value.trim();
+  var p = document.getElementById('dvp').value.trim(), e = document.getElementById('dve').value.trim();
   if (!p || !e) { alert('Renseignez votre prénom et votre email.'); return; }
   var btn = document.getElementById('dv-submit');
   btn.disabled = true; btn.textContent = 'Envoi…';
@@ -1069,59 +905,47 @@ function dvSend() {
     boite: document.getElementById('dv-boite').value,
     etat: document.getElementById('dv-etat').value,
     observations: document.getElementById('dv-obs').value,
-    photos: dvFiles.length + ' photo(s) jointe(s)'
+    photos: dvFiles.length + ' photo(s)'
   };
-  function onSuccess() {
+  function ok() {
     document.getElementById('dv-ind').style.display = 'none';
     ['dvs1','dvs2','dvs3'].forEach(function(s) { document.getElementById(s).classList.remove('active'); });
     document.getElementById('dv-ok').style.display = 'block';
   }
-  function onError() { btn.disabled = false; btn.textContent = 'Envoyer'; }
+  function err() { btn.disabled = false; btn.textContent = 'Envoyer'; }
   if (dvFiles.length > 0) {
     var fd = new FormData();
     Object.keys(data).forEach(function(k) { fd.append(k, data[k]); });
-    dvFiles.forEach(function(f, i) { fd.append('photo_' + (i + 1), f, f.name); });
+    dvFiles.forEach(function(f,i) { fd.append('photo_'+(i+1), f, f.name); });
     var xf = new XMLHttpRequest();
-    xf.open('POST', 'https://formspree.io/f/xaqpbblz', true);
-    xf.setRequestHeader('Accept', 'application/json');
-    xf.onreadystatechange = function() {
-      if (xf.readyState !== 4) return;
-      if (xf.status >= 200 && xf.status < 300) onSuccess();
-      else { alert('Erreur d\'envoi. Contactez : laflammedelautomobile@gmail.com'); onError(); }
-    };
-    xf.onerror = function() { alert('Erreur réseau. Contactez : laflammedelautomobile@gmail.com'); onError(); };
-    xf.send(fd);
+    xf.open('POST','https://formspree.io/f/xaqpbblz',true);
+    xf.setRequestHeader('Accept','application/json');
+    xf.onreadystatechange = function() { if(xf.readyState!==4)return; if(xf.status>=200&&xf.status<300)ok(); else err(); };
+    xf.onerror = err; xf.send(fd);
   } else {
     var xj = new XMLHttpRequest();
-    xj.open('POST', 'https://formspree.io/f/xaqpbblz', true);
-    xj.setRequestHeader('Content-Type', 'application/json');
-    xj.setRequestHeader('Accept', 'application/json');
-    xj.onreadystatechange = function() {
-      if (xj.readyState !== 4) return;
-      if (xj.status >= 200 && xj.status < 300) onSuccess();
-      else { alert('Erreur d\'envoi. Contactez : laflammedelautomobile@gmail.com'); onError(); }
-    };
-    xj.onerror = function() { alert('Erreur réseau. Contactez : laflammedelautomobile@gmail.com'); onError(); };
-    xj.send(JSON.stringify(data));
+    xj.open('POST','https://formspree.io/f/xaqpbblz',true);
+    xj.setRequestHeader('Content-Type','application/json');
+    xj.setRequestHeader('Accept','application/json');
+    xj.onreadystatechange = function() { if(xj.readyState!==4)return; if(xj.status>=200&&xj.status<300)ok(); else err(); };
+    xj.onerror = err; xj.send(JSON.stringify(data));
   }
 }
 
 /* LEGAL */
-var mIds = ['hero','services','vehicules','fonctionnement','engagements','cta-section','contact','depot-form','faq'];
+var mIds = ['hero','stats','pourquoi','services','vehicules','fonctionnement','cta-block','contact','depot-form','faq'];
 function showPage(id) {
-  mIds.forEach(function(s) { var el = document.getElementById(s); if (el) el.style.display = 'none'; });
-  document.querySelectorAll('.sep').forEach(function(el) { el.style.display = 'none'; });
-  ['mentions','confidentialite','cgv'].forEach(function(s) { var el = document.getElementById(s); if (el) el.style.display = 'none'; });
-  mIds.forEach(function(s) { var el = document.getElementById(s); if (el) el.style.removeProperty('display'); });
-  document.querySelectorAll('.sep').forEach(function(el) { el.style.removeProperty('display'); });
-  window.scrollTo(0, 0);
+  mIds.forEach(function(s) { var el=document.getElementById(s); if(el) el.style.display='none'; });
+  document.querySelectorAll('.sep').forEach(function(el) { el.style.display='none'; });
+  ['mentions','confidentialite','cgv'].forEach(function(s) { var el=document.getElementById(s); if(el) el.style.display='none'; });
+  var pg = document.getElementById(id); if(pg) pg.style.display='block';
+  window.scrollTo(0,0);
 }
-
 function hideLegal() {
-  ['mentions','confidentialite','cgv'].forEach(function(s) { var el = document.getElementById(s); if (el) el.style.display = 'none'; });
-  mIds.forEach(function(s) { var el = document.getElementById(s); if (el) el.style.removeProperty('display'); });
+  ['mentions','confidentialite','cgv'].forEach(function(s) { var el=document.getElementById(s); if(el) el.style.display='none'; });
+  mIds.forEach(function(s) { var el=document.getElementById(s); if(el) el.style.removeProperty('display'); });
   document.querySelectorAll('.sep').forEach(function(el) { el.style.removeProperty('display'); });
-  window.scrollTo(0, 0);
+  window.scrollTo(0,0);
 }
 </script>
 </body>
