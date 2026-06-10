@@ -269,6 +269,20 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
 .rv3 { opacity: 0; transform: translateY(18px); transition: opacity .9s .24s ease, transform .9s .24s ease; }
 .rvl { opacity: 0; transform: translateX(-14px); transition: opacity .9s ease, transform .9s ease; }
 .rv.in, .rv2.in, .rv3.in, .rvl.in { opacity: 1; transform: none; }
+
+/* TILT 3D */
+.tilt { transition: transform .55s cubic-bezier(.16,1,.3,1), box-shadow .55s; will-change: transform; }
+
+/* HERO CANVAS */
+#hero-cv { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.h-rule, h1, .h-sub, .h-meta, .h-ind { position: relative; z-index: 1; }
+
+/* PARALLAX */
+.h-word { will-change: transform; }
+
+/* STAT COUNTER */
+.st-n[data-count] { display: block; }
+
 </style>
 </head>
 <body>
@@ -298,7 +312,8 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
 </nav>
 
 <!-- HERO -->
-<section id="hero" style="position:relative;">
+<section id="hero" style="position:relative;overflow:hidden;">
+  <canvas id="hero-cv"></canvas>
   <div class="h-rule"></div>
   <h1>
     <span class="h-word" id="hw1">Votre véhicule,</span><br>
@@ -306,11 +321,11 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
     <span class="h-word" id="hw3"><em>d'Allemagne.</em></span>
   </h1>
   <p class="h-sub" id="hsub">
-    Courtier automobile indépendant, je source et importe des véhicules sportifs et premium directement depuis l'Allemagne. Un marché plus large, des équipements plus riches, des prix souvent inférieurs au marché français. Je gère tout, de la recherche à la livraison.
+    Spécialistes de l'import automobile depuis l'Allemagne, nous sourceons des véhicules sportifs et premium rarement disponibles sur le marché français. Un marché plus large, des équipements plus riches, des prix souvent inférieurs au marché français. Nous gérons tout, de la recherche à la livraison.
   </p>
   <div class="h-meta" id="hmeta">
     <button class="h-cta" onclick="goTo('contact')">Importer mon véhicule</button>
-    <span class="h-note">Sportives &amp; premium &mdash; Import Allemagne &mdash; France entière</span>
+    <span class="h-note">Sportives &amp; premium &mdash; Import Allemagne &mdash; Livraison France &amp; Europe</span>
   </div>
   <div class="h-ind">
     <div class="h-ind-l"></div>
@@ -324,7 +339,7 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
 <section id="stats">
   <div class="st-grid">
     <div class="st-c rv"><span class="st-n">DE</span><span class="st-l">Import direct depuis l'Allemagne</span></div>
-    <div class="st-c rv2"><span class="st-n">Sport</span><span class="st-l">Spécialisation — sportives &amp; premium</span></div>
+    <div class="st-c rv2"><span class="st-n">EU</span><span class="st-l">Livraison France &amp; Europe</span></div>
     <div class="st-c rv3"><span class="st-n">100&thinsp;%</span><span class="st-l">Indépendant — aucune affiliation</span></div>
     <div class="st-c rv3"><span class="st-n">24&thinsp;h</span><span class="st-l">Délai de réponse</span></div>
   </div>
@@ -339,18 +354,18 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
   <div class="pq-grid">
     <div class="pq-c rv">
       <span class="pq-n">01</span>
-      <div class="pq-t">Plus de choix</div>
-      <div class="pq-d">Le marché allemand est l'un des plus fournis d'Europe. Le volume d'annonces disponibles est sans commune mesure avec le marché français, notamment sur le segment sportif et premium.</div>
+      <div class="pq-t">Des véhicules introuvables en France</div>
+      <div class="pq-d">Le marché allemand est l'un des plus fournis d'Europe. Des configurations rares, des options spécifiques, des versions à faible diffusion que le marché français ne propose tout simplement pas.</div>
     </div>
     <div class="pq-c rv2">
       <span class="pq-n">02</span>
-      <div class="pq-t">Mieux équipés</div>
-      <div class="pq-d">Les véhicules commercialisés en Allemagne sont fréquemment mieux équipés à budget équivalent. Options, packs, finitions haut de gamme souvent inclus d'origine.</div>
+      <div class="pq-t">Bien mieux équipés</div>
+      <div class="pq-d">Les véhicules commercialisés en Allemagne embarquent fréquemment des packs et options haut de gamme absents des versions françaises équivalentes&nbsp;: pack M, freins céramique, sellerie sport, finitions premium incluses d'origine.</div>
     </div>
     <div class="pq-c rv3">
       <span class="pq-n">03</span>
-      <div class="pq-t">Prix compétitifs</div>
-      <div class="pq-d">L'écart de prix constaté entre les deux marchés permet, à véhicule équivalent, de réaliser une économie significative ou d'accéder à une version plus équipée pour le même budget.</div>
+      <div class="pq-t">Un accès privilégié au marché</div>
+      <div class="pq-d">Nous travaillons directement avec le marché allemand au quotidien. Cela nous permet d'identifier rapidement les opportunités, de réagir vite et de vous proposer des véhicules avant qu'ils ne disparaissent des annonces.</div>
     </div>
   </div>
 </section>
@@ -361,33 +376,27 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
 <section id="services" class="sec" style="background:var(--w2);">
   <div class="rvl">
     <div class="sec-label"><span class="sec-num">II</span><div class="sec-rule"></div><span class="sec-tag">Services</span></div>
-    <h2>Ce que<br><em>je propose.</em></h2>
+    <h2>Ce que<br><em>nous proposons.</em></h2>
   </div>
   <div class="srv-grid">
     <div class="srv rv">
       <span class="srv-n">01</span>
       <div class="srv-title">Import depuis l'Allemagne</div>
-      <p class="srv-text">Nous sourceons votre véhicule directement sur les plateformes allemandes (Mobile.de, AutoScout24.de), le vérifions, négocions et gérons l'ensemble des formalités jusqu'à la livraison en France. Vous n'avez rien à faire depuis la France.</p>
+      <p class="srv-text">Nous sourceons votre véhicule directement sur les plateformes allemandes (Mobile.de, AutoScout24.de)&nbsp;: versions bien équipées, configurations rares, modèles à forte demande. Nous vérifions, négocions et gérons l'ensemble des formalités jusqu'à la livraison, partout en France et en Europe.</p>
       <div class="srv-list">
         <div class="srv-li">Recherche ciblée sur les plateformes allemandes</div>
         <div class="srv-li">Vérification de l'historique, du kilométrage et de l'état annoncé</div>
         <div class="srv-li">Négociation directe avec le vendeur en Allemagne</div>
         <div class="srv-li">Gestion des formalités d'importation et d'immatriculation</div>
-        <div class="srv-li">Livraison du véhicule en France</div>
+        <div class="srv-li">Livraison partout en France et en Europe — sur plateau ou convoyage selon le véhicule</div>
       </div>
+      <p style="font-size:.7rem;font-weight:300;color:var(--g2);font-style:italic;margin-top:1.2rem;line-height:1.7;">Tous nos prix s'entendent hors carte grise. Le coût de livraison est variable selon la destination et le mode de transport. Nous estimons le coût de la carte grise selon votre région sur simple demande.</p>
       <button class="srv-cta" onclick="goTo('contact')">Démarrer mon import</button>
     </div>
     <div class="srv rv2">
       <span class="srv-n">02</span>
-      <div class="srv-title">Dépôt-vente digital</div>
-      <p class="srv-text">Vous souhaitez vendre votre véhicule sans en gérer les contraintes&nbsp;? Nous intervenons en tant qu'intermédiaire, 100&thinsp;% à distance. La transaction se conclut directement entre vous et l'acheteur.</p>
-      <div class="srv-list">
-        <div class="srv-li">Showroom virtuel — mise en valeur professionnelle du véhicule</div>
-        <div class="srv-li">Diffusion sur toutes les plateformes et réseaux sociaux</div>
-        <div class="srv-li">Filtrage et qualification des acheteurs sérieux</div>
-        <div class="srv-li">Gestion de l'ensemble des échanges</div>
-        <div class="srv-li">Accompagnement jusqu'à la conclusion de la vente</div>
-      </div>
+      <div class="srv-title">Dépôt-vente</div>
+      <p class="srv-text">Nous accompagnons également la vente de votre véhicule en tant qu'intermédiaire, 100&thinsp;% à distance. Mise en ligne, gestion des échanges, filtrage des acheteurs. La transaction se conclut directement entre vous et l'acheteur.</p>
       <button class="srv-cta" onclick="goTo('depot-form')">Soumettre mon véhicule</button>
     </div>
   </div>
@@ -402,7 +411,7 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
     <h2>Exemples de<br><em>véhicules importés.</em></h2>
   </div>
   <p style="font-size:.82rem;font-weight:300;color:var(--g);max-width:500px;line-height:1.95;margin-bottom:3.5rem;" class="rv">
-    Sportives et premium sourcées directement en Allemagne. Quelques modèles régulièrement disponibles sur le marché allemand.
+    Sportives et premium sourcées directement en Allemagne. Des configurations bien équipées et des versions à diffusion limitée, régulièrement disponibles sur le marché allemand.
   </p>
   <div class="veh-grid">
     <div class="veh-c rv">
@@ -433,11 +442,14 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
       <div class="veh-label">Autres</div>
       <div class="veh-list" style="margin-top:.8rem;">
         <div class="veh-item"><strong>Porsche Boxster / Cayman</strong></div>
-        <div class="veh-item"><strong>Audi RS4 Avant</strong></div>
-        <div class="veh-item"><strong>BMW M3 Touring</strong></div>
+        <div class="veh-item"><strong>Audi RS6 Avant</strong></div>
+        <div class="veh-item"><strong>Mercedes-AMG C 63 SE</strong></div>
       </div>
       <p style="font-size:.68rem;font-weight:300;color:var(--g2);font-style:italic;margin-top:1rem;">Tout véhicule sur ce segment peut faire l'objet d'une demande.</p>
     </div>
+  </div>
+  <div style="margin-top:2.5rem;padding:1.6rem 2rem;border:1px solid var(--b1);border-left:2px solid var(--g3);max-width:min(640px,100%);" class="rv">
+    <p style="font-size:.76rem;font-weight:300;color:var(--g);line-height:1.9;">Des véhicules plus accessibles peuvent également être étudiés selon votre projet — Peugeot 5008, Hyundai Tucson, Volvo V60 et autres modèles familiaux ou SUV polyvalents. N'hésitez pas à nous soumettre votre demande, nous l'examinons sans engagement.</p>
   </div>
 </section>
 
@@ -464,7 +476,7 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
     </div>
     <div class="fn-step rv">
       <div class="fn-n">04</div>
-      <div class="fn-b"><div class="fn-t">Livraison en France</div><div class="fn-d">Le véhicule est livré en France, prêt à immatriculer. Nous restons disponibles jusqu'à la remise des clés.</div></div>
+      <div class="fn-b"><div class="fn-t">Livraison en France</div><div class="fn-d">Le véhicule est livré partout en France et en Europe, prêt à immatriculer. Nous restons disponibles jusqu'à la remise des clés.</div></div>
     </div>
   </div>
 </section>
@@ -476,7 +488,7 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
   <div class="cta-in">
     <div class="cta-label rvl">Un projet en tête&nbsp;?</div>
     <h2 class="cta-h rvl">Importez votre<br><em>prochain véhicule.</em></h2>
-    <p class="cta-text rv">Nous revenons vers vous sous 24&thinsp;h avec une première sélection de véhicules disponibles en Allemagne. L'échange initial est gratuit et sans engagement.</p>
+    <p class="cta-text rv">Nous revenons vers vous sous 24&thinsp;h avec une première sélection. Livraison partout en France et en Europe. Échange initial gratuit et sans engagement.</p>
     <div class="rv2"><button class="cta-btn" onclick="goTo('contact')">Démarrer mon projet</button></div>
   </div>
 </section>
@@ -491,14 +503,18 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
   </div>
   <div class="ct-lay">
     <div>
-      <p class="ct-sub rv">Remplissez ce formulaire. Nous revenons vers vous sous 24&thinsp;h avec une première approche et, si possible, des véhicules disponibles en Allemagne.</p>
+      <p class="ct-sub rv">Remplissez ce formulaire. Nous revenons vers vous sous 24&thinsp;h avec une première sélection de véhicules disponibles en Allemagne.</p>
       <div class="ct-row rv"><div class="ct-ico">@</div><div><div class="ct-lbl">Email</div><div class="ct-val">laflammedelautomobile@gmail.com</div></div></div>
       <div class="ct-row rv"><div class="ct-ico">#</div><div><div class="ct-lbl">Téléphone</div><div class="ct-val">07 80 94 39 46</div></div></div>
       <div class="ct-row rv"><div class="ct-ico">IG</div><div><div class="ct-lbl">Instagram</div><div class="ct-val"><a href="https://instagram.com/laflammedelautomobile" target="_blank">@laflammedelautomobile</a></div></div></div>
       <div class="ct-row rv"><div class="ct-ico">TK</div><div><div class="ct-lbl">TikTok</div><div class="ct-val"><a href="https://tiktok.com/@laflammedelautomobile" target="_blank">@laflammedelautomobile</a></div></div></div>
       <div class="ct-note rv2">
         <div class="ct-note-t">Zone d'intervention</div>
-        <div class="ct-note-d">Import depuis l'Allemagne pour toute la France. Dépôt-vente 100&thinsp;% digital, sans contrainte géographique. Livraison possible partout en France.</div>
+        <div class="ct-note-d">Import depuis l'Allemagne avec livraison partout en France et en Europe. Dépôt-vente 100&thinsp;% digital, sans contrainte géographique.</div>
+      </div>
+      <div class="ct-note rv3" style="margin-top:1rem;border-left-color:var(--g3);">
+        <div class="ct-note-t" style="font-size:.78rem;color:var(--g);">À noter</div>
+        <div class="ct-note-d">Tous nos prix s'entendent <strong>hors carte grise</strong>. Le coût de livraison dépend du lieu de destination et du mode de transport (plateau, convoyage). Nous pouvons vous estimer le coût de la carte grise selon votre région — contactez-nous.</div>
       </div>
     </div>
     <div class="rv2">
@@ -537,7 +553,7 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
               <option>Berline sportive (M3, AMG C, S4…)</option>
               <option>SUV sportif (Macan, GLC 43, SQ5…)</option>
               <option>Coupé / Cabriolet (M4, TT RS, Boxster…)</option>
-              <option>Break sportif (RS4, M3 Touring…)</option>
+              <option>Break sportif (RS6, C 63 SE…)</option>
               <option>Autre — à préciser</option>
             </select>
           </div>
@@ -562,9 +578,9 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
           <div class="ff"><label>Avez-vous des annonces en tête&nbsp;?</label>
             <select id="f-annonce">
               <option value="">Sélectionnez…</option>
-              <option>Non, je pars de zéro</option>
-              <option>Oui, j'ai des pistes</option>
-              <option>Oui, j'ai une annonce précise</option>
+              <option>Pas encore — partir de zéro</option>
+              <option>Quelques pistes identifiées</option>
+              <option>Une annonce précise en tête</option>
             </select>
           </div>
           <div class="f-nav">
@@ -687,10 +703,12 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
   </div>
   <div class="fq-wrap rv">
     <div class="fq"><div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Êtes-vous un garage ou un vendeur de véhicules&nbsp;?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">Non. Nous sommes un service de courtage automobile indépendant. Nous ne vendons pas de véhicules et n'en possédons aucun en stock. Notre rôle est d'accompagner votre projet d'achat ou de vente en agissant dans votre intérêt.</p></div></div>
-    <div class="fq"><div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Pourquoi importer depuis l'Allemagne plutôt qu'acheter en France&nbsp;?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">Le marché allemand offre un volume d'annonces bien supérieur au marché français, notamment sur le segment sportif et premium. Les véhicules sont souvent mieux équipés et les prix plus compétitifs à budget équivalent.</p></div></div>
+    <div class="fq"><div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Pourquoi importer depuis l'Allemagne plutôt qu'acheter en France&nbsp;?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">Le marché allemand offre un volume d'annonces bien supérieur au marché français sur le segment sportif et premium. Les véhicules y sont plus équipés et des configurations introuvables en France sont régulièrement disponibles.</p></div></div>
     <div class="fq"><div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Quelles sont les formalités d'importation&nbsp;?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">Nous gérons l'ensemble des démarches administratives liées à l'importation&nbsp;: quitus fiscal, demande d'immatriculation, conformité. Vous recevez votre véhicule prêt à être immatriculé en France.</p></div></div>
     <div class="fq"><div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Garantissez-vous l'état du véhicule&nbsp;?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">Nous ne sommes pas un garage et ne délivrons pas de garantie mécanique. Nous vérifions l'historique, la cohérence du kilométrage et de l'annonce. Pour les sportives, une inspection mécanique par un professionnel agréé reste recommandée avant tout engagement.</p></div></div>
     <div class="fq"><div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Quel est le délai pour un import&nbsp;?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">Nous répondons sous <strong>24&thinsp;h</strong> avec une première sélection. Le délai total, de la recherche à la livraison en France, varie selon la disponibilité des véhicules et les démarches administratives, généralement entre 2 et 5 semaines.</p></div></div>
+    <div class="fq"><div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Comment est calculé le prix de livraison&nbsp;?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">Le coût de livraison dépend du lieu de destination et du mode de transport choisi. Un acheminement sur plateau fermé — recommandé pour les sportives — n'a pas le même tarif qu'un convoyage routier classique. Nous vous communiquons le détail au moment du devis. <strong>Tous nos prix s'entendent hors carte grise.</strong></p></div></div>
+    <div class="fq"><div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Pourquoi les prix sont-ils indiqués sans carte grise&nbsp;?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">Le coût de la carte grise est fixé par les régions et varie donc d'un département à l'autre. <strong>Tous les tarifs communiqués sont systématiquement hors carte grise.</strong> Nous pouvons vous en faire une estimation — il vous suffit de nous contacter.</p></div></div>
   </div>
 </section>
 
@@ -701,7 +719,7 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
   <div class="m-grid">
     <div class="m-blk"><div class="m-n">Éditeur</div><div class="m-t">Identification</div><div class="m-tx"><strong>La Flamme De L'Automobile</strong> — Micro-entreprise<br><strong>Gérant :</strong> Ibrahim Victor<br><strong>SIRET :</strong> 101 249 837 00010<br><strong>Email :</strong> laflammedelautomobile@gmail.com<br><strong>Tél :</strong> 07 80 94 39 46 — Rennes, France 2026<br><strong>TVA :</strong> Non assujetti — Art. 293B CGI</div></div>
     <div class="m-blk"><div class="m-n">Hébergement</div><div class="m-t">Hébergeurs</div><div class="m-tx"><strong>IONOS SE</strong> — 7 place de la Gare, 57201 Sarreguemines<br><strong>GitHub Pages</strong> (Microsoft) — San Francisco, USA</div></div>
-    <div class="m-blk"><div class="m-n">Activité</div><div class="m-t">Nature</div><div class="m-tx">Service de courtage automobile indépendant, spécialisé dans l'import depuis l'Allemagne. Ne vend pas de véhicules et n'est pas un garage.</div></div>
+    <div class="m-blk"><div class="m-n">Activité</div><div class="m-t">Nature</div><div class="m-tx">Service de courtage automobile indépendant, spécialisé dans l'import depuis l'Allemagne. Livraison France et Europe. Ne vend pas de véhicules et n'est pas un garage.</div></div>
     <div class="m-blk"><div class="m-n">Droit applicable</div><div class="m-t">Juridiction</div><div class="m-tx">Droit français. ODR : ec.europa.eu/consumers/odr</div></div>
   </div>
   <div class="l-nav"><span class="ll fw" onclick="showPage('confidentialite')">Confidentialité →</span><span class="ll fw" onclick="showPage('cgv')">CGV →</span><span class="ll bk" onclick="hideLegal()">← Retour</span></div>
@@ -736,6 +754,7 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
   <div class="f-socials">
     <a href="https://instagram.com/laflammedelautomobile" target="_blank" class="f-soc">Instagram</a>
     <a href="https://tiktok.com/@laflammedelautomobile" target="_blank" class="f-soc">TikTok</a>
+    <a href="https://wa.me/33780943946" target="_blank" class="f-soc">WhatsApp</a>
   </div>
   <div class="f-links">
     <span class="f-ml" onclick="showPage('mentions')">Mentions légales</span>
@@ -744,6 +763,7 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 /* LOADER */
 var ldDone = false;
@@ -947,6 +967,106 @@ function hideLegal() {
   document.querySelectorAll('.sep').forEach(function(el) { el.style.removeProperty('display'); });
   window.scrollTo(0,0);
 }
+
+/* ── THREE.JS HERO — particules fil de fer ── */
+(function() {
+  if (typeof THREE === 'undefined') return;
+  var cv = document.getElementById('hero-cv');
+  if (!cv) return;
+  var W = window.innerWidth, H = cv.parentElement.offsetHeight || window.innerHeight;
+  cv.width = W; cv.height = H;
+  var S = new THREE.Scene();
+  var CAM = new THREE.PerspectiveCamera(65, W/H, .1, 800);
+  CAM.position.z = 6;
+  var REN = new THREE.WebGLRenderer({canvas: cv, antialias: true, alpha: true});
+  REN.setSize(W, H);
+  REN.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+  REN.setClearColor(0x000000, 0);
+
+  var K = 0x0a0a0a;
+  function wire(geo, op, px, py, pz) {
+    var m = new THREE.LineSegments(
+      new THREE.EdgesGeometry(geo),
+      new THREE.LineBasicMaterial({color: K, transparent: true, opacity: op})
+    );
+    m.position.set(px||0, py||0, pz||0);
+    S.add(m); return m;
+  }
+
+  var ico  = wire(new THREE.IcosahedronGeometry(1.8, 1), .07,  3.2,  .6, -1.5);
+  var oct  = wire(new THREE.OctahedronGeometry(1.3),     .05, -3.5,  .8, -2);
+  var dod  = wire(new THREE.DodecahedronGeometry(1),     .04,  .5, -1.8, -2.5);
+
+  var tor1 = new THREE.Mesh(
+    new THREE.TorusGeometry(3.8, .006, 6, 100),
+    new THREE.MeshBasicMaterial({color: K, transparent: true, opacity: .04})
+  ); S.add(tor1);
+  var tor2 = new THREE.Mesh(
+    new THREE.TorusGeometry(5.8, .004, 6, 80),
+    new THREE.MeshBasicMaterial({color: K, transparent: true, opacity: .025})
+  ); tor2.rotation.x = 1.1; S.add(tor2);
+
+  var N = 900, pp = new Float32Array(N*3);
+  for (var i = 0; i < N; i++) {
+    pp[i*3]   = (Math.random()-.5)*20;
+    pp[i*3+1] = (Math.random()-.5)*18;
+    pp[i*3+2] = (Math.random()-.5)*8;
+  }
+  var pg = new THREE.BufferGeometry();
+  pg.setAttribute('position', new THREE.BufferAttribute(pp, 3));
+  var pts = new THREE.Points(pg, new THREE.PointsMaterial({
+    size: .028, color: K, transparent: true, opacity: .15
+  }));
+  S.add(pts);
+
+  var mx = 0, my = 0, T = 0;
+  document.addEventListener('mousemove', function(e) {
+    mx = (e.clientX / window.innerWidth  - .5) * .3;
+    my = (e.clientY / window.innerHeight - .5) * .22;
+  }, {passive: true});
+
+  (function loop() {
+    requestAnimationFrame(loop); T += .004;
+    ico.rotation.y  = T*.14 + mx*.012; ico.rotation.x  = T*.09 + my*.01;
+    oct.rotation.y  = -T*.11;          oct.rotation.z  = T*.07 + mx*.01;
+    dod.rotation.x  = T*.1;            dod.rotation.y  = T*.07;
+    tor1.rotation.z = T*.07;           tor1.rotation.x = T*.04 + my*.012;
+    tor2.rotation.z = -T*.05;          tor2.rotation.y = T*.03 + mx*.01;
+    pts.rotation.y  = T*.04 + mx*.007;
+    REN.render(S, CAM);
+  })();
+
+  window.addEventListener('resize', function() {
+    W = window.innerWidth; H = cv.parentElement.offsetHeight || window.innerHeight;
+    CAM.aspect = W/H; CAM.updateProjectionMatrix(); REN.setSize(W, H);
+  });
+})();
+
+/* ── TILT 3D sur cartes ── */
+document.querySelectorAll('.pq-c, .srv, .veh-c, .fn-step').forEach(function(card) {
+  card.classList.add('tilt');
+  card.addEventListener('mousemove', function(e) {
+    var r = card.getBoundingClientRect();
+    var x = (e.clientX - r.left) / r.width  - .5;
+    var y = (e.clientY - r.top)  / r.height - .5;
+    card.style.transform = 'rotateY('+(x*9)+'deg) rotateX('+(-y*6)+'deg) translateZ(4px)';
+    card.style.boxShadow = (-x*18)+'px '+(-y*12)+'px 40px rgba(10,10,10,.1)';
+  });
+  card.addEventListener('mouseleave', function() {
+    card.style.transform = '';
+    card.style.boxShadow = '';
+  });
+});
+
+/* ── PARALLAXE HERO ── */
+window.addEventListener('scroll', function() {
+  var y = window.pageYOffset;
+  ['hw1','hw2','hw3'].forEach(function(id, i) {
+    var el = document.getElementById(id);
+    if (el) el.style.transform = 'translateY(' + (y * (.04 + i*.025)) + 'px)';
+  });
+}, {passive: true});
+
 </script>
 </body>
 </html>
