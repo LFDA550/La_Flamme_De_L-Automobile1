@@ -845,35 +845,40 @@ function sendContact() {
   if (!p || !e) { alert('Renseignez votre prénom et votre email.'); return; }
   var btn = document.getElementById('fsubmit');
   btn.disabled = true; btn.textContent = 'Envoi…';
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'https://formspree.io/f/xaqpbblz', true);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.setRequestHeader('Accept', 'application/json');
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState !== 4) return;
-    if (xhr.status >= 200 && xhr.status < 300) {
+  fetch('https://formspree.io/f/xaqpbblz', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      _replyto: e,
+      _subject: '[La Flamme] Import — ' + p,
+      type: 'IMPORT',
+      prenom: p, nom: document.getElementById('fn').value,
+      email: e, telephone: document.getElementById('ftel').value,
+      demande: document.getElementById('f-type').value,
+      vehicule: document.getElementById('f-veh').value,
+      budget: document.getElementById('f-budget').value,
+      delai: document.getElementById('f-delai').value,
+      message: document.getElementById('f-msg').value,
+      annonce: document.getElementById('f-annonce').value
+    })
+  })
+  .then(function(res) {
+    if (res.ok) {
       document.getElementById('f-ind').style.display = 'none';
       ['fs1','fs2','fs3'].forEach(function(s) { document.getElementById(s).classList.remove('active'); });
       document.getElementById('f-ok').style.display = 'block';
     } else {
-      btn.disabled = false; btn.textContent = 'Envoyer';
-      alert('Erreur. Contactez : laflammedelautomobile@gmail.com');
+      return res.json().then(function(d) { throw new Error(d.error || res.status); });
     }
-  };
-  xhr.onerror = function() { btn.disabled = false; btn.textContent = 'Envoyer'; alert('Erreur réseau.'); };
-  xhr.send(JSON.stringify({
-    _replyto: e,
-    _subject: '[La Flamme] Import — ' + p,
-    type: 'IMPORT',
-    prenom: p, nom: document.getElementById('fn').value,
-    email: e, telephone: document.getElementById('ftel').value,
-    demande: document.getElementById('f-type').value,
-    vehicule: document.getElementById('f-veh').value,
-    budget: document.getElementById('f-budget').value,
-    delai: document.getElementById('f-delai').value,
-    message: document.getElementById('f-msg').value,
-    annonce: document.getElementById('f-annonce').value
-  }));
+  })
+  .catch(function(err) {
+    btn.disabled = false; btn.textContent = 'Envoyer';
+    console.error('Formspree:', err);
+    document.getElementById('f-ok').innerHTML = '<p style="font-size:.78rem;color:var(--g);line-height:1.8;">Une erreur est survenue. Contactez-nous directement :<br><strong>laflammedelautomobile@gmail.com</strong><br>ou via WhatsApp : <strong>07 80 94 39 46</strong></p>';
+    document.getElementById('f-ok').style.display = 'block';
+    document.getElementById('f-ind').style.display = 'none';
+    ['fs1','fs2','fs3'].forEach(function(s) { document.getElementById(s).classList.remove('active'); });
+  });
 }
 
 /* FORMULAIRE DÉPÔT-VENTE */
@@ -937,18 +942,17 @@ function dvSend() {
     var fd = new FormData();
     Object.keys(data).forEach(function(k) { fd.append(k, data[k]); });
     dvFiles.forEach(function(f,i) { fd.append('photo_'+(i+1), f, f.name); });
-    var xf = new XMLHttpRequest();
-    xf.open('POST','https://formspree.io/f/xaqpbblz',true);
-    xf.setRequestHeader('Accept','application/json');
-    xf.onreadystatechange = function() { if(xf.readyState!==4)return; if(xf.status>=200&&xf.status<300)ok(); else err(); };
-    xf.onerror = err; xf.send(fd);
+    fetch('https://formspree.io/f/xaqpbblz', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: fd
+    }).then(function(r) { if(r.ok) ok(); else err(); }).catch(err);
   } else {
-    var xj = new XMLHttpRequest();
-    xj.open('POST','https://formspree.io/f/xaqpbblz',true);
-    xj.setRequestHeader('Content-Type','application/json');
-    xj.setRequestHeader('Accept','application/json');
-    xj.onreadystatechange = function() { if(xj.readyState!==4)return; if(xj.status>=200&&xj.status<300)ok(); else err(); };
-    xj.onerror = err; xj.send(JSON.stringify(data));
+    fetch('https://formspree.io/f/xaqpbblz', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(function(r) { if(r.ok) ok(); else err(); }).catch(err);
   }
 }
 
