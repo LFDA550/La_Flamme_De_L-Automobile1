@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dépôt-Vente — La Flamme De L'Automobile</title>
+<meta name="description" content="Vendez votre véhicule sans effort. Showroom virtuel, diffusion multiplateforme, filtrage acheteurs. 100% digital. Garantie transport. La Flamme De L'Automobile.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Albert+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { overflow-x: hidden; scroll-behavior: smooth; }
+:root {
+  --w:#f0ece4; --w2:#e8e3da; --w3:#ddd7cc;
+  --k:#0a0a0a; --k2:#1c1c1c; --k3:#2d2d2d;
+  --g:#4a4a4a; --g2:#7a7570; --g3:#b8b3ac;
+  --b1:rgba(10,10,10,.12); --b2:rgba(10,10,10,.07); --b3:rgba(10,10,10,.20);
+}
+body { background:var(--w); color:var(--k); font-family:'Albert Sans',sans-serif; font-weight:300; overflow-x:hidden; }
+#sp { position:fixed; top:0; left:0; height:1px; width:0%; background:var(--k); opacity:.18; z-index:900; }
+
+/* NAV */
+nav { position:fixed; top:0; left:0; right:0; z-index:700; padding:1.8rem 6vw; display:flex; align-items:center; justify-content:space-between; transition:all .5s; }
+nav.sc { background:rgba(240,236,228,.96); backdrop-filter:blur(20px); padding:1rem 6vw; border-bottom:1px solid var(--b1); }
+.n-logo { font-family:'Playfair Display',serif; font-size:.88rem; letter-spacing:.18em; text-transform:uppercase; color:var(--k); text-decoration:none; }
+.n-logo em { font-style:italic; color:var(--g2); }
+.n-links { display:flex; align-items:center; gap:2.5rem; }
+.n-lk { font-size:.52rem; font-weight:300; letter-spacing:.22em; text-transform:uppercase; color:var(--g); text-decoration:none; transition:color .3s; display:none; }
+@media(min-width:720px){.n-lk{display:block;}}
+.n-lk:hover { color:var(--k); }
+.n-lk.act { color:var(--k); border-bottom:1px solid var(--k); padding-bottom:.1rem; }
+.n-cta { font-family:'Albert Sans',sans-serif; font-size:.52rem; font-weight:400; letter-spacing:.18em; text-transform:uppercase; color:var(--w); background:var(--k); border:none; padding:.55rem 1.6rem; cursor:pointer; transition:background .3s; text-decoration:none; display:inline-block; }
+.n-cta:hover { background:var(--k3); }
+
+/* HERO */
+#hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding:clamp(7rem,14vw,11rem) 6vw clamp(5rem,10vw,8rem); position:relative; background:var(--k); overflow:hidden; }
+.h-grain { position:absolute; inset:0; z-index:0; pointer-events:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E"); opacity:.5; mix-blend-mode:overlay; }
+.h-inner { position:relative; z-index:1; }
+.h-brand { font-size:.46rem; font-weight:400; letter-spacing:.42em; text-transform:uppercase; color:rgba(240,236,228,.28); margin-bottom:2rem; opacity:0; animation:fi .9s .2s ease forwards; }
+@keyframes fi { to { opacity:1; } }
+h1 { font-family:'Playfair Display',serif; font-size:clamp(2.8rem,7vw,7rem); font-weight:400; line-height:.88; letter-spacing:-.01em; color:var(--w); max-width:min(820px,100%); margin-bottom:2.5rem; }
+h1 em { font-style:italic; color:rgba(240,236,228,.35); }
+.h-word { display:inline-block; opacity:0; transform:translateY(22px); }
+.h-sub { font-size:clamp(.82rem,1.1vw,.96rem); font-weight:300; color:rgba(240,236,228,.45); max-width:min(480px,100%); line-height:2; margin-bottom:3rem; opacity:0; }
+.h-meta { display:flex; align-items:center; gap:2rem; flex-wrap:wrap; opacity:0; }
+.h-cta { font-family:'Albert Sans',sans-serif; font-size:.56rem; font-weight:400; letter-spacing:.2em; text-transform:uppercase; color:var(--k); background:var(--w); border:none; padding:.9rem 2.4rem; cursor:pointer; transition:all .3s; position:relative; overflow:hidden; }
+.h-cta::after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent); transform:translateX(-100%); transition:transform .5s; }
+.h-cta:hover::after { transform:translateX(100%); }
+.h-cta:hover { background:var(--w2); transform:translateY(-1px); }
+.h-note { font-family:'Playfair Display',serif; font-style:italic; font-size:.82rem; color:rgba(240,236,228,.25); }
+.h-ind { position:absolute; bottom:clamp(2.5rem,4vw,4rem); right:6vw; z-index:1; display:flex; flex-direction:column; align-items:center; gap:.5rem; opacity:0; animation:fi .8s 3.4s ease forwards; }
+.h-ind-l { width:1px; height:40px; background:linear-gradient(to bottom,rgba(240,236,228,.3),transparent); animation:ip 2.2s ease-in-out infinite; }
+@keyframes ip{0%,100%{opacity:.1;}50%{opacity:.4;}}
+.h-ind-t { font-size:.35rem; letter-spacing:.45em; text-transform:uppercase; color:rgba(240,236,228,.2); }
+
+/* STATS */
+#stats { background:var(--w); border-bottom:1px solid var(--b1); }
+.st-grid { display:grid; grid-template-columns:repeat(4,1fr); }
+@media(max-width:600px){.st-grid{grid-template-columns:repeat(2,1fr);}}
+.st-c { padding:clamp(2rem,4.5vw,3.5rem) clamp(1.5rem,3vw,2.5rem); border-right:1px solid var(--b1); transition:background .4s; }
+.st-c:last-child{border-right:none;}
+.st-c:hover{background:var(--w2);}
+.st-n { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,4vw,3rem); font-weight:400; color:var(--k); line-height:1; display:block; }
+.st-l { font-size:.46rem; font-weight:300; letter-spacing:.22em; text-transform:uppercase; color:var(--g2); margin-top:.5rem; display:block; }
+
+/* SECTION */
+.sec { padding:clamp(80px,11vw,140px) 6vw; }
+.sec-label { display:flex; align-items:center; gap:1rem; margin-bottom:.6rem; }
+.sec-num { font-family:'Playfair Display',serif; font-style:italic; font-size:.7rem; color:var(--g3); letter-spacing:.12em; }
+.sec-rule { width:22px; height:1px; background:var(--g3); }
+.sec-tag { font-size:.46rem; font-weight:400; letter-spacing:.38em; text-transform:uppercase; color:var(--g2); }
+h2 { font-family:'Playfair Display',serif; font-size:clamp(2rem,5vw,5rem); font-weight:400; line-height:.92; letter-spacing:-.01em; color:var(--k); margin-bottom:clamp(3rem,5vw,5rem); }
+h2 em { font-style:italic; color:var(--g2); }
+h2 .dm { color:var(--g3); }
+
+/* POURQUOI */
+#pourquoi { background:var(--w2); }
+.pq-grid { display:grid; grid-template-columns:1fr; gap:1px; background:var(--b1); }
+@media(min-width:700px){.pq-grid{grid-template-columns:repeat(3,1fr);}}
+.pq-c { background:var(--w2); padding:2.8rem; transition:background .4s; }
+.pq-c:hover{background:var(--w);}
+.pq-n { font-family:'Playfair Display',serif; font-style:italic; font-size:3.5rem; color:rgba(10,10,10,.06); line-height:1; margin-bottom:1.2rem; display:block; transition:color .4s; }
+.pq-c:hover .pq-n{color:rgba(10,10,10,.14);}
+.pq-t { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--k); margin-bottom:.8rem; }
+.pq-d { font-size:.78rem; font-weight:300; color:var(--g); line-height:1.9; }
+
+/* COMMENT */
+#comment { background:var(--w); }
+.cm-steps { max-width:min(620px,100%); }
+.cm-step { display:flex; gap:2rem; padding:2.2rem 0; border-bottom:1px solid var(--b1); transition:padding .35s; }
+.cm-step:last-child{border-bottom:none;}
+.cm-step:hover{padding-left:.5rem;}
+.cm-n { font-family:'Playfair Display',serif; font-style:italic; font-size:3.5rem; color:rgba(10,10,10,.07); line-height:1; flex-shrink:0; width:52px; transition:color .4s; }
+.cm-step:hover .cm-n{color:rgba(10,10,10,.18);}
+.cm-b { flex:1; padding-top:.3rem; }
+.cm-t { font-size:.9rem; font-weight:400; color:var(--k); margin-bottom:.35rem; }
+.cm-d { font-size:.76rem; font-weight:300; color:var(--g); line-height:1.85; }
+
+/* INCLUS */
+#inclus { background:var(--w2); }
+.inc-grid { display:grid; grid-template-columns:1fr; gap:1px; background:var(--b1); }
+@media(min-width:600px){.inc-grid{grid-template-columns:1fr 1fr;}}
+@media(min-width:900px){.inc-grid{grid-template-columns:repeat(3,1fr);}}
+.inc-c { background:var(--w2); padding:2.5rem; transition:background .4s; position:relative; overflow:hidden; }
+.inc-c:hover{background:var(--w);}
+.inc-c::before { content:''; position:absolute; top:0; left:0; width:1px; height:0; background:var(--k); opacity:.2; transition:height .5s; }
+.inc-c:hover::before{height:100%;}
+.inc-ic { font-size:1.4rem; margin-bottom:1.1rem; display:block; opacity:.55; }
+.inc-t { font-family:'Playfair Display',serif; font-size:1rem; color:var(--k); margin-bottom:.5rem; }
+.inc-d { font-size:.76rem; font-weight:300; color:var(--g); line-height:1.85; }
+
+/* GARANTIES */
+#garanties { background:var(--k); }
+.ga-grid { display:grid; grid-template-columns:1fr; gap:1px; background:rgba(240,236,228,.08); }
+@media(min-width:700px){.ga-grid{grid-template-columns:1fr 1fr;}}
+.ga-c { padding:2.8rem; }
+.ga-n { font-family:'Playfair Display',serif; font-style:italic; font-size:.7rem; color:rgba(240,236,228,.2); letter-spacing:.15em; margin-bottom:.8rem; }
+.ga-t { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--w); margin-bottom:.7rem; }
+.ga-d { font-size:.78rem; font-weight:300; color:rgba(240,236,228,.42); line-height:1.9; }
+.ga-d strong { color:rgba(240,236,228,.7); font-weight:400; }
+
+/* CTA BLOCK */
+#cta-block { background:var(--w); position:relative; }
+.cta-in { max-width:min(620px,100%); }
+.cta-label { font-size:.46rem; letter-spacing:.44em; text-transform:uppercase; color:var(--g2); margin-bottom:1.4rem; }
+h2.cta-h { color:var(--k); margin-bottom:1rem; }
+h2.cta-h em { color:var(--g2); }
+.cta-text { font-size:clamp(.8rem,1.1vw,.9rem); font-weight:300; color:var(--g); line-height:1.95; margin-bottom:2.5rem; max-width:440px; }
+.cta-btn { font-family:'Albert Sans',sans-serif; font-size:.56rem; font-weight:400; letter-spacing:.2em; text-transform:uppercase; color:var(--w); background:var(--k); border:none; padding:1rem 3rem; cursor:pointer; transition:all .3s; position:relative; overflow:hidden; }
+.cta-btn::after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent); transform:translateX(-100%); transition:transform .5s; }
+.cta-btn:hover::after{transform:translateX(100%);}
+.cta-btn:hover{background:var(--k3); transform:translateY(-1px);}
+
+/* FORMULAIRE */
+#form-section { background:var(--w2); }
+.ct-lay { display:grid; grid-template-columns:1fr; gap:4rem; }
+@media(min-width:780px){.ct-lay{grid-template-columns:1fr 1.3fr; gap:7rem; align-items:start;}}
+.ct-sub { font-size:.82rem; font-weight:300; color:var(--g); line-height:2; margin-bottom:2.5rem; }
+.ct-row { display:flex; align-items:flex-start; gap:.9rem; padding:1.1rem 0; border-bottom:1px solid var(--b1); transition:padding .35s; }
+.ct-row:first-child{border-top:1px solid var(--b1);}
+.ct-row:hover{padding-left:.35rem;}
+.ct-ico { width:26px; height:26px; border:1px solid var(--b1); display:flex; align-items:center; justify-content:center; font-size:.62rem; font-weight:500; color:var(--g2); flex-shrink:0; font-family:'Albert Sans',sans-serif; }
+.ct-lbl { font-size:.44rem; font-weight:400; letter-spacing:.24em; text-transform:uppercase; color:var(--g2); margin-bottom:.12rem; }
+.ct-val { font-size:.8rem; font-weight:300; color:var(--g); }
+.ct-val a { color:var(--g); text-decoration:none; }
+.ct-val a:hover{color:var(--k);}
+.ct-note { margin-top:2rem; padding:1.4rem 1.6rem; border:1px solid var(--b1); border-left:2px solid var(--k); }
+.ct-note-t { font-family:'Playfair Display',serif; font-size:.88rem; color:var(--k); margin-bottom:.3rem; }
+.ct-note-d { font-size:.74rem; font-weight:300; color:var(--g); line-height:1.75; }
+.f-card { background:var(--w); border:1px solid var(--b1); padding:clamp(1.8rem,3vw,2.8rem); position:relative; }
+.f-card::before { content:''; position:absolute; top:0; left:2.5rem; right:2.5rem; height:1px; background:linear-gradient(90deg,transparent,var(--g3),transparent); }
+.f-ind { display:flex; align-items:center; gap:.6rem; margin-bottom:2rem; }
+.f-dot { width:5px; height:5px; border-radius:50%; background:var(--b1); border:1px solid var(--g3); transition:all .3s; }
+.f-dot.act{background:var(--k); border-color:var(--k);}
+.f-dot.done{background:var(--g3); border-color:var(--g3);}
+.f-lbl { font-size:.44rem; font-weight:400; letter-spacing:.28em; text-transform:uppercase; color:var(--g2); margin-left:.4rem; }
+.f-step{display:none;} .f-step.active{display:block;}
+.f-title { font-family:'Playfair Display',serif; font-size:1rem; color:var(--k); margin-bottom:1.6rem; }
+.ff { border-bottom:1px solid var(--b2); padding:.95rem 0; position:relative; }
+.ff::after { content:''; position:absolute; bottom:-1px; left:0; width:0; height:1px; background:var(--k); transition:width .4s; }
+.ff:focus-within::after{width:100%;}
+.ff label { display:block; font-size:.44rem; font-weight:400; letter-spacing:.25em; text-transform:uppercase; color:var(--g2); margin-bottom:.35rem; }
+.ff input,.ff textarea,.ff select { width:100%; background:transparent; border:none; outline:none; font-family:'Albert Sans',sans-serif; font-size:.85rem; font-weight:300; color:var(--k); }
+.ff select option{background:var(--w); color:var(--k);}
+.ff input::placeholder,.ff textarea::placeholder{color:var(--g3);}
+.ff textarea{resize:none; min-height:68px;}
+.ff-row{display:grid; grid-template-columns:1fr 1fr;}
+.ff-row .ff:first-child{border-right:1px solid var(--b2); padding-right:1.1rem;}
+.ff-row .ff:last-child{padding-left:1.1rem;}
+.f-nav{display:flex; gap:.7rem; margin-top:1.8rem;}
+.f-next { font-family:'Albert Sans',sans-serif; font-size:.54rem; font-weight:400; letter-spacing:.18em; text-transform:uppercase; color:var(--w); background:var(--k); border:none; padding:.9rem 2rem; cursor:pointer; transition:background .3s; flex:1; }
+.f-next:hover{background:var(--k3);}
+.f-next:disabled{opacity:.35;}
+.f-prev { font-family:'Albert Sans',sans-serif; font-size:.54rem; font-weight:300; letter-spacing:.18em; text-transform:uppercase; color:var(--g); background:transparent; border:1px solid var(--b1); padding:.88rem 1.5rem; cursor:pointer; transition:all .3s; }
+.f-prev:hover{border-color:var(--k); color:var(--k);}
+.f-ok{display:none; text-align:center; padding:3rem 1rem;}
+.f-ok-sym{font-family:'Playfair Display',serif; font-style:italic; font-size:2rem; color:var(--g3); display:block; margin-bottom:1rem;}
+.f-ok-t{font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--k); margin-bottom:.5rem;}
+.f-ok-s{font-size:.76rem; font-weight:300; color:var(--g); line-height:1.75;}
+.dv-upload{border:1px dashed var(--b3); padding:2rem; text-align:center; cursor:pointer; transition:background .3s,border-color .3s; margin-top:.5rem;}
+.dv-upload:hover{background:var(--w2); border-color:var(--k);}
+.dv-upload-t{font-size:.78rem; font-weight:300; color:var(--g); margin-bottom:.2rem;}
+.dv-upload-s{font-size:.62rem; font-weight:300; color:var(--g2);}
+.dv-prev{display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.8rem;}
+.dv-thumb{position:relative; width:60px; height:60px; border:1px solid var(--b1); overflow:hidden;}
+.dv-thumb img{width:100%; height:100%; object-fit:cover;}
+.dv-del{position:absolute; top:0; right:0; background:rgba(10,10,10,.65); color:#fff; width:18px; height:18px; font-size:.55rem; display:flex; align-items:center; justify-content:center; cursor:pointer; border:none;}
+.dv-cnt{font-size:.6rem; font-weight:300; color:var(--g2); margin-top:.35rem;}
+
+/* FAQ */
+#faq{background:var(--w);}
+.fq-wrap{max-width:min(640px,100%);}
+.fq{border-bottom:1px solid var(--b1);}
+.fq:first-child{border-top:1px solid var(--b1);}
+.fq-q{display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1.4rem 0; cursor:pointer; transition:padding .35s;}
+.fq-q:hover{padding-left:.35rem;}
+.fq-qt{font-size:.85rem; font-weight:300; color:var(--g); flex:1; transition:color .3s;}
+.fq.open .fq-qt{color:var(--k);}
+.fq-ic{width:20px; height:20px; border:1px solid var(--b1); flex-shrink:0; position:relative; transition:all .3s;}
+.fq-ic::before{content:''; width:7px; height:1px; background:var(--g); position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);}
+.fq-ic::after{content:''; width:1px; height:7px; background:var(--g); position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); transition:transform .3s,opacity .3s;}
+.fq.open .fq-ic{border-color:var(--k); background:var(--k);}
+.fq.open .fq-ic::before,.fq.open .fq-ic::after{background:var(--w);}
+.fq.open .fq-ic::after{transform:translate(-50%,-50%) rotate(90deg); opacity:0;}
+.fq-a{max-height:0; overflow:hidden; transition:max-height .45s ease;}
+.fq.open .fq-a{max-height:300px;}
+.fq-at{padding:0 0 1.3rem; font-size:.78rem; font-weight:300; color:var(--g); line-height:1.95;}
+.fq-at strong{color:var(--k); font-weight:400;}
+
+/* FOOTER */
+footer{background:var(--k); padding:2.5rem 6vw; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.2rem;}
+.f-logo{font-family:'Playfair Display',serif; font-size:.78rem; letter-spacing:.16em; text-transform:uppercase; color:rgba(240,236,228,.3);}
+.f-logo em{font-style:italic;}
+.f-socials{display:flex; gap:1.8rem;}
+.f-soc{font-size:.48rem; font-weight:300; letter-spacing:.18em; text-transform:uppercase; color:rgba(240,236,228,.3); text-decoration:none; transition:color .3s;}
+.f-soc:hover{color:var(--w);}
+.f-back{font-size:.48rem; font-weight:300; letter-spacing:.18em; text-transform:uppercase; color:rgba(240,236,228,.25); text-decoration:none; transition:color .3s; border-bottom:1px solid rgba(240,236,228,.1); padding-bottom:.1rem;}
+.f-back:hover{color:rgba(240,236,228,.6);}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .9s ease,transform .9s ease;}
+.rv2{opacity:0;transform:translateY(18px);transition:opacity .9s .12s ease,transform .9s .12s ease;}
+.rv3{opacity:0;transform:translateY(18px);transition:opacity .9s .24s ease,transform .9s .24s ease;}
+.rvl{opacity:0;transform:translateX(-14px);transition:opacity .9s ease,transform .9s ease;}
+.rv.in,.rv2.in,.rv3.in,.rvl.in{opacity:1;transform:none;}
+</style>
+</head>
+<body>
+<div id="sp"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="n-logo">La Flamme <em>De L'Auto</em></a>
+  <div class="n-links">
+    <a href="index.html" class="n-lk">Accueil</a>
+    <a href="index.html#services" class="n-lk">Import</a>
+    <a href="#form-section" class="n-lk act">Dépôt-vente</a>
+    <a href="#form-section" class="n-cta">Soumettre mon véhicule</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="h-grain"></div>
+  <div class="h-inner">
+    <div class="h-brand">La Flamme De L'Automobile — Dépôt-vente</div>
+    <h1>
+      <span class="h-word" id="hw1">Vous vendez.</span><br>
+      <span class="h-word" id="hw2">Nous nous occupons</span><br>
+      <span class="h-word" id="hw3"><em>de tout.</em></span>
+    </h1>
+    <p class="h-sub" id="hsub">
+      Service de dépôt-vente 100&thinsp;% digital. Showroom virtuel, diffusion multiplateforme, filtrage des acheteurs. Vous n'avez rien à gérer. La transaction se conclut directement entre vous et l'acheteur.
+    </p>
+    <div class="h-meta" id="hmeta">
+      <button class="h-cta" onclick="goTo('form-section')">Soumettre mon véhicule</button>
+      <span class="h-note">100&thinsp;% digital &mdash; aucun déplacement &mdash; transport assuré</span>
+    </div>
+  </div>
+  <div class="h-ind">
+    <div class="h-ind-l"></div>
+    <span class="h-ind-t">Défiler</span>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="st-grid">
+    <div class="st-c rv"><span class="st-n">100&thinsp;%</span><span class="st-l">Digital — aucun déplacement requis</span></div>
+    <div class="st-c rv2"><span class="st-n">0</span><span class="st-l">Effort de votre côté</span></div>
+    <div class="st-c rv3"><span class="st-n">36</span><span class="st-l">Mois de garantie disponible</span></div>
+    <div class="st-c rv3"><span class="st-n">24&thinsp;h</span><span class="st-l">Délai de réponse</span></div>
+  </div>
+</section>
+
+<!-- POURQUOI NOUS CONFIER LA VENTE -->
+<section id="pourquoi" class="sec">
+  <div class="rvl">
+    <div class="sec-label"><span class="sec-num">I</span><div class="sec-rule"></div><span class="sec-tag">Pourquoi nous confier la vente</span></div>
+    <h2>Vendre seul,<br><em>c'est chronophage.</em></h2>
+  </div>
+  <div class="pq-grid">
+    <div class="pq-c rv">
+      <span class="pq-n">01</span>
+      <div class="pq-t">Zéro prise de tête</div>
+      <div class="pq-d">Rédiger une annonce, gérer les appels, filtrer les curieux, négocier — tout cela prend un temps considérable. Nous prenons en charge l'intégralité du processus à votre place.</div>
+    </div>
+    <div class="pq-c rv2">
+      <span class="pq-n">02</span>
+      <div class="pq-t">Une visibilité maximale</div>
+      <div class="pq-d">Votre véhicule est diffusé sur toutes les plateformes et nos réseaux sociaux. Un showroom virtuel soigné qui attire les acheteurs sérieux.</div>
+    </div>
+    <div class="pq-c rv3">
+      <span class="pq-n">03</span>
+      <div class="pq-t">Sécurité totale</div>
+      <div class="pq-d">Nous filtrons les acheteurs, gérons les échanges et vous protégeons des sollicitations non pertinentes. Vous n'intervenez qu'au moment de conclure.</div>
+    </div>
+  </div>
+</section>
+
+<div style="height:1px;background:var(--b1);margin:0 6vw;"></div>
+
+<!-- CE QUI EST INCLUS -->
+<section id="inclus" class="sec" style="background:var(--w2);">
+  <div class="rvl">
+    <div class="sec-label"><span class="sec-num">II</span><div class="sec-rule"></div><span class="sec-tag">Inclus dans la prestation</span></div>
+    <h2>Tout est<br><em>pris en charge.</em></h2>
+  </div>
+  <div class="inc-grid">
+    <div class="inc-c rv">
+      <span class="inc-ic">&#9670;</span>
+      <div class="inc-t">Showroom virtuel</div>
+      <div class="inc-d">Mise en valeur professionnelle de votre véhicule. Présentation soignée, photos organisées, annonce rédigée avec soin pour attirer les bons acheteurs.</div>
+    </div>
+    <div class="inc-c rv">
+      <span class="inc-ic">&#9670;</span>
+      <div class="inc-t">Diffusion multiplateforme</div>
+      <div class="inc-d">Publication sur Leboncoin, La Centrale, Marketplace et diffusion sur nos réseaux sociaux — Instagram et TikTok — sous le nom La Flamme De L'Automobile.</div>
+    </div>
+    <div class="inc-c rv2">
+      <span class="inc-ic">&#9670;</span>
+      <div class="inc-t">Filtrage des acheteurs</div>
+      <div class="inc-d">Nous qualifions chaque contact. Seuls les acheteurs sérieux et solvables vous sont transmis. Vous n'avez pas à gérer les curieux ni les négociateurs de mauvaise foi.</div>
+    </div>
+    <div class="inc-c rv2">
+      <span class="inc-ic">&#9670;</span>
+      <div class="inc-t">Gestion des échanges</div>
+      <div class="inc-d">Nous répondons à toutes les questions des acheteurs potentiels. Vous restez informé sans avoir à intervenir dans les négociations.</div>
+    </div>
+    <div class="inc-c rv3">
+      <span class="inc-ic">&#9670;</span>
+      <div class="inc-t">Garantie 12 à 36 mois</div>
+      <div class="inc-d">Les véhicules en dépôt-vente peuvent bénéficier d'une garantie mécanique de 12 à 36 mois. Un argument de vente fort qui rassure les acheteurs et valorise votre véhicule.</div>
+    </div>
+    <div class="inc-c rv3">
+      <span class="inc-ic">&#9670;</span>
+      <div class="inc-t">Transport assuré</div>
+      <div class="inc-d">Si un transport est nécessaire (remise à l'acheteur, déplacement), il est couvert par une assurance dans tous les cas — plateau fermé, plateau ouvert ou convoyage.</div>
+    </div>
+  </div>
+</section>
+
+<div style="height:1px;background:var(--b1);margin:0 6vw;"></div>
+
+<!-- COMMENT ÇA SE PASSE -->
+<section id="comment" class="sec" style="background:var(--w);">
+  <div class="rvl">
+    <div class="sec-label"><span class="sec-num">III</span><div class="sec-rule"></div><span class="sec-tag">Comment ça se passe</span></div>
+    <h2>Simple.<br><em>En 5 étapes.</em></h2>
+  </div>
+  <div class="cm-steps">
+    <div class="cm-step rv"><div class="cm-n">01</div><div class="cm-b"><div class="cm-t">Vous soumettez votre véhicule</div><div class="cm-d">Remplissez le formulaire avec les informations et photos de votre véhicule. Nous analysons votre demande sous 24&thinsp;h.</div></div></div>
+    <div class="cm-step rv"><div class="cm-n">02</div><div class="cm-b"><div class="cm-t">Nous estimons et validons</div><div class="cm-d">Nous analysons le marché et vous proposons un prix de vente cohérent. Vous validez et réglez la prestation. Aucun démarrage sans votre accord.</div></div></div>
+    <div class="cm-step rv"><div class="cm-n">03</div><div class="cm-b"><div class="cm-t">Mise en ligne &amp; diffusion</div><div class="cm-d">Nous créons le showroom virtuel, rédigeons l'annonce et la diffusons sur toutes les plateformes et réseaux sociaux.</div></div></div>
+    <div class="cm-step rv"><div class="cm-n">04</div><div class="cm-b"><div class="cm-t">Gestion des contacts</div><div class="cm-d">Nous gérons l'ensemble des échanges avec les acheteurs. Vous n'êtes contacté que lorsqu'un acheteur sérieux est identifié.</div></div></div>
+    <div class="cm-step rv"><div class="cm-n">05</div><div class="cm-b"><div class="cm-t">Conclusion de la vente</div><div class="cm-d">La transaction se conclut directement entre vous et l'acheteur. Nous restons disponibles avant, pendant et après la vente.</div></div></div>
+  </div>
+</section>
+
+<!-- GARANTIES & ENGAGEMENTS -->
+<section id="garanties" class="sec" style="background:var(--k);">
+  <div class="rvl">
+    <div class="sec-label"><span class="sec-num">IV</span><div class="sec-rule"></div><span class="sec-tag" style="color:rgba(240,236,228,.3);">Nos engagements</span></div>
+    <h2 style="color:var(--w);">Ce sur quoi<br><span style="color:rgba(240,236,228,.3);">vous pouvez compter.</span></h2>
+  </div>
+  <div class="ga-grid">
+    <div class="ga-c rv">
+      <div class="ga-n">Engagement 01</div>
+      <div class="ga-t">Transparence totale</div>
+      <div class="ga-d">Vous êtes informé à chaque étape. Nous vous communiquons les retours des acheteurs, les prix proposés et l'avancement de la mise en vente. <strong>Aucune décision n'est prise sans vous.</strong></div>
+    </div>
+    <div class="ga-c rv2">
+      <div class="ga-n">Engagement 02</div>
+      <div class="ga-t">Service 100&thinsp;% digital</div>
+      <div class="ga-d">Aucun déplacement requis de votre part. Vous transmettez les informations et les photos. <strong>Nous gérons tout à distance.</strong></div>
+    </div>
+    <div class="ga-c rv2">
+      <div class="ga-n">Engagement 03</div>
+      <div class="ga-t">Transport assuré</div>
+      <div class="ga-d">Si un transport est organisé dans le cadre de la vente, votre véhicule est <strong>couvert par une assurance dans tous les cas</strong> — plateau fermé, ouvert ou convoyage.</div>
+    </div>
+    <div class="ga-c rv3">
+      <div class="ga-n">Engagement 04</div>
+      <div class="ga-t">Disponibilité après la vente</div>
+      <div class="ga-d">Notre accompagnement ne s'arrête pas à la transaction. <strong>Nous restons disponibles après la vente</strong> pour toute question ou démarche complémentaire.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta-block" class="sec" style="background:var(--w);">
+  <div class="cta-in">
+    <div class="cta-label rvl">Prêt à vendre&nbsp;?</div>
+    <h2 class="cta-h rvl">Soumettez votre<br><em>véhicule.</em></h2>
+    <p class="cta-text rv">Nous revenons vers vous sous 24&thinsp;h avec une estimation et un devis. L'échange initial est gratuit et sans engagement.</p>
+    <div class="rv2"><button class="cta-btn" onclick="goTo('form-section')">Soumettre mon véhicule</button></div>
+  </div>
+</section>
+
+<div style="height:1px;background:var(--b1);margin:0 6vw;"></div>
+
+<!-- FORMULAIRE -->
+<section id="form-section" class="sec" style="background:var(--w2);">
+  <div class="rvl">
+    <div class="sec-label"><span class="sec-num">V</span><div class="sec-rule"></div><span class="sec-tag">Formulaire</span></div>
+    <h2>Votre<br><em>véhicule.</em></h2>
+  </div>
+  <div class="ct-lay">
+    <div>
+      <p class="ct-sub rv">Remplissez ce formulaire. Nous revenons vers vous sous 24&thinsp;h avec une estimation et un devis. Aucun engagement.</p>
+      <div class="ct-row rv"><div class="ct-ico">@</div><div><div class="ct-lbl">Email</div><div class="ct-val">laflammedelautomobile@gmail.com</div></div></div>
+      <div class="ct-row rv"><div class="ct-ico">#</div><div><div class="ct-lbl">Téléphone</div><div class="ct-val">07 80 94 39 46</div></div></div>
+      <div class="ct-row rv"><div class="ct-ico">IG</div><div><div class="ct-lbl">Instagram</div><div class="ct-val"><a href="https://instagram.com/laflammedelautomobile" target="_blank">@laflammedelautomobile</a></div></div></div>
+      <div class="ct-note rv2">
+        <div class="ct-note-t">À noter</div>
+        <div class="ct-note-d">Tous les prix s'entendent hors carte grise. Le transport est assuré dans tous les cas. Une garantie mécanique de 12 à 36 mois est disponible en option.</div>
+      </div>
+    </div>
+    <div class="rv2">
+      <div class="f-card">
+        <div class="f-ind" id="dv-ind">
+          <div class="f-dot act" id="dvd1"></div>
+          <div class="f-dot" id="dvd2"></div>
+          <div class="f-dot" id="dvd3"></div>
+          <span class="f-lbl" id="dv-lbl">Étape 1 sur 3</span>
+        </div>
+        <div class="f-step active" id="dvs1">
+          <div class="f-title">Vos coordonnées</div>
+          <div class="ff-row">
+            <div class="ff"><label>Prénom</label><input type="text" id="dvp" placeholder="Votre prénom"></div>
+            <div class="ff"><label>Nom</label><input type="text" id="dvn" placeholder="Votre nom"></div>
+          </div>
+          <div class="ff"><label>Email</label><input type="email" id="dve" placeholder="votre@email.fr"></div>
+          <div class="ff"><label>Téléphone</label><input type="tel" id="dvtel" placeholder="06 00 00 00 00"></div>
+          <div class="f-nav"><button class="f-next" onclick="dvStep(2)">Continuer</button></div>
+        </div>
+        <div class="f-step" id="dvs2">
+          <div class="f-title">Le véhicule</div>
+          <div class="ff-row">
+            <div class="ff"><label>Marque</label><input type="text" id="dv-marque" placeholder="Ex : BMW"></div>
+            <div class="ff"><label>Modèle</label><input type="text" id="dv-modele" placeholder="Ex : M3"></div>
+          </div>
+          <div class="ff-row">
+            <div class="ff"><label>Année</label><input type="text" id="dv-annee" placeholder="Ex : 2020"></div>
+            <div class="ff"><label>Kilométrage</label><input type="text" id="dv-km" placeholder="Ex : 45 000 km"></div>
+          </div>
+          <div class="ff"><label>Motorisation</label>
+            <select id="dv-moto">
+              <option value="">Sélectionnez…</option>
+              <option>Essence</option><option>Diesel</option><option>Hybride</option><option>Hybride rechargeable</option><option>Électrique</option>
+            </select>
+          </div>
+          <div class="ff"><label>Boîte de vitesses</label>
+            <select id="dv-boite"><option value="">Sélectionnez…</option><option>Manuelle</option><option>Automatique</option></select>
+          </div>
+          <div class="ff"><label>Prix souhaité (optionnel)</label><input type="text" id="dv-prix" placeholder="Ex : 18 000"></div>
+          <div class="f-nav">
+            <button class="f-prev" onclick="dvStep(1)">Retour</button>
+            <button class="f-next" onclick="dvStep(3)">Continuer</button>
+          </div>
+        </div>
+        <div class="f-step" id="dvs3">
+          <div class="f-title">État &amp; photos</div>
+          <div class="ff"><label>État général</label>
+            <select id="dv-etat">
+              <option value="">Sélectionnez…</option>
+              <option>Excellent — aucune remarque</option>
+              <option>Très bon — usure légère</option>
+              <option>Bon — usure normale</option>
+              <option>Correct — points à signaler</option>
+            </select>
+          </div>
+          <div class="ff"><label>Options &amp; équipements</label><textarea id="dv-opt" placeholder="GPS, toit ouvrant, pack sport, sellerie cuir…"></textarea></div>
+          <div class="ff"><label>Observations (accidents, réparations…)</label><textarea id="dv-obs" placeholder="Carrosserie intacte, entretien suivi, pas d'accident…"></textarea></div>
+          <div class="ff">
+            <label>Photos du véhicule</label>
+            <div class="dv-upload" onclick="document.getElementById('dv-file').click()">
+              <div class="dv-upload-t">Cliquez pour ajouter des photos</div>
+              <div class="dv-upload-s">Extérieur, intérieur, compteur — JPG ou PNG, 10 Mo max par photo</div>
+            </div>
+            <input type="file" id="dv-file" multiple accept="image/*" style="display:none;" onchange="dvPhotos(this)">
+            <div class="dv-prev" id="dv-prev"></div>
+            <div class="dv-cnt" id="dv-cnt"></div>
+          </div>
+          <div class="f-nav">
+            <button class="f-prev" onclick="dvStep(2)">Retour</button>
+            <button class="f-next" id="dv-submit" onclick="dvSend()">Envoyer</button>
+          </div>
+        </div>
+        <div class="f-ok" id="dv-ok">
+          <span class="f-ok-sym">*</span>
+          <div class="f-ok-t">Demande reçue.</div>
+          <div class="f-ok-s">Nous analysons votre véhicule et revenons vers vous sous 24&thinsp;h.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="sec" style="background:var(--w);">
+  <div class="rvl">
+    <div class="sec-label"><span class="sec-num">VI</span><div class="sec-rule"></div><span class="sec-tag">Questions fréquentes</span></div>
+    <h2>Questions<br><span class="dm">fréquentes.</span></h2>
+  </div>
+  <div class="fq-wrap rv">
+    <div class="fq"><div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Êtes-vous le vendeur du véhicule&nbsp;?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">Non. Nous intervenons en tant qu'<strong>intermédiaire</strong>. La transaction se conclut directement entre vous (le vendeur) et l'acheteur final. Nous ne sommes pas partie à la vente.</p></div></div>
+    <div class="fq"><div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Dois-je me déplacer&nbsp;?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">Non. Le service est <strong>100&thinsp;% digital</strong>. Vous nous transmettez les informations et photos de votre véhicule. Nous gérons tout à distance. Aucun déplacement n'est requis de votre part.</p></div></div>
+    <div class="fq"><div class="fq-q" onclick="fqT(this)"><span class="fq-qt">La vente est-elle garantie&nbsp;?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">Nous ne pouvons pas garantir la vente dans un délai précis ni à un prix fixe. Nous mettons en œuvre tous les moyens pour vendre votre véhicule dans les meilleures conditions. Il s'agit d'une obligation de moyens.</p></div></div>
+    <div class="fq"><div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Le véhicule peut-il être garanti&nbsp;?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">Oui. Les véhicules en dépôt-vente peuvent bénéficier d'une <strong>garantie mécanique de 12 à 36 mois</strong> en option. C'est un argument de vente fort qui rassure les acheteurs et peut permettre de valoriser davantage votre véhicule.</p></div></div>
+    <div class="fq"><div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Où est diffusée l'annonce&nbsp;?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">Votre véhicule est publié sur <strong>Leboncoin, La Centrale et Marketplace</strong>, ainsi que sur nos réseaux sociaux Instagram et TikTok sous le nom <strong>La Flamme De L'Automobile</strong>.</p></div></div>
+    <div class="fq"><div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Quel est le délai pour vendre&nbsp;?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">Le délai dépend du véhicule, de son état et du prix de vente fixé. Nous nous engageons à réagir sous <strong>24&thinsp;h</strong> à votre demande et à mettre votre annonce en ligne rapidement après validation.</p></div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo">La Flamme <em>De L'Automobile</em></div>
+  <div class="f-socials">
+    <a href="https://instagram.com/laflammedelautomobile" target="_blank" class="f-soc">Instagram</a>
+    <a href="https://tiktok.com/@laflammedelautomobile" target="_blank" class="f-soc">TikTok</a>
+    <a href="https://wa.me/33780943946" target="_blank" class="f-soc">WhatsApp</a>
+  </div>
+  <a href="index.html" class="f-back">← Retour au site principal</a>
+</footer>
+
+<script>
+function sh(id,d){setTimeout(function(){var el=document.getElementById(id);if(!el)return;el.style.transition='opacity .9s ease,transform .9s ease';el.style.opacity='1';el.style.transform='none';},d);}
+window.addEventListener('load',function(){sh('hw1',100);sh('hw2',240);sh('hw3',380);sh('hsub',520);sh('hmeta',680);});
+window.addEventListener('scroll',function(){
+  var h=document.documentElement.scrollHeight-window.innerHeight;
+  if(h>0)document.getElementById('sp').style.width=(window.pageYOffset/h*100)+'%';
+  document.getElementById('nav').className=window.pageYOffset>60?'sc':'';
+  document.querySelectorAll('.rv,.rv2,.rv3,.rvl').forEach(function(el){if(el.getBoundingClientRect().top<window.innerHeight-40)el.classList.add('in');});
+},{passive:true});
+setTimeout(function(){document.querySelectorAll('.rv,.rv2,.rv3,.rvl').forEach(function(el){if(el.getBoundingClientRect().top<window.innerHeight-40)el.classList.add('in');});},150);
+
+function fqT(btn){var item=btn.parentNode,open=item.className.indexOf('open')!==-1;document.querySelectorAll('.fq').forEach(function(f){f.className='fq';});if(!open)item.className='fq open';}
+function goTo(id){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'});}
+
+var dvStep_=1,dvFiles=[];
+function dvStep(n){
+  if(n===2){var p=document.getElementById('dvp').value.trim(),e=document.getElementById('dve').value.trim();if(!p||!e){alert('Renseignez votre prénom et votre email.');return;}}
+  document.getElementById('dvs'+dvStep_).classList.remove('active');
+  dvStep_=n;
+  document.getElementById('dvs'+dvStep_).classList.add('active');
+  [1,2,3].forEach(function(i){var d=document.getElementById('dvd'+i);d.className='f-dot'+(i===dvStep_?' act':(i<dvStep_?' done':''));});
+  document.getElementById('dv-lbl').textContent='Étape '+dvStep_+' sur 3';
+}
+function dvPhotos(input){
+  dvFiles=dvFiles.concat(Array.from(input.files)).slice(0,8);
+  var prev=document.getElementById('dv-prev'),cnt=document.getElementById('dv-cnt');
+  prev.innerHTML='';
+  dvFiles.forEach(function(f,i){
+    var w=document.createElement('div');w.className='dv-thumb';
+    var img=document.createElement('img');img.src=URL.createObjectURL(f);
+    var del=document.createElement('button');del.className='dv-del';del.textContent='×';
+    del.onclick=function(e){e.stopPropagation();dvFiles.splice(i,1);dvPhotos({files:[]});};
+    w.appendChild(img);w.appendChild(del);prev.appendChild(w);
+  });
+  cnt.textContent=dvFiles.length>0?dvFiles.length+' photo(s) sélectionnée(s)':'';
+  input.value='';
+}
+function dvSend(){
+  var p=document.getElementById('dvp').value.trim(),e=document.getElementById('dve').value.trim();
+  if(!p||!e){alert('Renseignez votre prénom et votre email.');return;}
+  var btn=document.getElementById('dv-submit');
+  btn.disabled=true;btn.textContent='Envoi…';
+  var data={
+    _replyto:e,
+    _subject:'[La Flamme] Dépôt-vente — '+document.getElementById('dv-marque').value+' '+document.getElementById('dv-modele').value,
+    type:'DEPOT-VENTE',
+    prenom:p,nom:document.getElementById('dvn').value,
+    email:e,telephone:document.getElementById('dvtel').value,
+    marque:document.getElementById('dv-marque').value,
+    modele:document.getElementById('dv-modele').value,
+    annee:document.getElementById('dv-annee').value,
+    kilometrage:document.getElementById('dv-km').value,
+    motorisation:document.getElementById('dv-moto').value,
+    boite:document.getElementById('dv-boite').value,
+    prix_souhaite:document.getElementById('dv-prix').value,
+    etat:document.getElementById('dv-etat').value,
+    options:document.getElementById('dv-opt').value,
+    observations:document.getElementById('dv-obs').value,
+    photos:dvFiles.length+' photo(s)'
+  };
+  function ok(){document.getElementById('dv-ind').style.display='none';['dvs1','dvs2','dvs3'].forEach(function(s){document.getElementById(s).classList.remove('active');});document.getElementById('dv-ok').style.display='block';}
+  function err(){btn.disabled=false;btn.textContent='Envoyer';}
+  if(dvFiles.length>0){
+    var fd=new FormData();Object.keys(data).forEach(function(k){fd.append(k,data[k]);});dvFiles.forEach(function(f,i){fd.append('photo_'+(i+1),f,f.name);});
+    fetch('https://formspree.io/f/xaqpbblz',{method:'POST',headers:{'Accept':'application/json'},body:fd}).then(function(r){if(r.ok)ok();else err();}).catch(err);
+  } else {
+    fetch('https://formspree.io/f/xaqpbblz',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)}).then(function(r){if(r.ok)ok();else err();}).catch(err);
+  }
+}
+</script>
+</body>
+</html>
