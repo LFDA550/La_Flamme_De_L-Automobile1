@@ -21,15 +21,22 @@ body { background:var(--w); color:var(--k); font-family:'Albert Sans',sans-serif
 /* NAV */
 nav { position:fixed; top:0; left:0; right:0; z-index:700; padding:1.8rem 6vw; display:flex; align-items:center; justify-content:space-between; transition:all .5s; }
 nav.sc { background:rgba(240,236,228,.96); backdrop-filter:blur(20px); padding:1rem 6vw; border-bottom:1px solid var(--b1); }
-.n-logo { font-family:'Playfair Display',serif; font-size:.88rem; letter-spacing:.18em; text-transform:uppercase; color:var(--k); text-decoration:none; }
-.n-logo em { font-style:italic; color:var(--g2); }
+.n-logo { font-family:'Playfair Display',serif; font-size:.88rem; letter-spacing:.18em; text-transform:uppercase; color:var(--w); text-decoration:none; transition:color .4s; }
+.n-logo em { font-style:italic; color:rgba(240,236,228,.4); }
+nav.sc .n-logo { color:var(--k); }
+nav.sc .n-logo em { color:var(--g2); }
 .n-links { display:flex; align-items:center; gap:2.5rem; }
-.n-lk { font-size:.52rem; font-weight:300; letter-spacing:.22em; text-transform:uppercase; color:var(--g); text-decoration:none; transition:color .3s; display:none; }
+.n-lk { font-size:.52rem; font-weight:300; letter-spacing:.22em; text-transform:uppercase; color:rgba(240,236,228,.5); text-decoration:none; transition:color .3s; display:none; }
 @media(min-width:720px){.n-lk{display:block;}}
-.n-lk:hover { color:var(--k); }
-.n-lk.act { color:var(--k); border-bottom:1px solid var(--k); padding-bottom:.1rem; }
-.n-cta { font-family:'Albert Sans',sans-serif; font-size:.52rem; font-weight:400; letter-spacing:.18em; text-transform:uppercase; color:var(--w); background:var(--k); border:none; padding:.55rem 1.6rem; cursor:pointer; transition:background .3s; text-decoration:none; display:inline-block; }
-.n-cta:hover { background:var(--k3); }
+.n-lk:hover { color:var(--w); }
+nav.sc .n-lk { color:var(--g); }
+nav.sc .n-lk:hover { color:var(--k); }
+.n-lk.act { color:rgba(240,236,228,.8); border-bottom:1px solid rgba(240,236,228,.3); padding-bottom:.1rem; }
+nav.sc .n-lk.act { color:var(--k); border-color:var(--k); }
+.n-cta { font-family:'Albert Sans',sans-serif; font-size:.52rem; font-weight:400; letter-spacing:.18em; text-transform:uppercase; color:var(--k); background:var(--w); border:none; padding:.55rem 1.6rem; cursor:pointer; transition:all .3s; text-decoration:none; display:inline-block; }
+.n-cta:hover { background:var(--w2); }
+nav.sc .n-cta { color:var(--w); background:var(--k); }
+nav.sc .n-cta:hover { background:var(--k3); }
 
 /* HERO */
 #hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding:clamp(7rem,14vw,11rem) 6vw clamp(5rem,10vw,8rem); position:relative; background:var(--k); overflow:hidden; }
@@ -253,7 +260,7 @@ footer{background:var(--k); padding:2.5rem 6vw; display:flex; align-items:center
     </p>
     <div class="h-meta" id="hmeta">
       <button class="h-cta" onclick="goTo('form-section')">Soumettre mon véhicule</button>
-      <span class="h-note">100&thinsp;% digital &mdash; aucun déplacement &mdash; transport assuré</span>
+      <span class="h-note">100&thinsp;% digital &mdash; aucun déplacement &mdash; garanti jusqu'à 36 mois</span>
     </div>
   </div>
   <div class="h-ind">
@@ -267,7 +274,7 @@ footer{background:var(--k); padding:2.5rem 6vw; display:flex; align-items:center
   <div class="st-grid">
     <div class="st-c rv"><span class="st-n">100&thinsp;%</span><span class="st-l">Digital — aucun déplacement requis</span></div>
     <div class="st-c rv2"><span class="st-n">0</span><span class="st-l">Effort de votre côté</span></div>
-    <div class="st-c rv3"><span class="st-n">36</span><span class="st-l">Mois de garantie disponible</span></div>
+    <div class="st-c rv3"><span class="st-n">36</span><span class="st-l">Mois de garantie — sous conditions</span></div>
     <div class="st-c rv3"><span class="st-n">24&thinsp;h</span><span class="st-l">Délai de réponse</span></div>
   </div>
 </section>
@@ -333,8 +340,8 @@ footer{background:var(--k); padding:2.5rem 6vw; display:flex; align-items:center
     </div>
     <div class="inc-c rv3">
       <span class="inc-ic">&#9670;</span>
-      <div class="inc-t">Transport assuré</div>
-      <div class="inc-d">Si un transport est nécessaire (remise à l'acheteur, déplacement), il est couvert par une assurance dans tous les cas — plateau fermé, plateau ouvert ou convoyage.</div>
+      <div class="inc-t">Véhicule garanti jusqu'à 36 mois</div>
+      <div class="inc-d">Les véhicules en dépôt-vente peuvent bénéficier d'une garantie mécanique jusqu'à 36 mois, sous conditions. Un argument de vente fort qui rassure les acheteurs et valorise votre véhicule.</div>
     </div>
   </div>
 </section>
@@ -375,8 +382,8 @@ footer{background:var(--k); padding:2.5rem 6vw; display:flex; align-items:center
     </div>
     <div class="ga-c rv2">
       <div class="ga-n">Engagement 03</div>
-      <div class="ga-t">Transport assuré</div>
-      <div class="ga-d">Si un transport est organisé dans le cadre de la vente, votre véhicule est <strong>couvert par une assurance dans tous les cas</strong> — plateau fermé, ouvert ou convoyage.</div>
+      <div class="ga-t">Véhicule garanti jusqu'à 36 mois</div>
+      <div class="ga-d">Les véhicules que nous accompagnons peuvent bénéficier d'une <strong>garantie mécanique jusqu'à 36 mois</strong>, sous conditions selon l'état et le type de véhicule.</div>
     </div>
     <div class="ga-c rv3">
       <div class="ga-n">Engagement 04</div>
@@ -412,7 +419,7 @@ footer{background:var(--k); padding:2.5rem 6vw; display:flex; align-items:center
       <div class="ct-row rv"><div class="ct-ico">IG</div><div><div class="ct-lbl">Instagram</div><div class="ct-val"><a href="https://instagram.com/laflammedelautomobile" target="_blank">@laflammedelautomobile</a></div></div></div>
       <div class="ct-note rv2">
         <div class="ct-note-t">À noter</div>
-        <div class="ct-note-d">Tous les prix s'entendent hors carte grise. Le transport est assuré dans tous les cas. Une garantie mécanique de 12 à 36 mois est disponible en option.</div>
+        <div class="ct-note-d">Tous les prix s'entendent hors carte grise. Véhicule garanti jusqu'à 36 mois sous conditions. Devis détaillé communiqué avant tout engagement.</div>
       </div>
     </div>
     <div class="rv2">
@@ -566,7 +573,7 @@ function dvSend(){
   btn.disabled=true;btn.textContent='Envoi…';
   var data={
     _replyto:e,
-    _subject:'[La Flamme] Dépôt-vente — '+document.getElementById('dv-marque').value+' '+document.getElementById('dv-modele').value,
+    _subject:'[La Flamme] Depot-vente - '+document.getElementById('dv-marque').value+' '+document.getElementById('dv-modele').value,
     type:'DEPOT-VENTE',
     prenom:p,nom:document.getElementById('dvn').value,
     email:e,telephone:document.getElementById('dvtel').value,
@@ -583,7 +590,15 @@ function dvSend(){
     photos:dvFiles.length+' photo(s)'
   };
   function ok(){document.getElementById('dv-ind').style.display='none';['dvs1','dvs2','dvs3'].forEach(function(s){document.getElementById(s).classList.remove('active');});document.getElementById('dv-ok').style.display='block';}
-  function err(){btn.disabled=false;btn.textContent='Envoyer';}
+  function err(e){
+    btn.disabled=false;
+    btn.textContent='Envoyer';
+    console.error('Formspree error:',e);
+    document.getElementById('dv-ok').innerHTML='<p style="font-size:.78rem;color:var(--g);line-height:1.8;">Une erreur est survenue. Contactez-nous directement :<br><strong>laflammedelautomobile@gmail.com</strong><br>ou via WhatsApp : <strong>07 80 94 39 46</strong></p>';
+    document.getElementById('dv-ok').style.display='block';
+    document.getElementById('dv-ind').style.display='none';
+    ['dvs1','dvs2','dvs3'].forEach(function(s){document.getElementById(s).classList.remove('active');});
+  }
   if(dvFiles.length>0){
     var fd=new FormData();Object.keys(data).forEach(function(k){fd.append(k,data[k]);});dvFiles.forEach(function(f,i){fd.append('photo_'+(i+1),f,f.name);});
     fetch('https://formspree.io/f/xaqpbblz',{method:'POST',headers:{'Accept':'application/json'},body:fd}).then(function(r){if(r.ok)ok();else err();}).catch(err);
