@@ -59,10 +59,12 @@ h1 em { font-style: italic; color: var(--g2); }
 .h-word { display: inline-block; opacity: 0; transform: translateY(20px); }
 .h-sub { font-size: clamp(.82rem,1.1vw,.96rem); font-weight: 300; color: var(--g); max-width: min(500px,100%); line-height: 2; margin-bottom: 3rem; opacity: 0; }
 .h-meta { display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap; opacity: 0; }
-.h-cta { font-family: 'Albert Sans', sans-serif; font-size: .56rem; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; color: var(--w); background: var(--k); border: none; padding: .9rem 2.4rem; cursor: pointer; transition: background .3s; position: relative; overflow: hidden; }
+.h-cta { font-family: 'Albert Sans', sans-serif; font-size: .56rem; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; color: var(--w); background: var(--k); border: none; padding: .9rem 2.4rem; cursor: pointer; transition: background .3s, transform .3s; position: relative; overflow: hidden; --mx:50%; --my:50%; }
+.h-cta::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,.22), transparent 60%); opacity: 0; transition: opacity .35s; pointer-events: none; }
+.h-cta:hover::before { opacity: 1; }
 .h-cta::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent); transform: translateX(-100%); transition: transform .5s; }
 .h-cta:hover::after { transform: translateX(100%); }
-.h-cta:hover { background: var(--k3); }
+.h-cta:hover { background: var(--k3); transform: translateY(-1px); }
 .h-note { font-family: 'Playfair Display', serif; font-style: italic; font-size: .82rem; color: var(--g3); }
 .h-ind { position: absolute; bottom: clamp(2.5rem,4vw,4rem); right: 6vw; display: flex; flex-direction: column; align-items: center; gap: .5rem; opacity: 0; animation: fi .8s 3.4s ease forwards; }
 .h-ind-l { width: 1px; height: 40px; background: linear-gradient(to bottom,var(--k),transparent); opacity: .15; animation: ip 2.2s ease-in-out infinite; }
@@ -95,7 +97,8 @@ h2 .dm { color: var(--g3); }
 /* POURQUOI */
 #pourquoi { background: var(--w); }
 .pq-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--b1); }
-@media (min-width:700px) { .pq-grid { grid-template-columns: repeat(3,1fr); } }
+@media (min-width:700px) { .pq-grid { grid-template-columns: repeat(2,1fr); } }
+@media (min-width:1100px) { .pq-grid { grid-template-columns: repeat(4,1fr); } }
 .pq-c { background: var(--w); padding: 2.8rem; transition: background .4s; }
 .pq-c:hover { background: var(--w2); }
 .pq-n { font-family: 'Playfair Display', serif; font-style: italic; font-size: 3.5rem; color: rgba(10,10,10,.06); line-height: 1; margin-bottom: 1.2rem; display: block; transition: color .4s; }
@@ -132,6 +135,18 @@ h2 .dm { color: var(--g3); }
 .veh-item { font-size: .78rem; font-weight: 300; color: var(--g); line-height: 1.5; }
 .veh-item strong { color: var(--k2); font-weight: 400; }
 
+/* EXIGENCE — manifesto style */
+#exigence { background: var(--k); position: relative; overflow: hidden; }
+.ex-quote { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(1.4rem,3vw,2.6rem); font-weight: 400; line-height: 1.35; color: var(--w); max-width: min(820px,100%); margin-bottom: clamp(3rem,5vw,5rem); }
+.ex-quote span { color: rgba(240,236,228,.3); }
+.ex-list { display: flex; flex-direction: column; max-width: min(820px,100%); }
+.ex-item { display: flex; align-items: baseline; gap: 1.6rem; padding: 1.6rem 0; border-top: 1px solid rgba(240,236,228,.1); transition: padding .35s; }
+.ex-item:last-child { border-bottom: 1px solid rgba(240,236,228,.1); }
+.ex-item:hover { padding-left: .6rem; }
+.ex-num { font-family: 'Playfair Display', serif; font-style: italic; font-size: .9rem; color: rgba(240,236,228,.25); flex-shrink: 0; width: 28px; }
+.ex-txt { font-size: .86rem; font-weight: 300; color: rgba(240,236,228,.55); line-height: 1.75; }
+.ex-txt strong { color: var(--w); font-weight: 400; }
+
 /* FONCTIONNEMENT */
 #fonctionnement { background: var(--w2); }
 .fn-steps { max-width: min(620px,100%); }
@@ -151,7 +166,9 @@ h2 .dm { color: var(--g3); }
 h2.cta-h { color: var(--w); margin-bottom: 1rem; }
 h2.cta-h em { color: rgba(255,255,255,.3); }
 .cta-text { font-size: clamp(.8rem,1.1vw,.9rem); font-weight: 300; color: rgba(255,255,255,.4); line-height: 1.95; margin-bottom: 2.5rem; max-width: 440px; }
-.cta-btn { font-family: 'Albert Sans', sans-serif; font-size: .56rem; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; color: var(--k); background: var(--w); border: none; padding: 1rem 3rem; cursor: pointer; transition: all .3s; position: relative; overflow: hidden; }
+.cta-btn { font-family: 'Albert Sans', sans-serif; font-size: .56rem; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; color: var(--k); background: var(--w); border: none; padding: 1rem 3rem; cursor: pointer; transition: all .3s; position: relative; overflow: hidden; --mx:50%; --my:50%; }
+.cta-btn::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at var(--mx) var(--my), rgba(10,10,10,.1), transparent 60%); opacity: 0; transition: opacity .35s; pointer-events: none; }
+.cta-btn:hover::before { opacity: 1; }
 .cta-btn::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent); transform: translateX(-100%); transition: transform .5s; }
 .cta-btn:hover::after { transform: translateX(100%); }
 .cta-btn:hover { background: var(--w2); transform: translateY(-1px); }
@@ -307,7 +324,7 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
     <a href="#vehicules"      class="n-lk">Véhicules</a>
     <a href="#fonctionnement" class="n-lk">Fonctionnement</a>
     <a href="#contact"        class="n-lk">Contact</a>
-    <button class="n-cta" onclick="goTo('contact')">Importer mon véhicule</button>
+    <button class="n-cta" onclick="goTo('contact')">Devis gratuit</button>
   </div>
 </nav>
 
@@ -322,11 +339,11 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
     <span class="h-word" id="hw3"><em>en Europe.</em></span>
   </h1>
   <p class="h-sub" id="hsub">
-    Spécialistes de l'import automobile en Europe, nous sourceons des véhicules sportifs et premium rarement disponibles sur le marché français. Un marché plus large, des équipements plus riches, des prix souvent inférieurs au marché français. Nous gérons tout, de la recherche à la livraison.
+    Nous sourceons des véhicules sportifs et premium directement sur les marchés européens — des configurations rares, mieux équipées, à des conditions que le marché français ne propose pas. Recherche, négociation, importation, livraison&nbsp;: nous gérons l'intégralité du processus.
   </p>
   <div class="h-meta" id="hmeta">
-    <button class="h-cta" onclick="goTo('contact')">Importer mon véhicule</button>
-    <span class="h-note">Sportives &amp; premium &mdash; Import Europe &mdash; Livraison France &amp; Europe</span>
+    <button class="h-cta" onclick="goTo('contact')">Devis gratuit</button>
+    <span class="h-note">Sportives &amp; premium &mdash; Devis gratuit &mdash; Livraison France &amp; Europe</span>
   </div>
   <div class="h-ind">
     <div class="h-ind-l"></div>
@@ -341,8 +358,8 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
   <div class="st-grid">
     <div class="st-c rv"><span class="st-n">EU</span><span class="st-l">Import partout en Europe</span></div>
     <div class="st-c rv2"><span class="st-n">Sur</span><span class="st-l">Mesure — recherche personnalisée</span></div>
-    <div class="st-c rv3"><span class="st-n">100&thinsp;%</span><span class="st-l">Indépendant — aucune affiliation</span></div>
-    <div class="st-c rv3"><span class="st-n">24&thinsp;h</span><span class="st-l">Délai de réponse</span></div>
+    <div class="st-c rv3"><span class="st-n">Gratuit</span><span class="st-l">Devis sans engagement</span></div>
+    <div class="st-c rv3"><span class="st-n" data-count="24" data-suffix="&thinsp;h">0</span><span class="st-l">Délai de réponse</span></div>
   </div>
 </section>
 
@@ -368,22 +385,43 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
       <div class="pq-t">Un accès privilégié au marché</div>
       <div class="pq-d">Nous opérons au quotidien sur plusieurs marchés européens&nbsp;: Allemagne principalement, Espagne, Pologne et pays scandinaves. Cette couverture nous permet d'identifier des véhicules rares avant qu'ils ne disparaissent des annonces.</div>
     </div>
+    <div class="pq-c rv3">
+      <span class="pq-n">04</span>
+      <div class="pq-t">Des véhicules suivis &amp; fiables</div>
+      <div class="pq-d">Nous privilégions les véhicules suivis, sans antécédent mécanique connu, issus de structures automobiles européennes reconnues pour leur sérieux. Une vigilance constante pour vous proposer des véhicules sains.</div>
+    </div>
   </div>
 </section>
 
-<div class="sep"></div>
+<div class="sep" style="background:var(--k3);opacity:.3;"></div>
+
+<!-- NOTRE EXIGENCE -->
+<section id="exigence" class="sec">
+  <div class="rvl">
+    <div class="sec-label"><span class="sec-num" style="color:rgba(240,236,228,.25);">II</span><div class="sec-rule" style="background:rgba(240,236,228,.15);"></div><span class="sec-tag" style="color:rgba(240,236,228,.3);">Notre exigence</span></div>
+  </div>
+  <p class="ex-quote rv">« Un courtage sérieux ne se mesure pas au nombre de promesses, <span>mais à la rigueur du processus.</span> »</p>
+  <div class="ex-list rv2">
+    <div class="ex-item"><div class="ex-num">01</div><div class="ex-txt">Chaque devis est <strong>écrit, daté et détaillé</strong> — aucune prestation ne démarre sans votre accord exprès.</div></div>
+    <div class="ex-item"><div class="ex-num">02</div><div class="ex-txt">Nous communiquons les <strong>points de vigilance</strong> autant que les arguments en faveur d'un véhicule — jamais l'un sans l'autre.</div></div>
+    <div class="ex-item"><div class="ex-num">03</div><div class="ex-txt">L'identité du vendeur ou de l'acheteur final vous est <strong>communiquée avant toute transaction</strong> — aucune intermédiation opaque.</div></div>
+    <div class="ex-item"><div class="ex-num">04</div><div class="ex-txt">Nous restons <strong>disponibles avant, pendant et après</strong> la transaction — notre rôle ne s'arrête pas à la signature.</div></div>
+  </div>
+</section>
+
+<div class="sep" style="background:var(--k3);opacity:.3;"></div>
 
 <!-- SERVICES -->
 <section id="services" class="sec" style="background:var(--w2);">
   <div class="rvl">
-    <div class="sec-label"><span class="sec-num">II</span><div class="sec-rule"></div><span class="sec-tag">Services</span></div>
+    <div class="sec-label"><span class="sec-num">III</span><div class="sec-rule"></div><span class="sec-tag">Services</span></div>
     <h2>Ce que<br><em>nous proposons.</em></h2>
   </div>
   <div class="srv-grid">
     <div class="srv rv">
       <span class="srv-n">01</span>
       <div class="srv-title">Recherche personnalisée &amp; import</div>
-      <p class="srv-text">Nous sourceons votre véhicule principalement sur le marché allemand, mais aussi en Espagne, en Pologne et dans les pays scandinaves (Mobile.de, AutoScout24, Coches.net, Otomoto…)&nbsp;: versions bien équipées, configurations rares, modèles à forte demande. Nous vérifions, négocions et gérons l'ensemble des formalités jusqu'à la livraison, partout en France et en Europe.</p>
+      <p class="srv-text"><strong>Devis gratuit et sans engagement.</strong> Nous sourceons votre véhicule principalement sur le marché allemand, mais aussi en Espagne, en Pologne et dans les pays scandinaves (Mobile.de, AutoScout24, Coches.net, Otomoto…)&nbsp;: versions bien équipées, configurations rares, modèles à forte demande. Nous vérifions, négocions et gérons l'ensemble des formalités jusqu'à la livraison, partout en France et en Europe.</p>
       <div class="srv-list">
         <div class="srv-li">Recherche principalement sur le marché allemand, ainsi qu'en Espagne, Pologne et pays scandinaves</div>
         <div class="srv-li">Vérification de l'historique, du kilométrage et de l'état annoncé</div>
@@ -393,7 +431,7 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
         <div class="srv-li">Possibilité de garantie mécanique de <strong>12 à 36 mois</strong> sur le véhicule importé</div>
       </div>
       <p style="font-size:.7rem;font-weight:300;color:var(--g2);font-style:italic;margin-top:1.2rem;line-height:1.7;">Tous nos prix s'entendent hors carte grise. Le coût de livraison est variable selon la destination et le mode de transport. Nous estimons le coût de la carte grise selon votre région sur simple demande.</p>
-      <button class="srv-cta" onclick="goTo('contact')">Démarrer mon import</button>
+      <button class="srv-cta" onclick="goTo('contact')">Devis gratuit →</button>
     </div>
     <div class="srv rv2">
       <span class="srv-n">02</span>
@@ -409,7 +447,7 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
 <!-- VÉHICULES -->
 <section id="vehicules" class="sec" style="background:var(--w);">
   <div class="rvl">
-    <div class="sec-label"><span class="sec-num">III</span><div class="sec-rule"></div><span class="sec-tag">Véhicules</span></div>
+    <div class="sec-label"><span class="sec-num">IV</span><div class="sec-rule"></div><span class="sec-tag">Véhicules</span></div>
     <h2>Exemples de<br><em>véhicules importés.</em></h2>
   </div>
   <p style="font-size:.82rem;font-weight:300;color:var(--g);max-width:500px;line-height:1.95;margin-bottom:3.5rem;" class="rv">
@@ -469,7 +507,7 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
 <!-- FONCTIONNEMENT -->
 <section id="fonctionnement" class="sec" style="background:var(--w2);">
   <div class="rvl">
-    <div class="sec-label"><span class="sec-num">IV</span><div class="sec-rule"></div><span class="sec-tag">Fonctionnement</span></div>
+    <div class="sec-label"><span class="sec-num">V</span><div class="sec-rule"></div><span class="sec-tag">Fonctionnement</span></div>
     <h2>Comment<br><em>ça se passe.</em></h2>
   </div>
   <div class="fn-steps">
@@ -498,9 +536,9 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
 <section id="cta-block" class="sec">
   <div class="cta-in">
     <div class="cta-label rvl">Un projet en tête&nbsp;?</div>
-    <h2 class="cta-h rvl">Importez votre<br><em>prochain véhicule.</em></h2>
-    <p class="cta-text rv">Nous revenons vers vous sous 24&thinsp;h avec une première sélection. Livraison partout en France et en Europe. Échange initial gratuit et sans engagement.</p>
-    <div class="rv2"><button class="cta-btn" onclick="goTo('contact')">Démarrer mon projet</button></div>
+    <h2 class="cta-h rvl">Devis gratuit.<br><em>Sans engagement.</em></h2>
+    <p class="cta-text rv">Décrivez votre projet, nous revenons vers vous sous 24&thinsp;h avec un <strong style="color:rgba(255,255,255,.6);font-weight:400;">devis gratuit</strong> et une première sélection. Livraison partout en France et en Europe. Aucun engagement.</p>
+    <div class="rv2"><button class="cta-btn" onclick="goTo('contact')">Recevoir mon devis gratuit</button></div>
   </div>
 </section>
 
@@ -509,7 +547,7 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
 <!-- CONTACT -->
 <section id="contact" class="sec" style="background:var(--w2);">
   <div class="rvl">
-    <div class="sec-label"><span class="sec-num">V</span><div class="sec-rule"></div><span class="sec-tag">Contact</span></div>
+    <div class="sec-label"><span class="sec-num">VI</span><div class="sec-rule"></div><span class="sec-tag">Contact</span></div>
     <h2>Votre<br><em>projet.</em></h2>
   </div>
   <div class="ct-lay">
@@ -526,6 +564,10 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
       <div class="ct-note rv3" style="margin-top:1rem;border-left-color:var(--g3);">
         <div class="ct-note-t" style="font-size:.78rem;color:var(--g);">À noter</div>
         <div class="ct-note-d">Tous nos prix s'entendent <strong>hors carte grise</strong>. Le coût de livraison dépend du lieu de destination et du mode de transport (plateau, convoyage). Nous pouvons vous estimer le coût de la carte grise selon votre région — contactez-nous.</div>
+      </div>
+      <div class="ct-note rv3" style="margin-top:1rem;border-left-color:var(--k);">
+        <div class="ct-note-t">Sécurité &amp; paiement</div>
+        <div class="ct-note-d">Le règlement de notre <strong>prestation de service</strong> s'effectue exclusivement par <strong>virement bancaire</strong>, sur le compte communiqué dans votre devis officiel. Aucun chèque, aucune espèce, aucun autre moyen de paiement n'est accepté. Le paiement du véhicule lui-même s'effectue séparément, directement entre vous et le vendeur final. En cas de doute, contactez-nous avant tout règlement.</div>
       </div>
     </div>
     <div class="rv2">
@@ -594,9 +636,13 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
               <option>Une annonce précise en tête</option>
             </select>
           </div>
+          <label style="display:flex;align-items:flex-start;gap:.6rem;margin-top:1.4rem;cursor:pointer;font-size:.7rem;font-weight:300;color:var(--g);line-height:1.6;">
+            <input type="checkbox" id="f-cgv" style="margin-top:.15rem;width:14px;height:14px;flex-shrink:0;accent-color:var(--k);" onchange="document.getElementById('fsubmit').disabled = !this.checked;">
+            <span>J'ai lu et j'accepte les <span onclick="event.preventDefault();event.stopPropagation();showPage('cgv')" style="text-decoration:underline;text-underline-offset:2px;">CGV</span> et la <span onclick="event.preventDefault();event.stopPropagation();showPage('confidentialite')" style="text-decoration:underline;text-underline-offset:2px;">politique de confidentialité</span>.</span>
+          </label>
           <div class="f-nav">
             <button class="f-prev" onclick="fStep(2)">Retour</button>
-            <button class="f-next" id="fsubmit" onclick="sendContact()">Envoyer</button>
+            <button class="f-next" id="fsubmit" onclick="sendContact()" disabled>Envoyer</button>
           </div>
         </div>
         <div class="f-ok" id="f-ok">
@@ -614,7 +660,7 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
 <!-- DÉPÔT-VENTE FORM -->
 <section id="depot-form" class="sec" style="background:var(--w);">
   <div class="rvl">
-    <div class="sec-label"><span class="sec-num">VI</span><div class="sec-rule"></div><span class="sec-tag">Dépôt-vente</span></div>
+    <div class="sec-label"><span class="sec-num">VII</span><div class="sec-rule"></div><span class="sec-tag">Dépôt-vente</span></div>
     <h2>Soumettre<br><em>mon véhicule.</em></h2>
   </div>
   <div class="ct-lay">
@@ -709,7 +755,7 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
 <!-- FAQ -->
 <section id="faq" class="sec" style="background:var(--w2);">
   <div class="rvl">
-    <div class="sec-label"><span class="sec-num">VII</span><div class="sec-rule"></div><span class="sec-tag">Questions fréquentes</span></div>
+    <div class="sec-label"><span class="sec-num">VIII</span><div class="sec-rule"></div><span class="sec-tag">Questions fréquentes</span></div>
     <h2>Questions<br><span class="dm">fréquentes.</span></h2>
   </div>
   <div class="fq-wrap rv">
@@ -718,6 +764,8 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
     <div class="fq"><div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Quelles sont les formalités d'importation&nbsp;?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">Nous gérons l'ensemble des démarches administratives liées à l'importation depuis le pays d'origine&nbsp;: quitus fiscal, demande d'immatriculation, conformité. Vous recevez votre véhicule prêt à être immatriculé en France.</p></div></div>
     <div class="fq"><div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Les véhicules sont-ils garantis&nbsp;?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">Oui. Les véhicules importés et en dépôt-vente peuvent bénéficier d'une <strong>garantie mécanique de 12 à 36 mois</strong>, proposée en option selon le véhicule et son état. Cette garantie couvre les pièces mécaniques principales et vous protège après l'achat. Les conditions précises sont communiquées au moment du devis.</p></div></div>
     <div class="fq"><div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Quel est le délai pour un import&nbsp;?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">Nous répondons sous <strong>24&thinsp;h</strong> avec une première sélection. Le délai total, de la recherche à la livraison en France, varie selon le pays d'origine et les démarches administratives, généralement entre 2 et 6 semaines.</p></div></div>
+    <div class="fq"><div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Et si le véhicule trouvé est vendu avant la finalisation&nbsp;?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">Cela peut arriver&nbsp;: nous ne contrôlons pas la disponibilité réelle des véhicules tiers. Dans ce cas, nous relançons une recherche complémentaire sans frais additionnels, dans la limite de votre devis initial.</p></div></div>
+    <div class="fq"><div class="fq-q" onclick="fqT(this)"><span class="fq-qt">En cas de problème après l'achat, qui contacter&nbsp;?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">N'étant pas vendeur du véhicule, tout recours relatif à son état (vice caché, non-conformité) s'exerce <strong>directement auprès du vendeur final</strong>, dont l'identité vous est communiquée avant la transaction. Nous restons toutefois disponibles pour vous accompagner dans cette démarche.</p></div></div>
     <div class="fq"><div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Comment est calculé le prix de livraison&nbsp;?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">Le coût de livraison dépend du lieu de destination et du mode de transport choisi&nbsp;: plateau fermé (recommandé pour les sportives), plateau ouvert ou convoyage routier. <strong>Dans tous les cas, le transport est couvert par une assurance.</strong> Votre véhicule est protégé de la prise en charge jusqu'à la livraison. Nous vous communiquons le détail des tarifs au moment du devis. <strong>Tous nos prix s'entendent hors carte grise.</strong></p></div></div>
     <div class="fq"><div class="fq-q" onclick="fqT(this)"><span class="fq-qt">Pourquoi les prix sont-ils indiqués sans carte grise&nbsp;?</span><div class="fq-ic"></div></div><div class="fq-a"><p class="fq-at">Le coût de la carte grise est fixé par les régions et varie donc d'un département à l'autre. <strong>Tous les tarifs communiqués sont systématiquement hors carte grise.</strong> Nous pouvons vous en faire une estimation — il vous suffit de nous contacter.</p></div></div>
   </div>
@@ -788,7 +836,7 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
     <div class="m-blk">
       <div class="m-n">Article 6</div>
       <div class="m-t">Modalités de paiement</div>
-      <div class="m-tx">Le paiement de la prestation intervient <strong>avant le démarrage effectif de la mission</strong>, par virement bancaire, PayPal ou Lydia. En cas de non-paiement à l'échéance, le Prestataire se réserve le droit de suspendre immédiatement la prestation. Tout paiement partiel ou total reste acquis au Prestataire en contrepartie des services déjà rendus, sauf disposition contraire expressément convenue par écrit.</div>
+      <div class="m-tx">Le paiement de la <strong>prestation de service</strong> intervient <strong>avant le démarrage effectif de la mission</strong>, exclusivement par <strong>virement bancaire</strong> sur le compte communiqué dans le devis. Aucun chèque ni paiement en espèces n'est accepté. Le règlement du véhicule lui-même, distinct de la prestation, s'effectue directement entre le client et le vendeur final, selon les modalités propres à cette transaction. En cas de non-paiement de la prestation à l'échéance, le Prestataire se réserve le droit de suspendre immédiatement la mission. Tout paiement partiel ou total de la prestation reste acquis au Prestataire en contrepartie des services déjà rendus, sauf disposition contraire expressément convenue par écrit.</div>
     </div>
 
     <div class="m-blk">
@@ -853,8 +901,68 @@ footer { background: var(--k); padding: 2.5rem 6vw; display: flex; align-items: 
 
     <div class="m-blk">
       <div class="m-n">Article 17</div>
+      <div class="m-t">Sécurité des paiements &amp; lutte contre la fraude</div>
+      <div class="m-tx">Le règlement de la <strong>prestation de service</strong> s'effectue exclusivement par <strong>virement bancaire</strong>, sur le compte officiel indiqué dans le devis. <strong>Aucun chèque, aucune espèce, ni aucun virement vers un compte autre que celui communiqué officiellement ne sera accepté.</strong> Le règlement du véhicule, distinct de la prestation, s'effectue directement entre le client et le vendeur final. Le client est invité à vérifier systématiquement l'identité de son interlocuteur avant tout règlement, et à ne jamais transmettre de fonds sans confirmation écrite préalable du Prestataire. Le Prestataire ne pourra être tenu responsable de toute fraude résultant du non-respect de ces recommandations par le client.</div>
+    </div>
+
+    <div class="m-blk">
+      <div class="m-n">Article 18</div>
+      <div class="m-t">Risque de change &amp; fluctuations monétaires</div>
+      <div class="m-tx">Pour les véhicules sourcés hors zone euro, le prix final peut être affecté par les fluctuations des taux de change entre la date du devis et la date de règlement effectif. Le Prestataire communique le taux de référence utilisé au moment de l'estimation, mais ne saurait être tenu responsable d'un écart résultant de l'évolution des marchés monétaires entre ces deux dates.</div>
+    </div>
+
+    <div class="m-blk">
+      <div class="m-n">Article 19</div>
+      <div class="m-t">Conformité &amp; contrôle technique</div>
+      <div class="m-tx">Il appartient au client de faire procéder, à ses frais, à toute vérification réglementaire nécessaire après livraison&nbsp;: contrôle technique, mise en conformité, homologation. Le Prestataire informe le client des contraintes connues au moment de l'achat mais ne peut garantir l'absence d'anomalie non décelable lors des vérifications effectuées à distance.</div>
+    </div>
+
+    <div class="m-blk">
+      <div class="m-n">Article 20</div>
+      <div class="m-t">Acceptation des CGV</div>
+      <div class="m-tx">La validation d'un devis, le paiement d'un acompte ou la soumission d'un formulaire sur ce site emporte <strong>acceptation pleine et entière</strong> des présentes CGV par le client. Le client reconnaît en avoir pris connaissance avant tout engagement contractuel.</div>
+    </div>
+
+    <div class="m-blk">
+      <div class="m-n">Article 21</div>
+      <div class="m-t">Indépendance des clauses</div>
+      <div class="m-tx">Si une clause des présentes CGV était déclarée nulle ou inapplicable par une juridiction compétente, les autres clauses resteraient pleinement valides et applicables. La clause litigieuse serait remplacée par une disposition la plus proche possible de l'intention initiale des parties.</div>
+    </div>
+
+    <div class="m-blk">
+      <div class="m-n">Article 22</div>
+      <div class="m-t">Information précontractuelle</div>
+      <div class="m-tx">Conformément à l'article L.111-1 du Code de la consommation, le client reçoit avant toute commande l'ensemble des informations essentielles&nbsp;: nature exacte du service, statut d'intermédiaire du Prestataire, tarification sur devis, délais estimés et modalités de paiement. La consultation de ce site et du devis transmis vaut prise de connaissance de ces informations.</div>
+    </div>
+
+    <div class="m-blk">
+      <div class="m-n">Article 23</div>
+      <div class="m-t">Indisponibilité du véhicule en cours de mission</div>
+      <div class="m-tx">Le Prestataire ne maîtrise pas la disponibilité réelle des véhicules tiers. Un véhicule identifié peut être vendu à un tiers, retiré de la vente ou voir son prix modifié sans préavis, indépendamment de la volonté du Prestataire. Dans ce cas, une recherche complémentaire est proposée sans frais additionnels au titre de cette seule mission, dans la limite du devis initial.</div>
+    </div>
+
+    <div class="m-blk">
+      <div class="m-n">Article 24</div>
+      <div class="m-t">Vices cachés &amp; recours du client</div>
+      <div class="m-tx">Le Prestataire n'est pas vendeur du véhicule et ne peut donc être tenu pour responsable d'un vice caché au sens des articles 1641 et suivants du Code civil. Tout recours relatif à l'état du véhicule s'exerce <strong>directement contre le vendeur final</strong>, identifié et communiqué au client avant toute transaction. Le Prestataire conseille au client de conserver l'ensemble des documents et échanges relatifs à la transaction.</div>
+    </div>
+
+    <div class="m-blk">
+      <div class="m-n">Article 25</div>
+      <div class="m-t">Frais engagés &amp; rétractation en cours de mission</div>
+      <div class="m-tx">Si le client exerce son droit de rétractation après le démarrage effectif de la recherche (au-delà de la simple prise de contact), les frais déjà engagés pour son compte — négociation entamée, démarches administratives initiées — restent dus au prorata du travail réalisé, conformément à l'article L.221-25 du Code de la consommation.</div>
+    </div>
+
+    <div class="m-blk">
+      <div class="m-n">Article 26</div>
+      <div class="m-t">Assurance du véhicule pendant le transport</div>
+      <div class="m-tx">Le transport organisé par le Prestataire est couvert par une assurance professionnelle pendant l'acheminement. Il appartient toutefois au client de souscrire sa propre assurance automobile <strong>avant la prise de possession effective du véhicule</strong>, dès la livraison ou la remise des clés, conformément à l'obligation légale d'assurance prévue par le Code des assurances.</div>
+    </div>
+
+    <div class="m-blk">
+      <div class="m-n">Article 27</div>
       <div class="m-t">Modification des CGV</div>
-      <div class="m-tx">Le Prestataire se réserve le droit de modifier les présentes CGV à tout moment. La version applicable est celle en vigueur à la date de la commande. <strong>CGV v8.0 — Juin 2026.</strong></div>
+      <div class="m-tx">Le Prestataire se réserve le droit de modifier les présentes CGV à tout moment. La version applicable est celle en vigueur à la date de la commande. <strong>CGV v10.0 — Juin 2026.</strong></div>
     </div>
 
   </div>
@@ -924,8 +1032,38 @@ function revCheck() {
 }
 setTimeout(revCheck, 150);
 window.addEventListener('load', revCheck);
+window.addEventListener('load', function() {
+  if (location.hash === '#cgv') showPage('cgv');
+  else if (location.hash === '#confidentialite') showPage('confidentialite');
+  else if (location.hash === '#mentions') showPage('mentions');
+});
 
 /* FAQ */
+function animCounters() {
+  document.querySelectorAll('.st-n[data-count]').forEach(function(el) {
+    if (el.dataset.done) return;
+    var target = parseInt(el.dataset.count, 10);
+    var suffix = el.dataset.suffix || '';
+    var r = el.getBoundingClientRect();
+    if (r.top > window.innerHeight - 60) return;
+    el.dataset.done = '1';
+    var cur = 0, steps = 30, inc = target / steps, i = 0;
+    var iv = setInterval(function() {
+      i++; cur += inc;
+      if (i >= steps) { clearInterval(iv); el.innerHTML = target + suffix; }
+      else el.innerHTML = Math.round(cur) + suffix;
+    }, 35);
+  });
+}
+window.addEventListener('scroll', animCounters, { passive: true });
+setTimeout(animCounters, 400);
+document.querySelectorAll('.h-cta, .cta-btn').forEach(function(btn) {
+  btn.addEventListener('mousemove', function(e) {
+    var r = btn.getBoundingClientRect();
+    btn.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+    btn.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+  });
+});
 function fqT(btn) {
   var item = btn.parentNode, open = item.className.indexOf('open') !== -1;
   document.querySelectorAll('.fq').forEach(function(f) { f.className = 'fq'; });
